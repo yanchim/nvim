@@ -1,8 +1,6 @@
-(local lisp-ft [:clojure :fennel :lisp :scheme])
-
 [{1 :julienvincent/nvim-paredit
   :lazy true
-  :ft lisp-ft
+  :ft [:clojure :fennel :lisp :scheme]
   :config (fn []
             (let [paredit (require :nvim-paredit)]
               (paredit.setup
@@ -36,12 +34,6 @@
             (let [paredit-fnl (require :nvim-paredit-fennel)]
               (paredit-fnl.setup)))}
 
- {1 :windwp/nvim-autopairs
-  :event "InsertEnter"
-  :dependencies [:hrsh7th/nvim-cmp]
-  :config (fn []
-            (let [autopairs (require :nvim-autopairs)
-                  autopairs-cmp (require :nvim-autopairs.completion.cmp)
-                  cmp (require :cmp) ]
-              (cmp.event:on :confirm_done (autopairs-cmp.on_confirm_done))
-              (autopairs.setup {:disable_filetype lisp-ft})))}]
+ {1 :altermo/ultimate-autopair.nvim
+  :event ["InsertEnter" "CmdlineEnter"]
+  :opts {}}]

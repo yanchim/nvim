@@ -10,9 +10,13 @@
                                     :c
                                     :clojure
                                     :commonlisp
+                                    :cpp
                                     :css
+                                    :dart
+                                    :elixir
                                     :fennel
                                     :gitignore
+                                    :go
                                     :html
                                     :java
                                     :javascript
@@ -20,12 +24,16 @@
                                     :lua
                                     :markdown
                                     :markdown_inline
+                                    :python
+                                    :ruby
                                     :rust
                                     :toml
-                                    :typescript
                                     :tsx
+                                    :typescript
+                                    :typst
                                     :vim
                                     :vimdoc
+                                    :vue
                                     :yaml
                                     :zig]
                  :incremental_selection {:enable true

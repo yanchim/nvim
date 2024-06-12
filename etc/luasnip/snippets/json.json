@@ -1,0 +1,15 @@
+{
+  "VSCode snippet template": {
+    "prefix": "snp",
+    "body": [
+      "\"${1:snippet name}\": {",
+      "\t\"prefix\": \"${2:prefix}\",",
+      "\t\"body\": [",
+      "\t\t\"$0\"",
+      "\t],",
+      "\t\"description\": \"${3:desc}\"",
+      "}"
+    ],
+    "description": "Log output to console"
+  }
+}

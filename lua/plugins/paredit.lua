@@ -1,5 +1,4 @@
 -- [nfnl] Compiled from fnl/plugins/paredit.fnl by https://github.com/Olical/nfnl, do not edit.
-local lisp_ft = {"clojure", "fennel", "lisp", "scheme"}
 local function _1_()
   local paredit = require("nvim-paredit")
   local function _2_()
@@ -14,11 +13,4 @@ local function _4_()
   local paredit_fnl = require("nvim-paredit-fennel")
   return paredit_fnl.setup()
 end
-local function _5_()
-  local autopairs = require("nvim-autopairs")
-  local autopairs_cmp = require("nvim-autopairs.completion.cmp")
-  local cmp = require("cmp")
-  do end (cmp.event):on("confirm_done", autopairs_cmp.on_confirm_done())
-  return autopairs.setup({disable_filetype = lisp_ft})
-end
-return {{"julienvincent/nvim-paredit", lazy = true, ft = lisp_ft, config = _1_}, {"julienvincent/nvim-paredit-fennel", dependencies = {"julienvincent/nvim-paredit"}, lazy = true, ft = {"fennel"}, config = _4_}, {"windwp/nvim-autopairs", event = "InsertEnter", dependencies = {"hrsh7th/nvim-cmp"}, config = _5_}}
+return {{"julienvincent/nvim-paredit", lazy = true, ft = {"clojure", "fennel", "lisp", "scheme"}, config = _1_}, {"julienvincent/nvim-paredit-fennel", dependencies = {"julienvincent/nvim-paredit"}, lazy = true, ft = {"fennel"}, config = _4_}, {"altermo/ultimate-autopair.nvim", event = {"InsertEnter", "CmdlineEnter"}, opts = {}}}

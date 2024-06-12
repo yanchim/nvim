@@ -21,7 +21,7 @@
   :dependencies [:hrsh7th/cmp-buffer ; Source for text in buffer.
                  :hrsh7th/cmp-path ; Source for file system path.
                  :PaterJason/cmp-conjure
-                 {1 :L3MON4D3/LuaSnip :build "make install_jsregexp"}
+                 :L3MON4D3/LuaSnip
                  :saadparwaiz1/cmp_luasnip]
   :config (fn []
             (let [cmp (require :cmp)
