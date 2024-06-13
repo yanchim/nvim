@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/nvim-cmp.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/plugins/complete.fnl by https://github.com/Olical/nfnl, do not edit.
 local cmp_src_menu_items = {buffer = "buff", conjure = "conj", nvim_lsp = "lsp", luasnip = "lsnp"}
 local cmp_srcs = {{name = "nvim_lsp"}, {name = "conjure"}, {name = "buffer"}, {name = "path"}, {name = "luasnip"}}
 local function has_words_before()

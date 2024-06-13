@@ -1,6 +1,8 @@
 ;; Neovide.
-; CJK input in neovide.
 (when vim.g.neovide
+  (set vim.g.neovide_input_macos_option_key_is_meta :only_left)
+
+  ; CJK input in neovide.
   (fn set_ime [args]
     (if (args.event:match :Enter$)
       (set vim.g.neovide_input_ime true)

@@ -1,5 +1,6 @@
 -- [nfnl] Compiled from fnl/core/gui.fnl by https://github.com/Olical/nfnl, do not edit.
 if vim.g.neovide then
+  vim.g.neovide_input_macos_option_key_is_meta = "only_left"
   local function set_ime(args)
     if (args.event):match("Enter$") then
       vim.g.neovide_input_ime = true

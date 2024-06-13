@@ -39,9 +39,9 @@
                   on_attach (fn [client bufnr]
                               (do
                                 (vim.lsp.inlay_hint.enable true {: bufnr})
-                                (vim.api.nvim_buf_set_keymap bufnr :n :gd "<Cmd>lua vim.lsp.buf.definition()<CR>" {:noremap true})
-                                (vim.api.nvim_buf_set_keymap bufnr :n :K "<Cmd>lua vim.lsp.buf.hover()<CR>" {:noremap true})
-                                (vim.api.nvim_buf_set_keymap bufnr :n :<leader>ld "<Cmd>lua vim.lsp.buf.declaration()<CR>" {:noremap true})
+                                (vim.api.nvim_buf_set_keymap bufnr :n :gd "<cmd>lua vim.lsp.buf.definition()<CR>" {:noremap true})
+                                (vim.api.nvim_buf_set_keymap bufnr :n :K "<cmd>lua vim.lsp.buf.hover()<CR>" {:noremap true})
+                                (vim.api.nvim_buf_set_keymap bufnr :n :<leader>ld "<cmd>lua vim.lsp.buf.declaration()<CR>" {:noremap true})
                                 (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lt "<cmd>lua vim.lsp.buf.type_definition()<CR>" {:noremap true})
                                 (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lh "<cmd>lua vim.lsp.buf.signature_help()<CR>" {:noremap true})
                                 (vim.api.nvim_buf_set_keymap bufnr :n :<leader>ln "<cmd>lua vim.lsp.buf.rename()<CR>" {:noremap true})
@@ -61,25 +61,29 @@
               ;; https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
               ;; Clojure.
-              (lsp.clojure_lsp.setup {:on_attach on_attach
+              (lsp.clojure_lsp.setup {:autostart false
+                                      :on_attach on_attach
                                       :handlers handlers
                                       :before_init before_init
                                       :capabilities capabilities})
 
               ;; Rust.
-              (lsp.rust_analyzer.setup {:on_attach on_attach
+              (lsp.rust_analyzer.setup {:autostart false
+                                        :on_attach on_attach
                                         :handlers handlers
                                         :before_init before_init
                                         :capabilities capabilities})
 
               ;; Typescript.
-              (lsp.tsserver.setup {:on_attach on_attach
+              (lsp.tsserver.setup {:autostart false
+                                   :on_attach on_attach
                                    :handlers handlers
                                    :before_init before_init
                                    :capabilities capabilities})
 
               ;; Zig.
-              (lsp.zls.setup {:on_attach on_attach
+              (lsp.zls.setup {:autostart false
+                              :on_attach on_attach
                               :handlers handlers
                               :before_init before_init
                               :capabilities capabilities})))}]

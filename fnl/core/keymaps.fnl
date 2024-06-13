@@ -12,21 +12,9 @@
 (vim.keymap.set :n :<M-h> :<C-w>h {:desc "Move cursor to the leftside window"})
 (vim.keymap.set :n :<M-l> :<C-w>l {:desc "Move cursor to the rightside window"})
 
-(vim.keymap.set :n :<leader>sv :<C-w>v {:desc "Split window vertically"})
-(vim.keymap.set :n :<leader>sh :<C-w>s {:desc "Split window horizontal"})
-(vim.keymap.set :n :<leader>sx :<C-w>q {:desc "Close current window"})
-(vim.keymap.set :n :<leader>se :<C-w>= {:desc "Equal split windows"})
-
 (vim.keymap.set :n :<localleader>sq :<C-w>q {:desc "Close current window"})
 (vim.keymap.set :n :<localleader>sa :<C-w>s {:desc "Split window horizontal"})
 (vim.keymap.set :n :<localleader>sd :<C-w>v {:desc "Split window vertically"})
 (vim.keymap.set :n :<localleader>oo :<C-w>o {:desc "Keep current window only"})
-
-; Tab.
-(vim.keymap.set :n :<leader>to :<cmd>tabnew<CR>   {:desc "Open new tab"})
-(vim.keymap.set :n :<leader>tx :<cmd>tabclose<CR> {:desc "Close current tab"})
-(vim.keymap.set :n :<leader>tn :<cmd>tabn<CR> {:desc "Next tab"})
-(vim.keymap.set :n :<leader>tp :<cmd>tabp<CR> {:desc "Prev tab"})
-(vim.keymap.set :n :<leader>tf "<cmd>tabnew %<CR>" {:desc "Open current buffer in new tab"})
 
 {}
