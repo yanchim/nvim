@@ -15,6 +15,10 @@
 [{1 :neovim/nvim-lspconfig
   :event ["BufReadPre" "BufNewFile"]
   :dependencies [:hrsh7th/cmp-nvim-lsp]
+  :init (fn []
+          (vim.keymap.set :n :<leader>ll :<cmd>LspStart<CR> {:desc "Start LSP"})
+          (vim.keymap.set :n :<leader>lR :<cmd>LspRestart<CR> {:desc "Restart LSP"})
+          (vim.keymap.set :n :<leader>lQ :<cmd>LspStop<CR> {:desc "Stop LSP"}))
   :config (fn []
             (let [lsp (require :lspconfig)
                   cmplsp (require :cmp_nvim_lsp)

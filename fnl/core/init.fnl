@@ -27,6 +27,11 @@
   (each [option value (pairs options)]
     (core.assoc vim.o option value)))
 
+; Prevent commenting out next line after a comment line.
+(vim.api.nvim_create_autocmd
+  :FileType
+  {:pattern :* :callback (fn [] (vim.opt_local.formatoptions:remove [:r :o]))})
+
 ; Tree style listing for netrw.
 (vim.cmd "let g:netrw_liststyle = 3")
 

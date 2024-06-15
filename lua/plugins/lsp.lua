@@ -11,18 +11,23 @@ local function define_signs(prefix)
 end
 define_signs("Diagnostic")
 local function _1_()
+  vim.keymap.set("n", "<leader>ll", "<cmd>LspStart<CR>", {desc = "Start LSP"})
+  vim.keymap.set("n", "<leader>lR", "<cmd>LspRestart<CR>", {desc = "Restart LSP"})
+  return vim.keymap.set("n", "<leader>lQ", "<cmd>LspStop<CR>", {desc = "Stop LSP"})
+end
+local function _2_()
   local lsp = require("lspconfig")
   local cmplsp = require("cmp_nvim_lsp")
   local handlers = {["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {severity_sort = true, update_in_insert = true, underline = true, virtual_text = false}), ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single"}), ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})}
   local capabilities = cmplsp.default_capabilities()
   local before_init
-  local function _2_(params)
+  local function _3_(params)
     params.workDoneToken = "1"
     return nil
   end
-  before_init = _2_
+  before_init = _3_
   local on_attach
-  local function _3_(client, bufnr)
+  local function _4_(client, bufnr)
     vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true})
     vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", {noremap = true})
@@ -41,10 +46,10 @@ local function _1_()
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lr", ":lua require('telescope.builtin').lsp_references()<cr>", {noremap = true})
     return vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>li", ":lua require('telescope.builtin').lsp_implementations()<cr>", {noremap = true})
   end
-  on_attach = _3_
+  on_attach = _4_
   lsp.clojure_lsp.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.rust_analyzer.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.tsserver.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   return lsp.zls.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
 end
-return {{"neovim/nvim-lspconfig", event = {"BufReadPre", "BufNewFile"}, dependencies = {"hrsh7th/cmp-nvim-lsp"}, config = _1_}}
+return {{"neovim/nvim-lspconfig", event = {"BufReadPre", "BufNewFile"}, dependencies = {"hrsh7th/cmp-nvim-lsp"}, init = _1_, config = _2_}}

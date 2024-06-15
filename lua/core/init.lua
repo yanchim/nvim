@@ -8,6 +8,10 @@ do
     core.assoc(vim.o, option, value)
   end
 end
+local function _2_()
+  return (vim.opt_local.formatoptions):remove({"r", "o"})
+end
+vim.api.nvim_create_autocmd("FileType", {pattern = "*", callback = _2_})
 vim.cmd("let g:netrw_liststyle = 3")
 require("core.keymaps")
 require("core.gui")

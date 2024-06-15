@@ -11,7 +11,7 @@
             (vim.keymap.set :n :<leader>sg builtin.live_grep {:noremap true :desc "Ripgrep"})
             (vim.keymap.set :n :<leader>sr builtin.oldfiles {:noremap true :desc "Find recent buffer"})
 
-            (vim.keymap.set :n :<leader>tt builtin.colorscheme {:noremap true :desc "Colorscheme"})
+            (vim.keymap.set :n :<leader>tc builtin.colorscheme {:noremap true :desc "Colorscheme"})
             (vim.keymap.set :n :<leader>tq builtin.quickfix {:noremap true :desc "Quickfix"})
             (vim.keymap.set :n :<leader>tl builtin.quickfix {:noremap true :desc "Loclist"})
             (vim.keymap.set :n :<leader>tj builtin.quickfix {:noremap true :desc "Jumplist"})
@@ -63,6 +63,7 @@
   :event :VeryLazy
   :opts {}
   :keys [{1 :<localleader>aa :mode [:n :o :x] 2 (fn [] ((. (require :flash) :jump))) :desc :Flash}
+         {1 :<localleader>al :mode [:n :o :x] 2 (fn [] ((. (require :flash) :jump) {:label {:after [0 0]} :pattern :^ :search {:max_length 0 :mode :search}})) :desc "Flash Line"}
          {1 :<localleader>at :mode [:n :o :x] 2 (fn [] ((. (require :flash) :treesitter))) :desc "Flash Treesitter"}
          {1 :<localleader>ar :mode :o 2 (fn [] ((. (require :flash) :remote))) :desc "Remote Flash"}
          {1 :<localleader>as :mode [:o :x] 2 (fn [] ((. (require :treesitter_search) :remote))) :desc "Treesitter Search"}
@@ -77,12 +78,14 @@
   :config (fn []
             (let [wk (require :which-key)]
               (wk.register
-                {:<leader>c {:name :Code}
+                {:<leader>b {:name :Buffer}
+                 :<leader>c {:name :Code}
                  :<leader>e {:name :Explore}
                  :<leader>f {:name :Find}
                  :<leader>g {:name :Git
                              :b {:name :Buffer}
                              :h {:name :Hunk}
                              :l {:name :Line}}
+                 :<leader>l {:name :Lsp}
                  :<leader>s {:name :Search}
-                 :<leader>t {:name :Toggle}})))}]
+                 :<leader>t {:name :Toggle/Tab}})))}]
