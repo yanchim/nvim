@@ -4,31 +4,36 @@
                  :nvim-telescope/telescope-file-browser.nvim]
   :init (fn []
           (let [builtin (require :telescope.builtin)]
-            (vim.keymap.set :n :<localleader><localleader> builtin.commands {:noremap true :desc "Commands"})
+            ; Buffer.
             (vim.keymap.set :n :<leader>bb builtin.buffers {:noremap true :desc "Find buffer"})
+
+            ; File.
+            (vim.keymap.set :n :<leader>fc ":Telescope file_browser path=%:p:h select_buffer=true<CR>" {:noremap true :desc "Open file browser with current buffer"})
+            (vim.keymap.set :n :<leader>ff ":Telescope file_browser<CR>" {:noremap true :desc "Open file browser"})
+
+            ; Git.
+            (vim.keymap.set :n :<leader>gt builtin.git_status {:noremap true :desc "Git status"})
+
+            ; Search.
             (vim.keymap.set :n :<leader>sc builtin.grep_string {:noremap true :desc "Find string under cursor"})
             (vim.keymap.set :n :<leader>sf builtin.find_files {:noremap true :desc "Fd file"})
             (vim.keymap.set :n :<leader>sg builtin.live_grep {:noremap true :desc "Ripgrep"})
             (vim.keymap.set :n :<leader>sr builtin.oldfiles {:noremap true :desc "Find recent buffer"})
 
-            (vim.keymap.set :n :<leader>tc builtin.colorscheme {:noremap true :desc "Colorscheme"})
-            (vim.keymap.set :n :<leader>tq builtin.quickfix {:noremap true :desc "Quickfix"})
-            (vim.keymap.set :n :<leader>tl builtin.quickfix {:noremap true :desc "Loclist"})
-            (vim.keymap.set :n :<leader>tj builtin.quickfix {:noremap true :desc "Jumplist"})
+            ; View.
+            (vim.keymap.set :n :<leader>v: builtin.commands {:noremap true :desc "Commands"})
+            (vim.keymap.set :n :<leader>vc builtin.colorscheme {:noremap true :desc "Colorscheme"})
+            (vim.keymap.set :n :<leader>vh builtin.help_tags {:noremap true :desc "Help tags"})
+            (vim.keymap.set :n :<leader>vk builtin.keymaps {:noremap true :desc "Keymaps"})
+            (vim.keymap.set :n :<leader>vm builtin.marks {:noremap true :desc "Marks"})
+            (vim.keymap.set :n :<leader>vo builtin.vim_options {:noremap true :desc "Options"})
+            (vim.keymap.set :n :<leader>vr builtin.registers {:noremap true :desc "Registers"}))
 
-            (vim.keymap.set :n :<leader>gt builtin.git_status {:noremap true :desc "Git status"})
-
-            (vim.keymap.set :n :<leader>fb builtin.buffers {:noremap true :desc "Find buffer"})
-            (vim.keymap.set :n :<leader>ff builtin.find_files {:noremap true :desc "Find file"})
-            (vim.keymap.set :n :<leader>fg builtin.live_grep {:noremap true :desc "Find grep"})
-            (vim.keymap.set :n :<leader>fc builtin.grep_string {:noremap true :desc "Find string under cursor"})
-            (vim.keymap.set :n :<leader>fb builtin.buffers {:noremap true :desc "Find buffer"})
-            (vim.keymap.set :n :<leader>fr builtin.oldfiles {:noremap true :desc "Find recent buffer"})
-            (vim.keymap.set :n :<leader>fh builtin.help_tags {:noremap true :desc "Find help"})
-            (vim.keymap.set :n :<leader>ee ":Telescope file_browser<CR>" {:noremap true :desc "Open file browser"})
-            (vim.keymap.set :n :<leader>ef ":Telescope file_browser path=%:p:h select_buffer=true<CR>" {:noremap true :desc "Open file browser with current buffer"})))
+          (let [telescope (require :telescope)]
+            (telescope.load_extension :file_browser)))
   :config (fn []
-            (let [telescope (require :telescope)]
+            (let [telescope (require :telescope)
+                  fb-actions (require :telescope._extensions.file_browser.actions)]
               (telescope.setup {:defaults {:file_ignore_patterns [:node_modules]
                                            :vimgrep_arguments ["rg"
                                                                "--color=never"
@@ -42,9 +47,11 @@
                                                                "--hidden"]}
                                 :pickers {:find_files {:find_command ["fd"
                                                                       "--full-path"
-                                                                      "--color=never"]}}
-                                :extensions {:file_browser {:collapse_dirs true}}})
-              (telescope.load_extension :file_browser)))}
+                                                                      "--color=never"]}
+                                          :colorscheme {:enable_preview true}}
+                                :extensions {:file_browser {:collapse_dirs true
+                                                            :mappings {:n {:g fb-actions.toggle_respect_gitignore}
+                                                                       :i {:<C-g> fb-actions.toggle_respect_gitignore}}}}})))}
 
  {1 :stevearc/dressing.nvim
   :opts {}}
@@ -81,11 +88,12 @@
                 {:<leader>b {:name :Buffer}
                  :<leader>c {:name :Code}
                  :<leader>e {:name :Explore}
-                 :<leader>f {:name :Find}
+                 :<leader>f {:name :File}
                  :<leader>g {:name :Git
                              :b {:name :Buffer}
                              :h {:name :Hunk}
                              :l {:name :Line}}
                  :<leader>l {:name :Lsp}
                  :<leader>s {:name :Search}
-                 :<leader>t {:name :Toggle/Tab}})))}]
+                 :<leader>t {:name :Tab}
+                 :<leader>v {:name :View}})))}]
