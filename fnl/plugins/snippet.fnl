@@ -1,10 +1,17 @@
-[{1 :L3MON4D3/LuaSnip
-  :build "make install_jsregexp"
-  :config (fn []
-            (let [ls (require :luasnip)
-                  lsv (require :luasnip.loaders.from_vscode)]
-              (vim.keymap.set :i :<C-K> (fn [] (if (ls.expand_or_jumpable) (ls.expand_or_jump))) {:silent true})
-              (vim.keymap.set [:i :s] :<C-L> (fn [] (ls.jump 1)) {:silent true})
-              (vim.keymap.set [:i :s] :<C-J> (fn [] (ls.jump -1)) {:silent true})
-              (vim.keymap.set [:i :s] :<C-E> (fn [] (when (ls.choice_active) (ls.change_choice 1))) {:silent true})
-              (lsv.lazy_load {:paths [:./etc/luasnip]})))}]
+[{1 :garymjr/nvim-snippets
+  :event :InsertEnter
+  :opts {}
+  :keys [{1 :<C-K>
+          2 #(if
+               (vim.snippet.active {:direction 1}) (vim.schedule #(vim.snippet.jump 1))
+               ; nvim-snippets does not support expand for now...
+               :<C-K>)
+          :expr true :silent true :mode :i}
+         {1 :<C-L>
+          2 #(vim.schedule #(vim.snippet.jump 1))
+          :expr true :silent true :mode [:i :s]}
+         {1 :<C-J>
+          2 #(if
+               (vim.snippet.active {:direction -1}) (vim.schedule #(vim.snippet.jump -1))
+               :<C-J>)
+          :expr true :silent true :mode [:i :s]}]}]

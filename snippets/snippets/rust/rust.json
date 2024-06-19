@@ -277,7 +277,7 @@
     "body": [
       "#[bench]",
       "fn ${1:name}(b: &mut test::Bencher) {",
-      "    ${2:b.iter(|| ${3:/* benchmark code */})}",
+      "\t${2:b.iter(|| ${3:/* benchmark code */})}",
       "}"
     ],
     "description": "#[bench]"
@@ -301,8 +301,8 @@
     "body": [
       "#[derive(Debug)]",
       "enum ${1:Name} {",
-      "    ${2:Variant1},",
-      "    ${3:Variant2},",
+      "\t${2:Variant1},",
+      "\t${3:Variant2},",
       "}"
     ],
     "description": "enum … { … }"
@@ -318,7 +318,7 @@
     "prefix": "extern-fn",
     "body": [
       "extern \"C\" fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
-      "    ${5:// add code here}",
+      "\t${5:// add code here}",
       "}"
     ],
     "description": "extern \"C\" fn …(…) { … }"
@@ -327,7 +327,7 @@
     "prefix": "extern-mod",
     "body": [
       "extern \"C\" {",
-      "    ${2:// add code here}",
+      "\t${2:// add code here}",
       "}"
     ],
     "description": "extern \"C\" { … }"
@@ -336,7 +336,7 @@
     "prefix": "pfn",
     "body": [
       "pub fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
-      "    ${5:todo!();}",
+      "\t${5:todo!();}",
       "}"
     ],
     "description": "pub fn …(…) { … }"
@@ -345,7 +345,7 @@
     "prefix": "fn",
     "body": [
       "fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
-      "    ${5:todo!();}",
+      "\t${5:todo!();}",
       "}"
     ],
     "description": "fn …(…) { … }"
@@ -354,7 +354,7 @@
     "prefix": "for",
     "body": [
       "for ${1:pat} in ${2:expr} {",
-      "    ${3:todo!();}",
+      "\t${3:todo!();}",
       "}"
     ],
     "description": "for … in … { … }"
@@ -363,7 +363,7 @@
     "prefix": "if-let",
     "body": [
       "if let ${1:Some(pat)} = ${2:expr} {",
-      "    ${0:todo!();}",
+      "\t${0:todo!();}",
       "}"
     ],
     "description": "if let … = … { … }"
@@ -372,7 +372,7 @@
     "prefix": "if",
     "body": [
       "if ${1:condition} {",
-      "    ${2:todo!();}",
+      "\t${2:todo!();}",
       "}"
     ],
     "description": "if … { … }"
@@ -381,7 +381,7 @@
     "prefix": "impl-trait",
     "body": [
       "impl ${1:Trait} for ${2:Type} {",
-      "    ${3:// add code here}",
+      "\t${3:// add code here}",
       "}"
     ],
     "description": "impl … for … { … }"
@@ -391,7 +391,7 @@
     "body": [
       "#[inline]",
       "pub fn ${1:name}() {",
-      "    ${2:todo!();}",
+      "\t${2:todo!();}",
       "}"
     ],
     "description": "inlined function"
@@ -400,7 +400,7 @@
     "prefix": "macro_rules",
     "body": [
       "macro_rules! ${1:name} {",
-      "    (${2}) => (${3})",
+      "\t(${2}) => (${3})",
       "}"
     ],
     "description": "macro_rules! … { … }"
@@ -409,7 +409,7 @@
     "prefix": "main",
     "body": [
       "fn main() {",
-      "    ${1:todo!();}",
+      "\t${1:todo!();}",
       "}"
     ],
     "description": "fn main() { … }"
@@ -425,7 +425,7 @@
     "prefix": "mod-block",
     "body": [
       "mod ${1:name} {",
-      "    ${2:// add code here}",
+      "\t${2:// add code here}",
       "}"
     ],
     "description": "mod … { … }"
@@ -456,7 +456,7 @@
     "body": [
       "#[derive(Debug)]",
       "struct ${1:Name} {",
-      "    ${2:field}: ${3:Type}",
+      "\t${2:field}: ${3:Type}",
       "}"
     ],
     "description": "struct … { … }"
@@ -466,10 +466,12 @@
     "body": [
       "#[cfg(test)]",
       "mod test {",
-      "    #[test]",
-      "    fn ${1:name}() {",
-      "        ${2:todo!();}",
-      "    }",
+      "\tuse super::*;",
+      "",
+      "\t#[test]",
+      "\tfn ${1:name}() {",
+      "\t\t${2:todo!();}",
+      "\t}",
       "}"
     ],
     "description": "#[cfg(test)]\nmod test {...}"
@@ -479,7 +481,7 @@
     "body": [
       "#[test]",
       "fn ${1:name}() {",
-      "    ${2:todo!();}",
+      "\t${2:todo!();}",
       "}"
     ],
     "description": "#[test]"
@@ -488,7 +490,7 @@
     "prefix": "trait",
     "body": [
       "trait ${1:Name} {",
-      "    ${2:// add code here}",
+      "\t${2:// add code here}",
       "}",
       ""
     ],
@@ -505,7 +507,7 @@
     "prefix": "while-let",
     "body": [
       "while let ${1:Some(pat)} = ${2:expr} {",
-      "    ${0:todo!();}",
+      "\t${0:todo!();}",
       "}"
     ],
     "description": "while let … = … { … }"
@@ -514,7 +516,7 @@
     "prefix": "while",
     "body": [
       "while ${1:condition} {",
-      "    ${2:todo!();}",
+      "\t${2:todo!();}",
       "}"
     ],
     "description": "while … { … }"

@@ -1,31 +1,28 @@
 -- [nfnl] Compiled from fnl/plugins/snippet.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_()
-  local ls = require("luasnip")
-  local lsv = require("luasnip.loaders.from_vscode")
-  local function _2_()
-    if ls.expand_or_jumpable() then
-      return ls.expand_or_jump()
-    else
-      return nil
+  if vim.snippet.active({direction = 1}) then
+    local function _2_()
+      return vim.snippet.jump(1)
     end
+    return vim.schedule(_2_)
+  else
+    return "<C-K>"
   end
-  vim.keymap.set("i", "<C-K>", _2_, {silent = true})
-  local function _4_()
-    return ls.jump(1)
-  end
-  vim.keymap.set({"i", "s"}, "<C-L>", _4_, {silent = true})
-  local function _5_()
-    return ls.jump(-1)
-  end
-  vim.keymap.set({"i", "s"}, "<C-J>", _5_, {silent = true})
-  local function _6_()
-    if ls.choice_active() then
-      return ls.change_choice(1)
-    else
-      return nil
-    end
-  end
-  vim.keymap.set({"i", "s"}, "<C-E>", _6_, {silent = true})
-  return lsv.lazy_load({paths = {"./etc/luasnip"}})
 end
-return {{"L3MON4D3/LuaSnip", build = "make install_jsregexp", config = _1_}}
+local function _4_()
+  local function _5_()
+    return vim.snippet.jump(1)
+  end
+  return vim.schedule(_5_)
+end
+local function _6_()
+  if vim.snippet.active({direction = -1}) then
+    local function _7_()
+      return vim.snippet.jump(-1)
+    end
+    return vim.schedule(_7_)
+  else
+    return "<C-J>"
+  end
+end
+return {{"garymjr/nvim-snippets", event = "InsertEnter", opts = {}, keys = {{"<C-K>", _1_, expr = true, silent = true, mode = "i"}, {"<C-L>", _4_, expr = true, silent = true, mode = {"i", "s"}}, {"<C-J>", _6_, expr = true, silent = true, mode = {"i", "s"}}}}}

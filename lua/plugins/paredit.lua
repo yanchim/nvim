@@ -13,4 +13,4 @@ local function _4_()
   local paredit_fnl = require("nvim-paredit-fennel")
   return paredit_fnl.setup()
 end
-return {{"julienvincent/nvim-paredit", lazy = true, ft = {"clojure", "fennel", "lisp", "scheme"}, config = _1_}, {"julienvincent/nvim-paredit-fennel", dependencies = {"julienvincent/nvim-paredit"}, lazy = true, ft = {"fennel"}, config = _4_}, {"altermo/ultimate-autopair.nvim", event = {"InsertEnter", "CmdlineEnter"}, opts = {}}}
+return {{"julienvincent/nvim-paredit", lazy = true, ft = {"clojure", "fennel", "lisp", "scheme"}, config = _1_}, {"julienvincent/nvim-paredit-fennel", dependencies = {"julienvincent/nvim-paredit"}, lazy = true, ft = {"fennel"}, config = _4_}}

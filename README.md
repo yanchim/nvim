@@ -4,7 +4,7 @@
 
 # Neovim configuration
 
-Require neovim >= 0.9.2, based on [fennel] and [nfnl].
+Require neovim >= 0.10.0, based on [fennel] and [nfnl].
 
 ## INSTALL
 
@@ -14,7 +14,7 @@ For unix
 
 For windows
 
-    git clone https://github.com/yanchim/nvim.git $HOME/AppData/local/nvim
+    git clone https://github.com/yanchim/nvim.git $HOME/AppData/Local/nvim
 
 [fennel]: https://fennel-lang.org
 [nfnl]: https://github.com/Olical/nfnl

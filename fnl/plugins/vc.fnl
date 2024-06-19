@@ -1,5 +1,5 @@
 [{1 :lewis6991/gitsigns.nvim
-  :event ["BufReadPre" "BufNewFile"]
+  :event [:BufReadPre :BufNewFile]
   :opts {:on_attach (fn [buf]
                       (let [gs (require :gitsigns)]
                         (vim.keymap.set :n "<leader>glb" (fn [] (gs.blame_line {:full true})) {:desc "Blame line"})
@@ -16,9 +16,8 @@
   :dependencies [:nvim-lua/plenary.nvim
                  :sindrets/diffview.nvim
                  :nvim-telescope/telescope.nvim]
-  :config (fn []
-            (let [neogit (require :neogit)]
-              (vim.keymap.set :n "<leader>gc" "<cmd>Neogit commit<CR>" {:desc "Open commit popup"})
-              (vim.keymap.set :n "<leader>gn" :<cmd>Neogit<CR> {:desc "Neogit status"})
-              (vim.keymap.set :n "<leader>gg" "<cmd>Neogit cwd=%:p:h<CR>" {:desc "Current buffer Neogit status"})
-              (neogit.setup)))}]
+  :config #(let [neogit (require :neogit)]
+             (vim.keymap.set :n "<leader>gc" "<cmd>Neogit commit<CR>" {:desc "Open commit popup"})
+             (vim.keymap.set :n "<leader>gn" :<cmd>Neogit<CR> {:desc "Neogit status"})
+             (vim.keymap.set :n "<leader>gg" "<cmd>Neogit cwd=%:p:h<CR>" {:desc "Current buffer Neogit status"})
+             (neogit.setup))}]

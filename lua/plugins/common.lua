@@ -31,30 +31,34 @@ local function _3_()
   return surround.setup()
 end
 local function _4_()
-  return (require("flash")).jump()
+  local mp = require("mini.pairs")
+  return mp.setup()
 end
 local function _5_()
-  return (require("flash")).jump({label = {after = {0, 0}}, pattern = "^", search = {max_length = 0, mode = "search"}})
+  return (require("flash")).jump()
 end
 local function _6_()
-  return (require("flash")).treesitter()
+  return (require("flash")).jump({label = {after = {0, 0}}, pattern = "^", search = {max_length = 0, mode = "search"}})
 end
 local function _7_()
-  return (require("flash")).remote()
+  return (require("flash")).treesitter()
 end
 local function _8_()
-  return (require("treesitter_search")).remote()
+  return (require("flash")).remote()
 end
 local function _9_()
-  return (require("flash")).toggle()
+  return (require("treesitter_search")).remote()
 end
 local function _10_()
+  return (require("flash")).toggle()
+end
+local function _11_()
   vim.o.timeout = true
   vim.o.timeoutlen = 500
   return nil
 end
-local function _11_()
+local function _12_()
   local wk = require("which-key")
   return wk.register({["<leader>b"] = {name = "Buffer"}, ["<leader>c"] = {name = "Code"}, ["<leader>e"] = {name = "Explore"}, ["<leader>f"] = {name = "File"}, ["<leader>g"] = {name = "Git", b = {name = "Buffer"}, h = {name = "Hunk"}, l = {name = "Line"}}, ["<leader>l"] = {name = "Lsp"}, ["<leader>s"] = {name = "Search"}, ["<leader>t"] = {name = "Tab"}, ["<leader>v"] = {name = "View"}})
 end
-return {{"nvim-telescope/telescope.nvim", dependencies = {"nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "nvim-telescope/telescope-file-browser.nvim"}, init = _1_, config = _2_}, {"stevearc/dressing.nvim", opts = {}}, {"tummetott/unimpaired.nvim", event = "VeryLazy", opts = {}}, {"kylechui/nvim-surround", event = "VeryLazy", config = _3_}, {"folke/flash.nvim", event = "VeryLazy", opts = {}, keys = {{"<localleader>aa", _4_, mode = {"n", "o", "x"}, desc = "Flash"}, {"<localleader>al", _5_, mode = {"n", "o", "x"}, desc = "Flash Line"}, {"<localleader>at", _6_, mode = {"n", "o", "x"}, desc = "Flash Treesitter"}, {"<localleader>ar", _7_, mode = "o", desc = "Remote Flash"}, {"<localleader>as", _8_, mode = {"o", "x"}, desc = "Treesitter Search"}, {"<C-s>", _9_, mode = "c", desc = "Toggle Flash Search"}}}, {"folke/which-key.nvim", event = "VeryLazy", init = _10_, opts = {}, config = _11_}}
+return {{"nvim-telescope/telescope.nvim", dependencies = {"nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "nvim-telescope/telescope-file-browser.nvim"}, init = _1_, config = _2_}, {"stevearc/dressing.nvim", opts = {}}, {"tummetott/unimpaired.nvim", event = "VeryLazy", opts = {}}, {"kylechui/nvim-surround", event = "VeryLazy", config = _3_}, {"echasnovski/mini.pairs", event = "VeryLazy", opts = {modes = {insert = true, command = true, terminal = false}, skip_ts = {"string"}, skip_unbalanced = true, markdown = true}, config = _4_, version = false}, {"folke/flash.nvim", event = "VeryLazy", opts = {}, keys = {{"<localleader>aa", _5_, mode = {"n", "o", "x"}, desc = "Flash"}, {"<localleader>al", _6_, mode = {"n", "o", "x"}, desc = "Flash Line"}, {"<localleader>at", _7_, mode = {"n", "o", "x"}, desc = "Flash Treesitter"}, {"<localleader>ar", _8_, mode = "o", desc = "Remote Flash"}, {"<localleader>as", _9_, mode = {"o", "x"}, desc = "Treesitter Search"}, {"<C-s>", _10_, mode = "c", desc = "Toggle Flash Search"}}}, {"folke/which-key.nvim", event = "VeryLazy", init = _11_, opts = {}, config = _12_}}
