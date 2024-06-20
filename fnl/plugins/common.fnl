@@ -89,7 +89,7 @@
          {1 :<localleader>ar :mode :o 2 (fn [] ((. (require :flash) :remote))) :desc "Remote Flash"}
          {1 :<localleader>as :mode [:o :x] 2 (fn [] ((. (require :treesitter_search) :remote))) :desc "Treesitter Search"}
          {1 :<C-s> :mode :c 2 (fn [] ((. (require :flash) :toggle))) :desc "Toggle Flash Search"}]}
- 
+
  {1 :folke/which-key.nvim
   :event :VeryLazy
   :init (fn []
