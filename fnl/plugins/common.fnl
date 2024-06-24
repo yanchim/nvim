@@ -19,6 +19,7 @@
             (vim.keymap.set :n :<leader>sf builtin.find_files {:noremap true :desc "Fd file"})
             (vim.keymap.set :n :<leader>sg builtin.live_grep {:noremap true :desc "Ripgrep"})
             (vim.keymap.set :n :<leader>sr builtin.oldfiles {:noremap true :desc "Find recent buffer"})
+            (vim.keymap.set :n :<leader>ss builtin.current_buffer_fuzzy_find {:noremap true :desc "Search buffer"})
 
             ; View.
             (vim.keymap.set :n :<leader>v: builtin.commands {:noremap true :desc "Commands"})

@@ -1,18 +1,4 @@
 {
-  "import": {
-    "prefix": "import",
-    "body": [
-      "import $1 from '$2'"
-    ],
-    "description": "import ... from ..."
-  },
-  "import-type": {
-    "prefix": "importType",
-    "body": [
-      "import type {$1} from '$2'"
-    ],
-    "description": "import type ... from ..."
-  },
   "nextTick": {
     "prefix": "nextTick",
     "body": [
@@ -103,17 +89,8 @@
     ],
     "description": "The data object for the Vue instance."
   },
-  "computed-options": {
-    "prefix": "computed",
-    "body": [
-      "computed: {",
-      "\t$1",
-      "},$0"
-    ],
-    "description": "Computed properties to be mixed into the Vue instance. "
-  },
   "computed-composition": {
-    "prefix": "computedVue",
+    "prefix": "computed",
     "body": [
       "const $1 = computed(() => {",
       "\t$0",
@@ -122,7 +99,7 @@
     "description": "Computed properties to be mixed into the Vue instance. "
   },
   "computed-composition-ts": {
-    "prefix": "computedVueTS",
+    "prefix": "computedTS",
     "body": [
       "const $1 = computed<${2:type}>(() => {",
       "\t$0",
@@ -131,7 +108,7 @@
     "description": "Computed properties to be mixed into the Vue instance. "
   },
   "reactive-composition": {
-    "prefix": "reactiveVue",
+    "prefix": "reactive",
     "body": [
       "const $1 = reactive({",
       "\t$0",
@@ -140,7 +117,7 @@
     "description": "Reactive properties to be mixed into the Vue instance. "
   },
   "reactive-composition-ts": {
-    "prefix": "reactiveVueTS",
+    "prefix": "reactiveTS",
     "body": [
       "interface $1 {",
       "\t${2:property}: ${3:type}",
@@ -202,7 +179,7 @@
     "description": "Registers a dispose callback on the current active effect scope. The callback will be invoked when the associated effect scope is stopped."
   },
   "ref-composition": {
-    "prefix": "refVue",
+    "prefix": "ref",
     "body": [
       "const $1 = ref($2)",
       "$0"
@@ -210,72 +187,30 @@
     "description": "Ref properties to be mixed into the Vue instance. "
   },
   "ref-composition-ts": {
-    "prefix": "refVueTS",
+    "prefix": "refTS",
     "body": [
       "const $3 = ref<${2:type}>($1)",
       "$0"
     ],
     "description": "Ref properties to be mixed into the Vue instance. "
   },
-  "template-ref-ts-composition": {
-    "prefix": "trfVue",
-    "body": [
-      "const $0 = ref<HTMLInputElement | null>(null)"
-    ],
-    "description": "Template ref to be mixed into the Vue instance. "
-  },
-  "component-ref-ts-composition": {
-    "prefix": "crfVue",
-    "body": [
-      "const $1 = ref<InstanceType<typeof $0> | null>(null)"
-    ],
-    "description": "Template ref to be mixed into the Vue instance. "
-  },
-  "methods-options": {
-    "prefix": "methods",
-    "body": [
-      "methods: {",
-      "\t$1",
-      "},$0"
-    ],
-    "description": "Methods to be mixed into the Vue instance."
-  },
-  "function": {
-    "prefix": "functionVue3",
-    "body": [
-      "const $1 = ($2) => {",
-      "$0",
-      "};"
-    ],
-    "description": "Method composition properties to be mixed into the Vue instance. "
-  },
   "watch": {
     "prefix": "watch",
     "body": [
       "watch($1, ($2, $3) => {",
-      "$0",
+      "\t$0",
       "});"
     ],
     "description": "Watch over a reactive source and call a function in reaction to state changes "
   },
-  "watchEffect-composition": {
-    "prefix": "watchEffect",
+  "watchEffect": {
+    "prefix": "watcheffect",
     "body": [
       "watchEffect($1, ($2, $3) => {",
-      "$0",
+      "\t$0",
       "});"
     ],
     "description": "watchEffect from vue composition "
-  },
-  "stoppingWatcher": {
-    "prefix": "stopWatcher",
-    "body": [
-      "setTimeout(() => {",
-      "\twatchEffect(() => {})",
-      "}, ${1:100})",
-      "$0"
-    ],
-    "description": "Stopping a Watcher vue"
   },
   "onBeforeMount": {
     "prefix": "onBeforeMount",

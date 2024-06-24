@@ -1,0 +1,17 @@
+{
+  "Print": {
+    "prefix": "p",
+    "body": "System.out.print(${0});",
+    "description": "Print to console"
+  },
+  "Printf": {
+    "prefix": "pf",
+    "body": "System.out.printf(${0});",
+    "description": "Print formatted text to console"
+  },
+  "Println": {
+    "prefix": "pl",
+    "body": "System.out.println(${0});",
+    "description": "Print to console with a newline"
+  }
+}

@@ -10,7 +10,7 @@
   },
   "a": {
     "prefix": "a",
-    "body": "<a href=\"$1\">$2</a>$3",
+    "body": "<a href=\"${1:#}\">$2</a>$3",
     "description": "HTML - Defines a hyperlink",
     "scope": "text.html"
   },

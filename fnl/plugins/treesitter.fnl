@@ -19,6 +19,7 @@
                                    :html
                                    :java
                                    :javascript
+                                   :jsdoc
                                    :json
                                    :lua
                                    :markdown

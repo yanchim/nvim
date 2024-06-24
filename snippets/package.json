@@ -2,80 +2,15 @@
   "contributes": {
     "snippets": [
       {
-        "language": "angular",
-        "path": "./snippets/angular/html.json"
-      },
-      {
-        "language": "angular",
-        "path": "./snippets/angular/jsonc.json"
-      },
-      {
-        "language": "angular",
-        "path": "./snippets/angular/typescript.json"
-      },
-      {
-        "language": "c",
-        "path": "./snippets/c/c.json"
-      },
-      {
-        "language": "cdoc",
-        "path": "./snippets/c/cdoc.json"
-      },
-      {
-        "language": "cpp",
-        "path": "./snippets/cpp/cpp.json"
-      },
-      {
-        "language": "cppdoc",
-        "path": "./snippets/cpp/cppdoc.json"
-      },
-      {
-        "language": [
-          "csharp",
-          "cs"
-        ],
-        "path": "./snippets/csharp/csharp.json"
-      },
-      {
-        "language": "csharpdoc",
-        "path": "./snippets/csharp/csharpdoc.json"
-      },
-      {
-        "language": [
-          "css",
-          "scss",
-          "sass",
-          "less",
-          "stylus"
-        ],
-        "path": "./snippets/css.json"
-      },
-      {
-        "language": "dart",
-        "path": "./snippets/dart/dart.json"
-      },
-      {
-        "language": "flutter",
-        "path": "./snippets/dart/flutter.json"
-      },
-      {
-        "language": "yaml",
-        "path": "./snippets/docker/docker-compose.json"
-      },
-      {
-        "language": "dockerfile",
-        "path": "./snippets/docker/dockerfile.json"
-      },
-      {
         "language": [
           "eelixir",
           "heex"
         ],
-        "path": "./snippets/eelixir.json"
+        "path": "./snippets/elixir/eelixir.json"
       },
       {
         "language": "elixir",
-        "path": "./snippets/elixir.json"
+        "path": "./snippets/elixir/elixir.json"
       },
       {
         "language": "erlang",
@@ -104,215 +39,69 @@
         "path": "./snippets/global.json"
       },
       {
-        "language": "go",
-        "path": "./snippets/go.json"
-      },
-      {
-        "language": "haskell",
-        "path": "./snippets/haskell.json"
-      },
-      {
         "language": [
+          "eelixir",
+          "heex",
           "html",
-          "jade",
-          "pug",
-          "eruby",
           "javascriptreact",
-          "astro"
+          "typescriptreact",
+          "vue"
         ],
         "path": "./snippets/html.json"
       },
       {
         "language": "java",
-        "path": "./snippets/java/java.json"
-      },
-      {
-        "language": "java-testing",
-        "path": "./snippets/java/java-tests.json"
-      },
-      {
-        "language": "javadoc",
-        "path": "./snippets/java/javadoc.json"
+        "path": "./snippets/java.json"
       },
       {
         "language": [
           "javascript",
+          "typescript",
           "javascriptreact",
-          "vue",
-          "svelte"
+          "typescriptreact",
+          "vue"
         ],
-        "path": "./snippets/javascript/javascript.json"
-      },
-      {
-        "language": "jsdoc",
-        "path": "./snippets/javascript/jsdoc.json"
-      },
-      {
-        "language": "typescriptreact",
-        "path": "./snippets/javascript/next-ts.json"
-      },
-      {
-        "language": "javascriptreact",
-        "path": "./snippets/javascript/next.json"
-      },
-      {
-        "language": "typescriptreact",
-        "path": "./snippets/javascript/react-native-ts.json"
-      },
-      {
-        "language": "javascriptreact",
-        "path": "./snippets/javascript/react-native.json"
-      },
-      {
-        "language": "typescriptreact",
-        "path": "./snippets/javascript/react-ts.json"
-      },
-      {
-        "language": "javascriptreact",
-        "path": "./snippets/javascript/react.json"
-      },
-      {
-        "language": "tsdoc",
-        "path": "./snippets/javascript/tsdoc.json"
+        "path": "./snippets/js/doc.json"
       },
       {
         "language": [
+          "javascript",
           "typescript",
+          "javascriptreact",
+          "typescriptreact",
+          "vue"
+        ],
+        "path": "./snippets/js/javascript.json"
+      },
+      {
+        "language": [
+          "javascriptreact",
           "typescriptreact"
         ],
-        "path": "./snippets/javascript/typescript.json"
+        "path": "./snippets/js/react.json"
       },
       {
         "language": "json",
-        "path": "./snippets/json.json"
-      },
-      {
-        "language": "julia",
-        "path": "./snippets/julia.json"
-      },
-      {
-        "language": "kdoc",
-        "path": "./snippets/kotlin/kdoc.json"
-      },
-      {
-        "language": "kotlin",
-        "path": "./snippets/kotlin/kotlin.json"
-      },
-      {
-        "language": "yaml",
-        "path": "./snippets/kubernetes.json"
+        "path": "./snippets/js/json.json"
       },
       {
         "language": [
-          "bibtex",
-          "bib"
+          "eelixir",
+          "heex",
+          "html",
+          "javascriptreact",
+          "typescriptreact",
+          "vue"
         ],
-        "path": "./snippets/latex/bibtex.json"
-      },
-      {
-        "language": [
-          "plaintex",
-          "tex"
-        ],
-        "path": "./snippets/latex/latex-snippets.json"
-      },
-      {
-        "language": [
-          "plaintex",
-          "tex"
-        ],
-        "path": "./snippets/latex/latex.json"
-      },
-      {
-        "language": [
-          "plaintex",
-          "tex"
-        ],
-        "path": "./snippets/latex/vscode-latex-snippets.json"
-      },
-      {
-        "language": "license",
-        "path": "./snippets/license.json"
-      },
-      {
-        "language": "loremipsum",
         "path": "./snippets/loremipsum.json"
-      },
-      {
-        "language": "lua",
-        "path": "./snippets/lua/lua.json"
-      },
-      {
-        "language": "luadoc",
-        "path": "./snippets/lua/luadoc.json"
-      },
-      {
-        "language": "make",
-        "path": "./snippets/make.json"
-      },
-      {
-        "language": "markdown",
-        "path": "./snippets/markdown.json"
-      },
-      {
-        "language": "nix",
-        "path": "./snippets/nix.json"
       },
       {
         "language": "org",
         "path": "./snippets/org.json"
       },
       {
-        "language": "perl",
-        "path": "./snippets/perl.json"
-      },
-      {
-        "language": "python",
-        "path": "./snippets/python/comprehension.json"
-      },
-      {
-        "language": "python",
-        "path": "./snippets/python/debug.json"
-      },
-      {
-        "language": "pydoc",
-        "path": "./snippets/python/pydoc.json"
-      },
-      {
-        "language": "python",
-        "path": "./snippets/python/python.json"
-      },
-      {
-        "language": "python",
-        "path": "./snippets/python/unittest.json"
-      },
-      {
-        "language": "eruby",
-        "path": "./snippets/ruby/erb.json"
-      },
-      {
-        "language": "rails",
-        "path": "./snippets/ruby/rails.json"
-      },
-      {
-        "language": "rdoc",
-        "path": "./snippets/ruby/rdoc.json"
-      },
-      {
-        "language": "ruby",
-        "path": "./snippets/ruby/ruby.json"
-      },
-      {
         "language": "rust",
-        "path": "./snippets/rust/rust.json"
-      },
-      {
-        "language": "rustdoc",
-        "path": "./snippets/rust/rustdoc.json"
-      },
-      {
-        "language": "scala",
-        "path": "./snippets/scala.json"
+        "path": "./snippets/rust.json"
       },
       {
         "language": [
@@ -321,35 +110,15 @@
           "sh",
           "zsh"
         ],
-        "path": "./snippets/shell/shell.json"
-      },
-      {
-        "language": "shelldoc",
-        "path": "./snippets/shell/shelldoc.json"
+        "path": "./snippets/shell.json"
       },
       {
         "language": "sql",
         "path": "./snippets/sql.json"
       },
       {
-        "language": "svelte",
-        "path": "./snippets/svelte.json"
-      },
-      {
-        "language": "swift",
-        "path": "./snippets/swift.json"
-      },
-      {
         "language": "vue",
         "path": "./snippets/vue/html.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/vue/nuxt-html.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/vue/nuxt-script.json"
       },
       {
         "language": "vue",
