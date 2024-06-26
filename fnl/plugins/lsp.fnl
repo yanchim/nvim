@@ -21,21 +21,17 @@
           (vim.keymap.set :n :<leader>lQ :<cmd>LspStop<CR> {:desc "Stop LSP"}))
   :config #(let [lsp (require :lspconfig)
                  cmplsp (require :cmp_nvim_lsp)
-                 handlers {"textDocument/publishDiagnostics"
+                 handlers {:textDocument/publishDiagnostics
                            (vim.lsp.with
                              vim.lsp.diagnostic.on_publish_diagnostics
                              {:severity_sort true
                               :update_in_insert true
                               :underline true
                               :virtual_text false})
-                           "textDocument/hover"
-                           (vim.lsp.with
-                             vim.lsp.handlers.hover
-                             {:border "single"})
-                           "textDocument/signatureHelp"
-                           (vim.lsp.with
-                             vim.lsp.handlers.signature_help
-                             {:border "single"})}
+                           :textDocument/hover
+                           (vim.lsp.with vim.lsp.handlers.hover {:border :single})
+                           :textDocument/signatureHelp
+                           (vim.lsp.with vim.lsp.handlers.signature_help {:border :single})}
                  capabilities (cmplsp.default_capabilities)
                  before_init (fn [params]
                                (set params.workDoneToken :1))
@@ -59,31 +55,38 @@
                              (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lr ":lua require('telescope.builtin').lsp_references()<cr>" {:noremap true})
                              (vim.api.nvim_buf_set_keymap bufnr :n :<leader>li ":lua require('telescope.builtin').lsp_implementations()<cr>" {:noremap true}))]
 
-             ;; To add support to more language servers check:
-             ;; https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+             ; To add support to more language servers check:
+             ; https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
-             ;; Clojure.
+             ; Clojure.
              (lsp.clojure_lsp.setup {:autostart false
                                      :on_attach on_attach
                                      :handlers handlers
                                      :before_init before_init
                                      :capabilities capabilities})
 
-             ;; Rust.
+             ; Nix.
+             (lsp.nixd.setup {:autostart false
+                              :on_attach on_attach
+                              :handlers handlers
+                              :before_init before_init
+                              :capabilities capabilities})
+
+             ; Rust.
              (lsp.rust_analyzer.setup {:autostart false
                                        :on_attach on_attach
                                        :handlers handlers
                                        :before_init before_init
                                        :capabilities capabilities})
 
-             ;; Typescript.
+             ; Typescript.
              (lsp.tsserver.setup {:autostart false
                                   :on_attach on_attach
                                   :handlers handlers
                                   :before_init before_init
                                   :capabilities capabilities})
 
-             ;; Zig.
+             ; Zig.
              (lsp.zls.setup {:autostart false
                              :on_attach on_attach
                              :handlers handlers

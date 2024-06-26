@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/common.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/plugins/basic.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_()
   do
     local builtin = require("telescope.builtin")
@@ -18,6 +18,7 @@ local function _1_()
     vim.keymap.set("n", "<leader>vm", builtin.marks, {noremap = true, desc = "Marks"})
     vim.keymap.set("n", "<leader>vo", builtin.vim_options, {noremap = true, desc = "Options"})
     vim.keymap.set("n", "<leader>vr", builtin.registers, {noremap = true, desc = "Registers"})
+    vim.keymap.set("n", "<leader>vt", "<cmd>TSContextToggle<CR>", {noremap = true, desc = "Treesitter context"})
   end
   local telescope = require("telescope")
   return telescope.load_extension("file_browser")

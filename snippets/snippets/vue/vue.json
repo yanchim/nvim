@@ -8,7 +8,7 @@
       "",
       "<script>",
       "export default {",
-      "\t${2},",
+      "\t${2}",
       "}",
       "</script>",
       "",

@@ -120,6 +120,11 @@
     ],
     "description": "main/hello world"
   },
+  "print": {
+    "prefix": "print",
+    "body": "std.debug.print(\"${1}\", .{${2}});",
+    "description": "Std debug print"
+  },
   "struct": {
     "prefix": "struct",
     "body": [

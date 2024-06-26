@@ -74,7 +74,7 @@
   "reduce": {
     "prefix": "reduce",
     "body": [
-      "${1:collection}.reduce((${2:accu}, ${3:curr}) => {",
+      "${1:collection}.reduce((${2:prev}, ${3:curr}) => {",
       "\t$0",
       "}${4:, initial});"
     ]
@@ -141,23 +141,23 @@
   },
   "console.log": {
     "prefix": "cl",
-    "body": "console.log(${0})"
+    "body": "console.log(${0});"
   },
   "console.log a variable": {
     "prefix": "cv",
-    "body": "console.log('${1}:', ${1})"
+    "body": "console.log('${1}:', ${1});"
   },
   "console.log interpolation": {
     "prefix": "ci",
-    "body": "console.log(`${0}`)"
+    "body": "console.log(`${0}`);"
   },
   "console.error": {
     "prefix": "ce",
-    "body": "console.error(${0})"
+    "body": "console.error(${0});"
   },
   "console.warn": {
     "prefix": "cw",
-    "body": "console.warn(${0})"
+    "body": "console.warn(${0});"
   },
   "use strict": {
     "prefix": "uss",

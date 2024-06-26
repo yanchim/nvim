@@ -16,9 +16,15 @@ local function _1_(buf)
 end
 local function _3_()
   local neogit = require("neogit")
-  vim.keymap.set("n", "<leader>gc", "<cmd>Neogit commit<CR>", {desc = "Open commit popup"})
-  vim.keymap.set("n", "<leader>gn", "<cmd>Neogit<CR>", {desc = "Neogit status"})
-  vim.keymap.set("n", "<leader>gg", "<cmd>Neogit cwd=%:p:h<CR>", {desc = "Current buffer Neogit status"})
+  local function _4_()
+    return neogit.open({"commit"})
+  end
+  vim.keymap.set("n", "<leader>gc", _4_, {desc = "Open commit popup"})
+  vim.keymap.set("n", "<leader>gn", neogit.open, {desc = "Neogit status"})
+  local function _5_()
+    return neogit.open({cwd = "%:p:h"})
+  end
+  vim.keymap.set("n", "<leader>gg", _5_, {desc = "Current buffer Neogit status"})
   return neogit.setup()
 end
 return {{"lewis6991/gitsigns.nvim", event = {"BufReadPre", "BufNewFile"}, opts = {on_attach = _1_}}, {"NeogitOrg/neogit", dependencies = {"nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "nvim-telescope/telescope.nvim"}, config = _3_}}

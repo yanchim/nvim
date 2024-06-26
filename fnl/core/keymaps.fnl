@@ -10,6 +10,7 @@
 ; Buffer.
 (vim.keymap.set :n :<leader>bd "<cmd>bp<bar>bd #<CR>" {:desc "Delete current buffer"})
 (vim.keymap.set :n :<localleader>xx "<cmd>bp<bar>bd #<CR>" {:desc "Delete current buffer"})
+(vim.keymap.set [:i :n] :<C-x><C-s> :<cmd>update<CR> {:desc "Emacs style save"})
 
 ; Window.
 (vim.keymap.set :n :<M-j> :<C-w>j {:desc "Move cursor to the downside window"})
@@ -23,26 +24,23 @@
 (vim.keymap.set :n :<localleader>oo :<C-w>o {:desc "Keep current window only"})
 
 ; Tab.
-(vim.keymap.set :n :<leader>to :<cmd>tabnew<CR> {:desc "Open new tab" })
-(vim.keymap.set :n :<leader>tx :<cmd>tabclose<CR> {:desc "Close current tab" })
-(vim.keymap.set :n :<leader>tn :<cmd>tabn<CR> {:desc "Go to next tab" })
-(vim.keymap.set :n :<leader>tp :<cmd>tabp<CR> {:desc "Go to previous tab" })
-(vim.keymap.set :n :<leader>tf "<cmd>tabnew %<CR>" {:desc "Open current buffer in new tab" })
-(vim.keymap.set :n :<leader>tt "<cmd>tab terminal<CR>" {:desc "Toggle terminal in tab" })
+(vim.keymap.set :n :<leader>to :<cmd>tabnew<CR> {:desc "Open new tab"})
+(vim.keymap.set :n :<leader>tx :<cmd>tabclose<CR> {:desc "Close current tab"})
+(vim.keymap.set :n :<leader>tn :<cmd>tabn<CR> {:desc "Go to next tab"})
+(vim.keymap.set :n :<leader>tp :<cmd>tabp<CR> {:desc "Go to previous tab"})
+(vim.keymap.set :n :<leader>tf "<cmd>tabnew %<CR>" {:desc "Open current buffer in new tab"})
+(vim.keymap.set :n :<leader>tt "<cmd>tab terminal<CR>" {:desc "Toggle terminal in tab"})
 
 ; Readline like behavior.
-(vim.keymap.set :i :<C-k> :<C-o>C {:desc "Kill line" })
-(vim.keymap.set :i :<C-a> :<Home> {:desc "Bol" })
-(vim.keymap.set :i :<C-e> :<End> {:desc "Eol" })
-(vim.keymap.set :i :<C-f> :<Right> {:desc "Forward char" })
-(vim.keymap.set :i :<C-b> :<Left> {:desc "Backward char" })
-(vim.keymap.set :i :<C-n> :<Down> {:desc "Next line" })
-(vim.keymap.set :i :<C-p> :<Up> {:desc "Prev line" })
+(vim.keymap.set [:c :i] :<C-a> :<Home> {:desc "Bol"})
+(vim.keymap.set [:c :i] :<C-e> :<End> {:desc "Eol"})
+(vim.keymap.set [:c :i] :<C-d> :<Delete> {:desc "Delete char"})
+(vim.keymap.set [:c :i] :<C-f> :<Right> {:desc "Forward char"})
+(vim.keymap.set [:c :i] :<C-b> :<Left> {:desc "Backward char"})
+(vim.keymap.set :i :<C-n> :<Down> {:desc "Next line"})
+(vim.keymap.set :i :<C-p> :<Up> {:desc "Prev line"})
 
-(vim.keymap.set :c :<C-a> :<Home> {:desc "Bol" })
-(vim.keymap.set :c :<C-e> :<End> {:desc "Eol" })
-(vim.keymap.set :c :<C-o> :<C-f> {:desc "Command" })
-(vim.keymap.set :c :<C-f> :<Right> {:desc "Forward char" })
-(vim.keymap.set :c :<C-b> :<Left> {:desc "Backward char" })
+; Command.
+(vim.keymap.set :c :<C-o> :<C-f> {:desc "Command"})
 
 {}

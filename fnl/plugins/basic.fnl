@@ -28,7 +28,8 @@
             (vim.keymap.set :n :<leader>vk builtin.keymaps {:noremap true :desc "Keymaps"})
             (vim.keymap.set :n :<leader>vm builtin.marks {:noremap true :desc "Marks"})
             (vim.keymap.set :n :<leader>vo builtin.vim_options {:noremap true :desc "Options"})
-            (vim.keymap.set :n :<leader>vr builtin.registers {:noremap true :desc "Registers"}))
+            (vim.keymap.set :n :<leader>vr builtin.registers {:noremap true :desc "Registers"})
+            (vim.keymap.set :n :<leader>vt :<cmd>TSContextToggle<CR> {:noremap true :desc "Treesitter context"}))
 
           (let [telescope (require :telescope)]
             (telescope.load_extension :file_browser)))
@@ -71,12 +72,12 @@
   :version false
   :event :VeryLazy
   :opts {:modes {:insert true :command true :terminal false}
-         ; skip autopair when the cursor is inside these treesitter nodes
+         ; Skip autopair when the cursor is inside these treesitter nodes.
          :skip_ts [:string]
-         ; skip autopair when next character is closing pair
-         ; and there are more closing pairs than opening pairs
+         ; Skip autopair when next character is closing pair and there are more
+         ; closing pairs than opening pairs.
          :skip_unbalanced true
-         ; better deal with markdown code blocks
+         ; Better deal with markdown code blocks.
          :markdown true}
   :config #(let [mp (require :mini.pairs)]
              (mp.setup))}

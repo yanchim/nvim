@@ -36,6 +36,11 @@
 (vim.cmd "let g:netrw_liststyle = 3")
 
 (require :core.keymaps)
-(require :core.gui)
+
+(when (= (. (vim.uv.os_uname) :sysname) "Windows_NT")
+  (set vim.o.shell :pwsh))
+
+(when (vim.fn.has :gui_running)
+  (require :core.gui))
 
 {}
