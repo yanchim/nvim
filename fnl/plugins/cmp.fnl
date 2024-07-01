@@ -1,13 +1,15 @@
 (local cmp-src-menu-items
-  {:buffer "buff"
-   :conjure "conj"
-   :nvim_lsp "lsp"
-   :snippets "snp"})
+  {:buffer :buff
+   :conjure :conj
+   :orgmode :org
+   :nvim_lsp :lsp
+   :snippets :snp})
 
 (local cmp-srcs
-  [{:name :nvim_lsp}
+  [{:name :buffer}
    {:name :conjure}
-   {:name :buffer}
+   {:name :nvim_lsp}
+   {:name :orgmode}
    {:name :path}
    {:name :snippets}])
 

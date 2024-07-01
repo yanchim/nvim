@@ -1,6 +1,6 @@
 -- [nfnl] Compiled from fnl/plugins/cmp.fnl by https://github.com/Olical/nfnl, do not edit.
-local cmp_src_menu_items = {buffer = "buff", conjure = "conj", nvim_lsp = "lsp", snippets = "snp"}
-local cmp_srcs = {{name = "nvim_lsp"}, {name = "conjure"}, {name = "buffer"}, {name = "path"}, {name = "snippets"}}
+local cmp_src_menu_items = {buffer = "buff", conjure = "conj", orgmode = "org", nvim_lsp = "lsp", snippets = "snp"}
+local cmp_srcs = {{name = "buffer"}, {name = "conjure"}, {name = "nvim_lsp"}, {name = "orgmode"}, {name = "path"}, {name = "snippets"}}
 local function has_words_before()
   local _let_1_ = vim.api.nvim_win_get_cursor(0)
   local line = _let_1_[1]

@@ -98,18 +98,18 @@
           (set vim.o.timeout true)
           (set vim.o.timeoutlen 500))
   :opts {}
-  :config (fn []
-            (let [wk (require :which-key)]
-              (wk.register
-                {:<leader>b {:name :Buffer}
-                 :<leader>c {:name :Code}
-                 :<leader>e {:name :Explore}
-                 :<leader>f {:name :File}
-                 :<leader>g {:name :Git
-                             :b {:name :Buffer}
-                             :h {:name :Hunk}
-                             :l {:name :Line}}
-                 :<leader>l {:name :Lsp}
-                 :<leader>s {:name :Search}
-                 :<leader>t {:name :Tab}
-                 :<leader>v {:name :View}})))}]
+  :config #(let [wk (require :which-key)]
+             (wk.register
+               {:<leader>b {:name :Buffer}
+                :<leader>c {:name :Code}
+                :<leader>e {:name :Explore}
+                :<leader>f {:name :File}
+                :<leader>g {:name :Git
+                            :b {:name :Buffer}
+                            :h {:name :Hunk}
+                            :l {:name :Line}}
+                :<leader>l {:name :Lsp}
+                :<leader>o {:name :Org}
+                :<leader>s {:name :Search}
+                :<leader>t {:name :Tab}
+                :<leader>v {:name :View}}))}]

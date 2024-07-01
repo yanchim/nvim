@@ -16,6 +16,7 @@
                                    :cpp
                                    :css
                                    :dart
+                                   :diff
                                    :elixir
                                    :fennel
                                    :gitignore
@@ -24,6 +25,7 @@
                                    :javascript
                                    :jsdoc
                                    :json
+                                   :jsonc
                                    :lua
                                    :markdown
                                    :markdown_inline
@@ -39,6 +41,7 @@
                                    :vim
                                    :vimdoc
                                    :vue
+                                   :xml
                                    :yaml
                                    :zig]
                 :highlight {:enable true :additional_vim_regex_highlighting true}
