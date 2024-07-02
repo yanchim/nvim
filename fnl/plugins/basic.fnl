@@ -58,15 +58,10 @@
  {1 :stevearc/dressing.nvim
   :opts {}}
 
- {1 :tummetott/unimpaired.nvim
-  :event :VeryLazy
-  :opts {}}
-
  {1 :kylechui/nvim-surround
   :event :VeryLazy
-  :config (fn []
-            (let [surround (require :nvim-surround)]
-              (surround.setup)))}
+  :config #(let [surround (require :nvim-surround)]
+             (surround.setup))}
 
  {1 :echasnovski/mini.pairs
   :version false

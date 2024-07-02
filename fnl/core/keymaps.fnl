@@ -10,6 +10,9 @@
 ; Buffer.
 (vim.keymap.set :n :<leader>bd "<cmd>bp<bar>bd #<CR>" {:desc "Delete current buffer"})
 (vim.keymap.set :n :<localleader>xx "<cmd>bp<bar>bd #<CR>" {:desc "Delete current buffer"})
+(vim.keymap.set :n :<localleader>xl "<cmd>lopen<CR>" {:desc "Location list"})
+(vim.keymap.set :n :<localleader>xq "<cmd>copen<CR>" {:desc "Quickfix list"})
+(vim.keymap.set :n :<localleader>bb "<cmd>e #<CR>" {:desc "Switch to current buffer"})
 (vim.keymap.set [:i :n] :<C-x><C-s> :<cmd>update<CR> {:desc "Emacs style save"})
 
 ; Window.
@@ -42,5 +45,34 @@
 
 ; Command.
 (vim.keymap.set :c :<C-o> :<C-f> {:desc "Command"})
+
+; Brackets.
+(vim.keymap.set :n "[b" :<cmd>bprevious<CR> {:desc "Prev buffer"})
+(vim.keymap.set :n "]b" :<cmd>bnext<CR> {:desc "Next buffer"})
+(vim.keymap.set :n "[q" vim.cmd.cprev {:desc "Prev quickfix"})
+(vim.keymap.set :n "]q" vim.cmd.cnext {:desc "Next quickfix"})
+(vim.keymap.set :n "[t" :<cmd>tabprevious<CR> {:desc "Prev tab"})
+(vim.keymap.set :n "]t" :<cmd>tabnext<CR> {:desc "Next tab"})
+(vim.keymap.set :n "[T" :<cmd>tabfirst<CR> {:desc "First tab"})
+(vim.keymap.set :n "]T" :<cmd>tablast<CR> {:desc "Last tab"})
+
+(vim.keymap.set :n "[<space>" "<cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>" {:desc "Blank above"})
+(vim.keymap.set :n "]<space>" "<cmd>call append(line('.'),     repeat([''], v:count1))<CR>" {:desc "Blank below"})
+
+;; Diagnostic.
+(fn diagnostic-goto [next severity]
+  (let [go (or (and next vim.diagnostic.goto_next) vim.diagnostic.goto_prev)]
+    (set-forcibly! severity (or (and severity
+                                     (. vim.diagnostic.severity severity))
+                                nil))
+    (fn [] (go {: severity}))))
+
+(vim.keymap.set :n :<localleader>xd vim.diagnostic.open_float {:desc "Line Diagnostics"})
+(vim.keymap.set :n "]d" (diagnostic_goto true)  {:desc "Next Diagnostic"})
+(vim.keymap.set :n "[d" (diagnostic_goto false) {:desc "Prev Diagnostic"})
+(vim.keymap.set :n "]e" (diagnostic_goto true  :ERROR) {:desc "Next Error"})
+(vim.keymap.set :n "[e" (diagnostic_goto false :ERROR) {:desc "Prev Error"})
+(vim.keymap.set :n "]w" (diagnostic_goto true  :WARN) {:desc "Next Warning"})
+(vim.keymap.set :n "[w" (diagnostic_goto false :WARN) {:desc "Prev Warning"})
 
 {}
