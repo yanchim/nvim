@@ -1,6 +1,6 @@
 {
   "array": {
-    "prefix": "arr",
+    "prefix": "array",
     "body": "[${1:_}]${2:type}{$3\\}",
     "description": "array"
   },
@@ -30,7 +30,7 @@
     "description": "enum decl"
   },
   "error": {
-    "prefix": "err",
+    "prefix": "error",
     "body": [
       "const ${1:New}Error = error {",
       "\t$0",
@@ -98,11 +98,18 @@
     "description": "if inline expr"
   },
   "import": {
-    "prefix": "imp",
+    "prefix": "import",
     "body": [
       "const ${1:name} = @import(\"${2:lib}\");"
     ],
-    "description": "main/hello world"
+    "description": "import lib"
+  },
+  "import-expect": {
+    "prefix": "expect",
+    "body": [
+      "const expect = @import(\"std\").testing.expect;"
+    ],
+    "description": "import expect"
   },
   "import-std": {
     "prefix": "std",
@@ -118,7 +125,7 @@
       "\t$0",
       "}"
     ],
-    "description": "main/hello world"
+    "description": "main"
   },
   "print": {
     "prefix": "print",

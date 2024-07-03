@@ -16,9 +16,9 @@
   :event ["BufReadPre" "BufNewFile"]
   :dependencies [:hrsh7th/cmp-nvim-lsp]
   :init (fn []
-          (vim.keymap.set :n :<leader>ll :<cmd>LspStart<CR> {:desc "Start LSP"})
-          (vim.keymap.set :n :<leader>lR :<cmd>LspRestart<CR> {:desc "Restart LSP"})
-          (vim.keymap.set :n :<leader>lQ :<cmd>LspStop<CR> {:desc "Stop LSP"}))
+          (vim.keymap.set :n :<leader>ll vim.cmd.LspStart {:desc "Start LSP"})
+          (vim.keymap.set :n :<leader>lR vim.cmd.LspRestart {:desc "Restart LSP"})
+          (vim.keymap.set :n :<leader>lQ vim.cmd.LspStop {:desc "Stop LSP"}))
   :config #(let [lsp (require :lspconfig)
                  cmplsp (require :cmp_nvim_lsp)
                  handlers {:textDocument/publishDiagnostics
@@ -49,11 +49,11 @@
                              (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lj "<cmd>lua vim.diagnostic.goto_next()<CR>" {:noremap true})
                              (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lk "<cmd>lua vim.diagnostic.goto_prev()<CR>" {:noremap true})
                              (vim.api.nvim_buf_set_keymap bufnr :n :<leader>la "<cmd>lua vim.lsp.buf.code_action()<CR>" {:noremap true})
-                             (vim.api.nvim_buf_set_keymap bufnr :v :<leader>la "<cmd>lua vim.lsp.buf.range_code_action()<CR> " {:noremap true})
+                             (vim.api.nvim_buf_set_keymap bufnr :v :<leader>la "<cmd>lua vim.lsp.buf.range_code_action()<CR>" {:noremap true})
                              ; Telescope.
-                             (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lw ":lua require('telescope.builtin').diagnostics()<cr>" {:noremap true})
-                             (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lr ":lua require('telescope.builtin').lsp_references()<cr>" {:noremap true})
-                             (vim.api.nvim_buf_set_keymap bufnr :n :<leader>li ":lua require('telescope.builtin').lsp_implementations()<cr>" {:noremap true}))]
+                             (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lw "<cmd>lua require('telescope.builtin').diagnostics()<CR>" {:noremap true})
+                             (vim.api.nvim_buf_set_keymap bufnr :n :<leader>lr "<cmd>lua require('telescope.builtin').lsp_references()<CR>" {:noremap true})
+                             (vim.api.nvim_buf_set_keymap bufnr :n :<leader>li "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>" {:noremap true}))]
 
              ; To add support to more language servers check:
              ; https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md

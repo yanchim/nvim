@@ -5,11 +5,14 @@
   :init (fn []
           (let [builtin (require :telescope.builtin)]
             ; Buffer.
-            (vim.keymap.set :n :<leader>bb builtin.buffers {:noremap true :desc "Find buffer"})
+            (vim.keymap.set :n :<leader>bb builtin.buffers {:noremap true :desc "Switch buffer"})
+            (vim.keymap.set :n :<C-x>b builtin.buffers {:noremap true :desc "Switch buffer"})
 
             ; File.
-            (vim.keymap.set :n :<leader>fc ":Telescope file_browser path=%:p:h select_buffer=true<CR>" {:noremap true :desc "Open file browser with current buffer"})
-            (vim.keymap.set :n :<leader>ff ":Telescope file_browser<CR>" {:noremap true :desc "Open file browser"})
+            (vim.keymap.set :n :<leader>fc "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>" {:noremap true :desc "Open file browser with current buffer"})
+            (vim.keymap.set :n :<leader>ff "<cmd>Telescope file_browser<CR>" {:noremap true :desc "Open file browser"})
+            ;; Emacs style.
+            (vim.keymap.set :n :<C-x><C-f> "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>" {:noremap true :desc "Find file"})
 
             ; Git.
             (vim.keymap.set :n :<leader>gt builtin.git_status {:noremap true :desc "Git status"})
@@ -29,7 +32,7 @@
             (vim.keymap.set :n :<leader>vm builtin.marks {:noremap true :desc "Marks"})
             (vim.keymap.set :n :<leader>vo builtin.vim_options {:noremap true :desc "Options"})
             (vim.keymap.set :n :<leader>vr builtin.registers {:noremap true :desc "Registers"})
-            (vim.keymap.set :n :<leader>vt :<cmd>TSContextToggle<CR> {:noremap true :desc "Treesitter context"}))
+            (vim.keymap.set :n :<leader>vt vim.cmd.TSContextToggle {:noremap true :desc "Treesitter context"}))
 
           (let [telescope (require :telescope)]
             (telescope.load_extension :file_browser)))

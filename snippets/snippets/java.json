@@ -1,16 +1,25 @@
 {
+  "documentation": {
+    "prefix": "doc",
+    "body": [
+      "/**",
+      " * ${0}",
+      " */"
+    ],
+    "description": "Documentation"
+  },
   "Print": {
-    "prefix": "p",
+    "prefix": "print",
     "body": "System.out.print(${0});",
     "description": "Print to console"
   },
   "Printf": {
-    "prefix": "pf",
+    "prefix": "printf",
     "body": "System.out.printf(${0});",
     "description": "Print formatted text to console"
   },
   "Println": {
-    "prefix": "pl",
+    "prefix": "println",
     "body": "System.out.println(${0});",
     "description": "Print to console with a newline"
   }
