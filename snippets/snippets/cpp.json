@@ -1,0 +1,247 @@
+{
+  "#inc": {
+    "prefix": "incl",
+    "body": [
+      "#include \"$1\";"
+    ],
+    "description": "Code snippet for #include \" \""
+  },
+  "#inc<": {
+    "prefix": "inc",
+    "body": [
+      "#include <$1>;"
+    ],
+    "description": "Code snippet for #include < >"
+  },
+  "#def": {
+    "prefix": "def",
+    "body": [
+      "#define $0"
+    ],
+    "description": "Code snippet for #define \" \""
+  },
+  "#if": {
+    "prefix": "#if",
+    "body": [
+      "#if ${1:0}",
+      "$0",
+      "#endif /* if $1 */"
+    ],
+    "description": "Code snippet for #if"
+  },
+  "#ifdef": {
+    "prefix": "#ifdef",
+    "body": [
+      "#ifdef ${1:MACRO}",
+      "$0",
+      "#endif /* ifdef $1 */"
+    ],
+    "description": "Code snippet for #ifdef"
+  },
+  "#ifndef": {
+    "prefix": "#ifndef",
+    "body": [
+      "#ifndef ${1:DEBUG}",
+      "$0",
+      "#endif /* ifndef $1 */"
+    ],
+    "description": "Code snippet for #ifndef"
+  },
+  "Initial Template": {
+    "prefix": "init",
+    "body": [
+      "#include <iostream>",
+      "",
+      "int main(int argc, char *argv[]) {",
+      "\t$0",
+      "",
+      "\treturn 0;",
+      "}"
+    ],
+    "description": "Initial template for a tiny C++ program"
+  },
+  "dowhile": {
+    "prefix": "dowhile",
+    "body": [
+      "do {",
+      "\t$1",
+      "} while($0);"
+    ],
+    "description": "Code snippet for do...while loop"
+  },
+  "while": {
+    "prefix": "while",
+    "body": [
+      "while ($1) {",
+      "\t$0",
+      "}"
+    ],
+    "description": ""
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for ($1) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Code snippet for 'for' loop"
+  },
+  "foreach": {
+    "prefix": "foreach",
+    "body": [
+      "for (auto ${1:elem} : ${2:collection}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Code snippet for range-based for loop (c++11) statement"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ($1) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Code snippet for if statement"
+  },
+  "enum": {
+    "prefix": "enum",
+    "body": [
+      "enum ${1:Enum} {",
+      "\t$0",
+      "};"
+    ],
+    "description": "Code snippet for enum"
+  },
+  "class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:MyClass} {",
+      "public:",
+      "\t$1();",
+      "\t$1($1 &&) = default;",
+      "\t$1(const $1 &) = default;",
+      "\t$1 &operator=($1 &&) = default;",
+      "\t$1 &operator=(const $1 &) = default;",
+      "\t~$1();",
+      "",
+      "private:",
+      "\t$2",
+      "};",
+      "",
+      "$1::$1() {",
+      "}",
+      "",
+      "$1::~$1() {",
+      "}"
+    ],
+    "description": "Code snippet for class"
+  },
+  "class inline": {
+    "prefix": "classi",
+    "body": [
+      "class ${1:MyClass} {",
+      "public:",
+      "\t$1() = default;",
+      "\t$1($1 &&) = default;",
+      "\t$1(const $1 &) = default;",
+      "\t$1 &operator=($1 &&) = default;",
+      "\t$1 &operator=(const $1 &) = default;",
+      "\t~$1() = default;",
+      "",
+      "private:",
+      "\t$2",
+      "};"
+    ],
+    "description": "Code snippet for class with inline constructor/destructor"
+  },
+  "class empty": {
+    "prefix": "classe",
+    "body": [
+      "class ${1:MyClass} {",
+      "public:",
+      "\t$2",
+      "private:",
+      "\t$3",
+      "};",
+      ""
+    ],
+    "description": "Code snippet for empty class"
+  },
+  "namespace": {
+    "prefix": "namespace",
+    "body": [
+      "namespace ${1:MyNamespace} {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "struct": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:Struct} {",
+      "\t$0",
+      "};"
+    ],
+    "description": "Code snippet for struct"
+  },
+  "switch": {
+    "prefix": "switch",
+    "body": [
+      "switch (${1:key}) {",
+      "\tcase ${2:value}:",
+      "\t\t$0",
+      "\t\tbreak;",
+      "\tdefault:",
+      "\t\tbreak;",
+      "}"
+    ],
+    "description": "Code snippet for switch statement"
+  },
+  "try": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch ($2) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Code snippet for try catch"
+  },
+  "cin": {
+    "prefix": "cin",
+    "body": [
+      "std::cin >> $1;"
+    ],
+    "description": "Code snippet for std::cin, provided the header is set"
+  },
+  "cout": {
+    "prefix": "cout",
+    "body": [
+      "std::cout << ${1:message};"
+    ],
+    "description": "Code snippet for printing to std::cout, provided the header is set"
+  },
+  "Main function template": {
+    "prefix": "main",
+    "body": [
+      "int main(int argc, char *argv[]) {",
+      "\t$0",
+      "",
+      "\treturn 0;",
+      "}"
+    ],
+    "description": "A standard main function for a C++ program"
+  },
+  "union": {
+    "prefix": "union",
+    "body": [
+      "union ${1:Union} {",
+      "\t$0",
+      "};"
+    ],
+    "description": "Code snippet for union"
+  }
+}

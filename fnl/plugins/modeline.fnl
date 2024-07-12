@@ -25,31 +25,29 @@
   :config #(let [lualine (require :lualine)]
              (lualine.setup
                {:options {:theme :auto
-                          :icons_enabled true
+                          :icons_enabled false
                           :section_separators ""
                           :component_separators ""}
-                :sections {:lualine_a []
-                           :lualine_b [[:mode {:upper true}]]
-                           :lualine_c [[:FugitiveHead]
-                                       {1 :filename
+                :sections {:lualine_a [:mode]
+                           :lualine_b [{1 :diagnostics
+                                        :sections [:error :warn :info :hint]
+                                        :sources [:nvim_lsp]}]
+                           :lualine_c [{1 :filename
                                         :file_status true
                                         :path 1
                                         :shorting_target 40}]
-                           :lualine_x [{1 :diagnostics
-                                        :sections [:error :warn :info :hint]
-                                        :sources [:nvim_lsp]}
-                                       [lsp_connection]
-                                       :location
-                                       :progress
+                           :lualine_x [[lsp_connection]
                                        :filesize
+                                       :encoding
+                                       :fileformat
                                        :filetype]
-                           :lualine_y [:encoding]
-                           :lualine_z []}
+                           :lualine_y [:progress]
+                           :lualine_z [:location]}
                 :inactive_sections {:lualine_a []
                                     :lualine_b []
                                     :lualine_c [{1 :filename
                                                  :file_status true
                                                  :path 1}]
-                                    :lualine_x []
+                                    :lualine_x [:location]
                                     :lualine_y []
                                     :lualine_z []}}))}]

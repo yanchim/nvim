@@ -417,14 +417,14 @@
   "param": {
     "prefix": "@param",
     "body": [
-      "@param {${1:type}} ${2:paranName} - ${3:paramDescription}$0"
+      "@param {${1:type}} ${2:paranName} - ${0:paramDescription}"
     ],
     "description": "Provides the name, type, and description of a function parameter. Synonysm of @arg and @argument."
   },
   "arg": {
     "prefix": "@arg",
     "body": [
-      "@arg {${1:type}} ${2:paranName} - ${3:paramDescription}$0"
+      "@arg {${1:type}} ${2:paranName} - ${0:paramDescription}"
     ],
     "description": "Provides the name, type, and description of a function parameter. Synonysm of @param and @argument."
   },

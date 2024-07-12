@@ -1,0 +1,275 @@
+{
+  "#include <...>": {
+    "prefix": "inc",
+    "body": [
+      "#include <$0>"
+    ],
+    "description": "#include <...> snippet"
+  },
+  "#include \"...\"": {
+    "prefix": "incl",
+    "body": [
+      "#include \"$0\""
+    ],
+    "description": "#include \"...\" snippet"
+  },
+  "#include <stdio.h>": {
+    "prefix": "io",
+    "body": [
+      "#include <stdio.h>"
+    ],
+    "description": "#include <stdio.h> snippet"
+  },
+  "#include <stdlib.h>": {
+    "prefix": "lib",
+    "body": [
+      "#include <stdlib.h>"
+    ],
+    "description": "#include <stdlib.h> snippet"
+  },
+  "#include <string.h>": {
+    "prefix": "str",
+    "body": [
+      "#include <string.h>"
+    ],
+    "description": "#include <string.h> snippet"
+  },
+  "#define macro": {
+    "prefix": "def",
+    "body": [
+      "#define ${1:MACRO}"
+    ],
+    "description": "Textual macro snippet"
+  },
+  "#define macro()": {
+    "prefix": "deff",
+    "body": [
+      "#define ${1:MACRO}($2) ($3)"
+    ],
+    "description": "Function-like macro snippet"
+  },
+  "#if": {
+    "prefix": "ifd",
+    "body": [
+      "#if ${1:0}",
+      "$0",
+      "#endif /* if $1 */"
+    ],
+    "description": "#if snippet"
+  },
+  "#ifdef": {
+    "prefix": "ifdef",
+    "body": [
+      "#ifdef ${1:MACRO}",
+      "$0",
+      "#endif /* ifdef $1 */"
+    ],
+    "description": "#ifdef snippet"
+  },
+  "#ifndef": {
+    "prefix": "ifndef",
+    "body": [
+      "#ifndef ${1:MACRO}",
+      "$0",
+      "#endif /* ifndef $1 */"
+    ],
+    "description": "#ifndef snippet"
+  },
+  "include once": {
+    "prefix": "once",
+    "body": [
+      "#ifndef ${1:FILE}_H",
+      "#define $1_H",
+      "$0",
+      "#endif /* end of include guard: $1_H */"
+    ],
+    "description": "Header include guard"
+  },
+  "#error": {
+    "prefix": "err",
+    "body": [
+      "#error \"$0\""
+    ],
+    "description": "#error snippet"
+  },
+  "#warning": {
+    "prefix": "warn",
+    "body": [
+      "#warning \"$0\""
+    ],
+    "description": "#warning snippet"
+  },
+  "asserth": {
+    "prefix": "asserth",
+    "body": "#include <assert.h>",
+    "description": "assert() snippet"
+  },
+  "assert": {
+    "prefix": "assert",
+    "body": "assert(${0});",
+    "description": "assert() snippet"
+  },
+  "static_assert": {
+    "prefix": "staticassert",
+    "body": "static_assert(${1:expr}, ${2:message});",
+    "description": "assert() snippet"
+  },
+  "documentation": {
+    "prefix": "doc",
+    "body": [
+      "/**",
+      " * ${0}",
+      " */"
+    ],
+    "description": "Documentation"
+  },
+  "Initial Template": {
+    "prefix": "init",
+    "body": [
+      "#include <stdio.h>",
+      "",
+      "int main(int argc, char *argv[]) {",
+      "\t$0",
+      "",
+      "\treturn 0;",
+      "}"
+    ],
+    "description": "Template for a tiny C program"
+  },
+  "main() function": {
+    "prefix": "main",
+    "body": [
+      "int main(int argc, char *argv[]) {",
+      "\t$0",
+      "",
+      "return 0;",
+      "}"
+    ],
+    "description": "Main() function snippet"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if (${1:cond}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "if snippet"
+  },
+  "switch": {
+    "prefix": "switch",
+    "body": [
+      "switch (${1:key}) {",
+      "\tcase ${2:value}:",
+      "\t\t${0}",
+      "\t\tbreak;",
+      "\tdefault:",
+      "\t\tbreak;",
+      "}"
+    ],
+    "description": "Code snippet for switch statement"
+  },
+  "while": {
+    "prefix": "while",
+    "body": [
+      "while (${1:pred}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "'while' loop snippet"
+  },
+  "do...while": {
+    "prefix": "do",
+    "body": [
+      "do {",
+      "\t${0}",
+      "} while (${1:pred});"
+    ],
+    "description": "do...while loop snippet"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for (${1}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Generic 'for' loop"
+  },
+  "function declaration": {
+    "prefix": "fnd",
+    "body": "${1:void} ${2:func}(${3});",
+    "description": "Make a function declaration/definition/pointer"
+  },
+  "Function definition": {
+    "prefix": "fn",
+    "body": [
+      "${1:void} ${2:func}(${3}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Define a function"
+  },
+  "typedef": {
+    "prefix": "typedef",
+    "body": [
+      "typedef ${1:void} ${2:alias};"
+    ],
+    "description": "'typedef' snippet"
+  },
+  "typedef struct": {
+    "prefix": "typedefst",
+    "body": [
+      "typedef struct ${1:Struct} {",
+      "\t${1}",
+      "} ${2:alias};"
+    ],
+    "description": "Implicit struct typedef"
+  },
+  "typedef union": {
+    "prefix": "typedefun",
+    "body": [
+      "typedef union ${1:Union} {",
+      "\t${1}",
+      "} ${2:alias};"
+    ],
+    "description": "Implicit union typedef"
+  },
+  "enum": {
+    "prefix": "enum",
+    "body": [
+      "enum ${1:Enum} {",
+      "\t${0}",
+      "};"
+    ],
+    "description": "Define an enumeration"
+  },
+  "printf": {
+    "prefix": "printf",
+    "body": "printf(${0});",
+    "description": "printf() snippet"
+  },
+  "print variable": {
+    "prefix": "printfv",
+    "body": "printf(\"$1 = %${2:d}\\n\", ${1:var});",
+    "description": "Call printf() to log value of a variable"
+  },
+  "struct": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:Struct} {",
+      "\t${0}",
+      "};"
+    ],
+    "description": "'struct' snippet"
+  },
+  "union": {
+    "prefix": "union",
+    "body": [
+      "union ${1:Union} {",
+      "\t${0}",
+      "};"
+    ],
+    "description": "'union' snippet"
+  }
+}

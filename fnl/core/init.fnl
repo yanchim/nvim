@@ -10,6 +10,8 @@
        :softtabstop 2
        ; 2 spaces for indent width.
        :shiftwidth 2
+       ; tcqj
+       :formatoptions :jcroqlnt
        ; Settings needed for compe autocompletion.
        :completeopt "menuone,noselect"
        ; Case insensitive search.
@@ -17,23 +19,16 @@
        ; If mixed case included, assume want case-sensitive.
        :smartcase true
        ; Shared clipboard with linux.
-       :clipboard "unnamedplus"
+       :clipboard :unnamedplus
        ; Don't show line numbers.
        :number false
-       ; Show line and column number.
-       :ruler true
        ; Make signcolumn always one column with signs and linenumber.
-       :signcolumn "number"}]
+       :signcolumn :number}]
   (each [option value (pairs options)]
     (core.assoc vim.o option value)))
 
-; Prevent commenting out next line after a comment line.
-(vim.api.nvim_create_autocmd
-  :FileType
-  {:pattern :* :callback (fn [] (vim.opt_local.formatoptions:remove [:r :o]))})
-
 ; Tree style listing for netrw.
-(vim.cmd "let g:netrw_liststyle = 3")
+(set vim.g.netrw_liststyle 3)
 
 (require :core.keymaps)
 

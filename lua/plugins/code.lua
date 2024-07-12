@@ -1,13 +1,20 @@
 -- [nfnl] Compiled from fnl/plugins/code.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_()
-  local tcc = require("ts_context_commentstring")
-  local internal = require("ts_context_commentstring.internal")
-  local get_option = vim.filetype.get_option
-  vim.g.skip_ts_context_commentstring_module = true
-  local function _2_(filetype, option)
-    return (((option == "commentstring") and internal.calculate_commentstring()) or get_option(filetype, option))
-  end
-  vim.filetype.get_option = _2_
-  return tcc.setup({enable_autocmd = false})
+  local conform = require("conform")
+  vim.keymap.set({"n", "v"}, "<leader>cf", conform.format, {desc = "Code format"})
+  vim.keymap.set({"n", "v"}, "<leader>cF", "<Cmd>ConformInfo<CR>", {desc = "Code format info"})
+  return conform.setup({formatters = {cljfmt = {command = "cljfmt", args = {"fix", "-"}}}, formatters_by_ft = {c = {"clang-format"}, clojure = {"cljfmt"}, cpp = {"clang-format"}, css = {"prettier"}, html = {"prettier"}, javascript = {"prettier"}, javascriptreact = {"prettier"}, json = {"prettier"}, markdown = {"prettier"}, rust = {"rustfmt"}, typescript = {"prettier"}, typescriptreact = {"prettier"}, vue = {"prettier"}, zig = {"zigfmt"}}})
 end
-return {{"bakpakin/fennel.vim", lazy = true, ft = {"fennel"}}, {"JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter", config = _1_}}
+local function _2_()
+  local lint = require("lint")
+  do
+    local lint_augroup = vim.api.nvim_create_augroup("lint", {clear = true})
+    local function _3_()
+      return lint.try_lint()
+    end
+    vim.api.nvim_create_autocmd({"BufEnter", "BufWritePost", "InsertLeave"}, {group = lint_augroup, callback = _3_})
+  end
+  lint.linters_by_ft = {c = {"clangtidy"}, cpp = {"clangtidy"}, fennel = {"fennel"}, zsh = {"zsh"}}
+  return nil
+end
+return {{"bakpakin/fennel.vim", lazy = true, ft = {"fennel"}}, {"stevearc/conform.nvim", event = {"BufNewFile", "BufReadPre"}, opts = {}, config = _1_}, {"mfussenegger/nvim-lint", event = {"BufNewFile", "BufReadPre"}, config = _2_}, {"folke/ts-comments.nvim", event = "VeryLazy", opts = {}}}
