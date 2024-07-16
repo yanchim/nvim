@@ -12,6 +12,7 @@
                {:ensure_installed [:bash
                                    :c
                                    :clojure
+                                   :cmake
                                    :commonlisp
                                    :cpp
                                    :css
@@ -20,6 +21,7 @@
                                    :elixir
                                    :fennel
                                    :gitignore
+                                   :haskell
                                    :html
                                    :java
                                    :javascript
@@ -27,6 +29,7 @@
                                    :json
                                    :jsonc
                                    :lua
+                                   :make
                                    :markdown
                                    :markdown_inline
                                    :nix
@@ -34,6 +37,7 @@
                                    :query
                                    :regex
                                    :rust
+                                   :scala
                                    :toml
                                    :tsx
                                    :typescript
