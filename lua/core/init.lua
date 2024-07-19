@@ -8,6 +8,7 @@ do
     core.assoc(vim.o, option, value)
   end
 end
+os.setlocale("C")
 vim.g.netrw_liststyle = 3
 require("core.keymaps")
 if (vim.uv.os_uname().sysname == "Windows_NT") then

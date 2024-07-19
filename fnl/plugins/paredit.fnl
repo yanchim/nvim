@@ -9,7 +9,7 @@
                  :<M-K> [paredit.api.barf_forwards "Barf forwards"]
                  :<M-L> [paredit.api.slurp_forwards "Slurp forwards"]
 
-                 :<localleader>9
+                 :<LocalLeader>9
                  [(fn []
                     (paredit.cursor.place_cursor
                       (paredit.wrap.wrap_element_under_cursor "( " ")")
@@ -17,7 +17,7 @@
                        :mode :insert}))
                   "Wrap element insert head"]
 
-                 :<localleader>0
+                 :<LocalLeader>0
                  [(fn []
                     (paredit.cursor.place_cursor
                       (paredit.wrap.wrap_element_under_cursor "(" ")")

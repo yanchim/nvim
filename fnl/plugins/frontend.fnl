@@ -9,4 +9,4 @@
           ; Enable emmet in INSERT and NORMAL only.
           (set vim.g.user_emmet_mode :in)
           ; Remap emmet leader key.
-          (set vim.g.user_emmet_leader_key :<C-g>))}]
+          (set vim.g.user_emmet_leader_key :<C-G>))}]

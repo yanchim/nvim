@@ -27,6 +27,9 @@
   (each [option value (pairs options)]
     (core.assoc vim.o option value)))
 
+; Avoid issues with system's default locale.
+(os.setlocale :C)
+
 ; Tree style listing for netrw.
 (set vim.g.netrw_liststyle 3)
 

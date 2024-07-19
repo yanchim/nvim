@@ -1,4 +1,11 @@
-[{1 :bakpakin/fennel.vim
+[{1 :Olical/conjure
+  :ft [:clojure :fennel :python]
+  :init (fn []
+          (set vim.g.conjure#mapping#doc_word "K")
+          (set vim.g.conjure#client#clojure#nrepl#eval#auto_require false)
+          (set vim.g.conjure#client#clojure#nrepl#connection#auto_repl#enabled false))}
+
+ {1 :bakpakin/fennel.vim
   :lazy true
   ; For fennel's indent, which is not supported yet in nvim-treesitter.
   :ft [:fennel]}
@@ -8,8 +15,8 @@
   :opts {}
   :config #(let [conform (require :conform)]
 
-             (vim.keymap.set [:n :v] :<leader>cf conform.format {:desc "Code format"})
-             (vim.keymap.set [:n :v] :<leader>cF :<Cmd>ConformInfo<CR> {:desc "Code format info"})
+             (vim.keymap.set [:n :v] :<Leader>cf conform.format {:desc "Code format"})
+             (vim.keymap.set [:n :v] :<Leader>cF :<Cmd>ConformInfo<CR> {:desc "Code format info"})
 
              (conform.setup
                {:formatters {:cljfmt {:command :cljfmt :args [:fix :-]}}
@@ -24,6 +31,8 @@
                  :json [:prettier]
                  :markdown [:prettier]
                  :rust [:rustfmt]
+                 :scala [:scalafmt]
+                 :toml [:taplo]
                  :typescript [:prettier]
                  :typescriptreact [:prettier]
                  :vue [:prettier]

@@ -6,7 +6,7 @@
   :config #(let [treesitter (require :nvim-treesitter.configs)
                  context (require :treesitter-context)]
 
-             (vim.keymap.set :n :<localleader>ac #(context.go_to_context vim.v.count1) {:silent true :desc "Go to nearest context"})
+             (vim.keymap.set :n :<LocalLeader>ac #(context.go_to_context vim.v.count1) {:silent true :desc "Go to nearest context"})
 
              (treesitter.setup
                {:ensure_installed [:bash
@@ -51,9 +51,9 @@
                 :highlight {:enable true :additional_vim_regex_highlighting true}
                 :indent {:enable true}
                 :incremental_selection {:enable true
-                                        :keymaps {:init_selection :<C-space>
-                                                  :node_incremental :<C-space>
-                                                  :node_decremental :<bs>
+                                        :keymaps {:init_selection :<C-Space>
+                                                  :node_incremental :<C-Space>
+                                                  :node_decremental :<BS>
                                                   :scope_incremental false}}
                 :context {:enable true}
                 :textobjects {:enable true
@@ -67,4 +67,4 @@
                                                  :as {:query "@scope" :query_group "locals" :desc "Select language scope"}}
                                        :selection_modes {"@parameter.outer" :v
                                                          "@function.outer" :V
-                                                         "@class.outer" :<C-v>}}}}))}]
+                                                         "@class.outer" :<C-V>}}}}))}]

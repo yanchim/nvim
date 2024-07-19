@@ -45,14 +45,14 @@
               (cmp.setup {:formatting {:format (fn [entry item]
                                                  (set item.menu (or (. cmp-src-menu-items entry.source.name) ""))
                                                  item)}
-                          :mapping {:<C-p> (cmp.mapping.select_prev_item)
-                                    :<C-n> (cmp.mapping.select_next_item)
-                                    :<C-b> (cmp.mapping.scroll_docs (- 4))
-                                    :<C-f> (cmp.mapping.scroll_docs 4)
+                          :mapping {:<C-P> (cmp.mapping.select_prev_item)
+                                    :<C-N> (cmp.mapping.select_next_item)
+                                    :<C-B> (cmp.mapping.scroll_docs (- 4))
+                                    :<C-F> (cmp.mapping.scroll_docs 4)
                                     :<M-p> (cmp.mapping.scroll_docs (- 4))
                                     :<M-n> (cmp.mapping.scroll_docs 4)
                                     :<C-Space> (cmp.mapping.complete)
-                                    :<C-e> (cmp.mapping.close)
+                                    :<C-E> (cmp.mapping.close)
                                     :<CR> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Insert :select true})
                                     :<Tab> (cmp.mapping snippet-next {1 :i 2 :s})
                                     :<S-Tab> (cmp.mapping snippet-prev {1 :i 2 :s})}

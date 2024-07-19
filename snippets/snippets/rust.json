@@ -92,6 +92,20 @@
     ],
     "description": "enum ... { ... }"
   },
+  "eprint": {
+    "prefix": "eprint",
+    "body": [
+      "eprint!($1)"
+    ],
+    "description": "eprint!(...);"
+  },
+  "eprintln": {
+    "prefix": "eprintln",
+    "body": [
+      "eprintln!($1)"
+    ],
+    "description": "eprintln!(...);"
+  },
   "fn": {
     "prefix": "fn",
     "body": [
@@ -204,7 +218,7 @@
     "prefix": "modtest",
     "body": [
       "#[cfg(test)]",
-      "mod test {",
+      "mod tests {",
       "\tuse super::*;",
       "",
       "\t#[test]",
@@ -232,14 +246,14 @@
   "print": {
     "prefix": "print",
     "body": [
-      "print!(\"${1}\");"
+      "print!($1)"
     ],
     "description": "print!(...);"
   },
   "println": {
     "prefix": "println",
     "body": [
-      "println!(\"${1}\");"
+      "println!($1);"
     ],
     "description": "println!(...);"
   },
