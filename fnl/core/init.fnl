@@ -36,7 +36,9 @@
 (require :core.keymaps)
 
 (when (= (. (vim.uv.os_uname) :sysname) "Windows_NT")
-  (set vim.o.shell :pwsh))
+  (set vim.o.shell (or (and (= (vim.fn.executable :pwsh) 1) :pwsh)
+                       (and (= (vim.fn.executable :powershell) 1) :powershell)
+                       vim.o.shell)))
 
 (when (vim.fn.has :gui_running)
   (require :core.gui))

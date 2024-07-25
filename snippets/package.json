@@ -112,6 +112,10 @@
         "path": "./snippets/rust.json"
       },
       {
+        "language": "scala",
+        "path": "./snippets/scala.json"
+      },
+      {
         "language": [
           "shellscript",
           "shell",

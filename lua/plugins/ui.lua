@@ -15,7 +15,23 @@ local function lsp_connection()
   end
 end
 local function _3_()
+  local icons = require("mini.icons")
+  local function _4_()
+    icons.mock_nvim_web_devicons()
+    return package.loaded("nvim-web-devicons")
+  end
+  package.preload["nvim-web-devicons"] = _4_
+  return nil
+end
+local function _5_()
+  return require("notify").dismiss({silent = true, pending = true})
+end
+local function _6_()
+  local noice = require("noice")
+  return noice.setup({cmdline = {format = {cmdline = {icon = ">"}, filter = {icon = "$"}, help = {icon = "H"}, search_down = {icon = "/"}, search_up = {icon = "?"}}}, lsp = {override = {["cmp.entry.get_documentation"] = true, ["vim.lsp.util.convert_input_to_markdown_lines"] = true, ["vim.lsp.util.stylize_markdown"] = true}}, presets = {bottom_search = true, command_palette = true, long_message_to_split = true, lsp_doc_border = false}, routes = {{view = "notify", filter = {event = "msg_showmode", any = {{find = "recording"}}}}}})
+end
+local function _7_()
   local lualine = require("lualine")
   return lualine.setup({options = {theme = "auto", section_separators = "", component_separators = "", icons_enabled = false}, sections = {lualine_a = {"mode"}, lualine_b = {{"diagnostics", sections = {"error", "warn", "info", "hint"}, sources = {"nvim_lsp"}}}, lualine_c = {{"filename", file_status = true, path = 1, shorting_target = 40}}, lualine_x = {{lsp_connection}, "filesize", "encoding", "fileformat", "filetype"}, lualine_y = {{"datetime", style = "%a %R %m-%d"}}, lualine_z = {{"progress", padding = {left = 1, right = 0}}, {"location", padding = {left = 0, right = 1}}}}, inactive_sections = {lualine_a = {}, lualine_b = {}, lualine_c = {{"filename", file_status = true, path = 1}}, lualine_x = {"location"}, lualine_y = {}, lualine_z = {}}})
 end
-return {{"nvim-lualine/lualine.nvim", config = _3_}}
+return {{"MunifTanjim/nui.nvim", lazy = true}, {"echasnovski/mini.icons", lazy = true, opts = {}, init = _3_}, {"rcarriga/nvim-notify", keys = {{"<Leader>un", _5_, desc = "Dismiss All Notifications"}}}, {"stevearc/dressing.nvim", opts = {}}, {"folke/noice.nvim", event = "VeryLazy", opts = {}, config = _6_}, {"nvim-lualine/lualine.nvim", config = _7_}}

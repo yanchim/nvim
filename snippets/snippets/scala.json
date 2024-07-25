@@ -1,0 +1,167 @@
+{
+  "case_class": {
+    "prefix": "caseclass",
+    "body": "case class ${1:ClassName}(${2:argName}: ${3:ArgType})",
+    "description": "Case class"
+  },
+  "class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Class scala2"
+  },
+  "def": {
+    "prefix": "def",
+    "body": "def ${1:name}($2): ${3:Unit} = $0",
+    "description": "Method"
+  },
+  "for in scala2": {
+    "prefix": "for2",
+    "body": [
+      "for (${1:element} <- ${2:elements}) {",
+      "\t${0:println(element.toString)}",
+      "}"
+    ],
+    "description": "scala2 for"
+  },
+  "for in scala3": {
+    "prefix": "for",
+    "body": [
+      "for ${1:element} <- ${2:elements}",
+      "\tdo ${0:println(element.toString)}"
+    ],
+    "description": "scala3 for"
+  },
+  "if in scala2": {
+    "prefix": "if2",
+    "body": [
+      "if (${1:cond}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "scala2 if"
+  },
+  "if in scala3": {
+    "prefix": "if",
+    "body": [
+      "if ${1:cond} then",
+      "\t$0"
+    ],
+    "description": "scala3 if"
+  },
+  "main": {
+    "prefix": "main",
+    "body": [
+      "@main def $TM_FILENAME_BASE() = ${2:println(\"Hello, World!\")}"
+    ],
+    "description": "scala3 main"
+  },
+  "main_object": {
+    "prefix": "obj_main",
+    "body": [
+      "object $TM_FILENAME_BASE {",
+      "\tdef main(args: Array[String]): Unit = {",
+      "\t\t${2:println(\"Hello, world!\")}",
+      "\t}",
+      "}"
+    ],
+    "description": "Object with main method"
+  },
+  "match in scala2": {
+    "prefix": "match2",
+    "body": [
+      "${1:x} match {",
+      "\tcase ${2:0} => ${3:\"zero\"}",
+      "\tcase _ => ${5:\"other\"}",
+      "}"
+    ],
+    "description": "Branch based on conditions using pattern matching"
+  },
+  "match in scala3": {
+    "prefix": "match",
+    "body": [
+      "${1:x} match",
+      "\tcase ${2:0} => ${3:\"zero\"}",
+      "\tcase _ => ${5:\"other\"}"
+    ],
+    "description": "Branch based on conditions using pattern matching"
+  },
+  "object": {
+    "prefix": "object",
+    "body": [
+      "object ${1:ObjectName} {",
+      "\t${2:println(\"Hello, world!\")}",
+      "}"
+    ],
+    "description": "Object"
+  },
+  "print": {
+    "prefix": "print",
+    "body": "print($0)",
+    "description": "print"
+  },
+  "println": {
+    "prefix": "println",
+    "body": "println($0)",
+    "description": "print with a newline"
+  },
+  "trait": {
+    "prefix": "trait",
+    "body": [
+      "trait ${1:TraitName} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "scala2 trait"
+  },
+  "try in scala2": {
+    "prefix": "try2",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch {",
+      "\tcase err: Throwable => println(err.toString)",
+      "} finally {",
+      "\t$0",
+      "}"
+    ],
+    "description": "scala2 try"
+  },
+  "try in scala3": {
+    "prefix": "try",
+    "body": [
+      "try",
+      "\t$1",
+      "catch",
+      "\tcase err: Throwable => println(err.toString)",
+      "finally",
+      "\t$0"
+    ],
+    "description": "scala2 try"
+  },
+  "val": {
+    "prefix": "val",
+    "body": "val ${1:name}: ${2:Type} = $0",
+    "description": "Method"
+  },
+  "while in scala2": {
+    "prefix": "while2",
+    "body": [
+      "while (${1:cond}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "While loop scala2"
+  },
+  "while in scala3": {
+    "prefix": "while",
+    "body": [
+      "while ${1:cond}",
+      "\tdo $0"
+    ],
+    "description": "While loop scala3"
+  }
+}

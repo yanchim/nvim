@@ -92,10 +92,10 @@
     ],
     "description": "if expr"
   },
-  "if_inline_expression": {
-    "prefix": "ifi",
+  "if_statement_expression": {
+    "prefix": "te",
     "body": "if ($1) $2 else $3",
-    "description": "if inline expr"
+    "description": "if statement as expression"
   },
   "import": {
     "prefix": "import",

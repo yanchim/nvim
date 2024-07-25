@@ -21,7 +21,8 @@
              (conform.setup
                {:formatters {:cljfmt {:command :cljfmt :args [:fix :-]}}
                 :formatters_by_ft
-                {:c [:clang-format]
+                {:* [:trim_whitespace]
+                 :c [:clang-format]
                  :clojure [:cljfmt]
                  :cpp [:clang-format]
                  :css [:prettier]
@@ -30,6 +31,7 @@
                  :javascriptreact [:prettier]
                  :json [:prettier]
                  :markdown [:prettier]
+                 :python [:ruff_format]
                  :rust [:rustfmt]
                  :scala [:scalafmt]
                  :toml [:taplo]

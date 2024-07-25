@@ -12,7 +12,7 @@ os.setlocale("C")
 vim.g.netrw_liststyle = 3
 require("core.keymaps")
 if (vim.uv.os_uname().sysname == "Windows_NT") then
-  vim.o.shell = "pwsh"
+  vim.o.shell = (((vim.fn.executable("pwsh") == 1) and "pwsh") or ((vim.fn.executable("powershell") == 1) and "powershell") or vim.o.shell)
 else
 end
 if vim.fn.has("gui_running") then

@@ -21,7 +21,48 @@
       ; Else.
       :)))
 
-[{1 :nvim-lualine/lualine.nvim
+[{1 :MunifTanjim/nui.nvim
+  :lazy true}
+
+ {1 :echasnovski/mini.icons
+  :lazy true
+  :opts {}
+  :init #(let [icons (require :mini.icons)]
+           (tset package.preload :nvim-web-devicons
+                 (fn []
+                   (icons.mock_nvim_web_devicons)
+                   (package.loaded :nvim-web-devicons))))}
+
+ ; Better vim.notify().
+ {1 :rcarriga/nvim-notify
+  :keys [{1 :<Leader>un
+          2 #((. (require :notify) :dismiss) {:silent true :pending true})
+          :desc "Dismiss All Notifications"}]}
+
+ {1 :stevearc/dressing.nvim
+  :opts {}}
+
+ {1 :folke/noice.nvim
+  :event :VeryLazy
+  :opts {}
+  :config #(let [noice (require :noice)]
+             (noice.setup
+               {:cmdline {:format {:cmdline {:icon :>}
+                                   :filter {:icon :$}
+                                   :help {:icon :H}
+                                   :search_down {:icon :/}
+                                   :search_up {:icon :?}}}
+                :lsp {:override {:cmp.entry.get_documentation true
+                                 :vim.lsp.util.convert_input_to_markdown_lines true
+                                 :vim.lsp.util.stylize_markdown true}}
+                :presets {:bottom_search true
+                          :command_palette true
+                          :long_message_to_split true
+                          :lsp_doc_border false}
+                :routes [{:view :notify :filter {:event :msg_showmode
+                                                 :any [{:find :recording}]}}]}))}
+
+ {1 :nvim-lualine/lualine.nvim
   :config #(let [lualine (require :lualine)]
              (lualine.setup
                {:options {:theme :auto

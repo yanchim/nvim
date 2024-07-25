@@ -1,6 +1,6 @@
 {
   "VSCode snippet template": {
-    "prefix": "snp",
+    "prefix": "snippet",
     "body": [
       "\"${1:snippet name}\": {",
       "\t\"prefix\": \"${2:prefix}\",",
