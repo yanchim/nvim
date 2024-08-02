@@ -8,7 +8,7 @@ local function lsp_connection()
     return (message.msg .. " : " .. message.percent .. "%% \239\130\150")
   elseif (message.status == "end") then
     return "\239\131\136"
-  elseif ((message.status == "") and not vim.tbl_isempty(vim.lsp.buf_get_clients(0))) then
+  elseif ((message.status == "") and not vim.tbl_isempty(vim.lsp.get_clients({bufnr = vim.api.nvim_get_current_buf()}))) then
     return "\239\131\136"
   else
     return "\239\130\150"
@@ -32,6 +32,6 @@ local function _6_()
 end
 local function _7_()
   local lualine = require("lualine")
-  return lualine.setup({options = {theme = "auto", section_separators = "", component_separators = "", icons_enabled = false}, sections = {lualine_a = {"mode"}, lualine_b = {{"diagnostics", sections = {"error", "warn", "info", "hint"}, sources = {"nvim_lsp"}}}, lualine_c = {{"filename", file_status = true, path = 1, shorting_target = 40}}, lualine_x = {{lsp_connection}, "filesize", "encoding", "fileformat", "filetype"}, lualine_y = {{"datetime", style = "%a %R %m-%d"}}, lualine_z = {{"progress", padding = {left = 1, right = 0}}, {"location", padding = {left = 0, right = 1}}}}, inactive_sections = {lualine_a = {}, lualine_b = {}, lualine_c = {{"filename", file_status = true, path = 1}}, lualine_x = {"location"}, lualine_y = {}, lualine_z = {}}})
+  return lualine.setup({options = {theme = "auto", section_separators = "", component_separators = "", icons_enabled = false}, sections = {lualine_a = {"mode"}, lualine_b = {{"diagnostics", sections = {"error", "warn", "info", "hint"}, sources = {"nvim_lsp"}}}, lualine_c = {{"filename", file_status = true, path = 1, shorting_target = 40}}, lualine_x = {{lsp_connection}, "filesize", "encoding", "fileformat", "filetype"}, lualine_y = {"progress"}, lualine_z = {"location"}}, inactive_sections = {lualine_a = {}, lualine_b = {}, lualine_c = {{"filename", file_status = true, path = 1}}, lualine_x = {"location"}, lualine_y = {}, lualine_z = {}}})
 end
 return {{"MunifTanjim/nui.nvim", lazy = true}, {"echasnovski/mini.icons", lazy = true, opts = {}, init = _3_}, {"rcarriga/nvim-notify", keys = {{"<Leader>un", _5_, desc = "Dismiss All Notifications"}}}, {"stevearc/dressing.nvim", opts = {}}, {"folke/noice.nvim", event = "VeryLazy", opts = {}, config = _6_}, {"nvim-lualine/lualine.nvim", config = _7_}}

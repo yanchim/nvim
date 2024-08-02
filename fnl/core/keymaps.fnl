@@ -7,9 +7,9 @@
 (fn readonly-toggle []
   "Toggle buffer readonly status."
   (let [buf (vim.api.nvim_get_current_buf)]
-    (if (. (. vim.bo buf) :readonly)
-      (vim.cmd.edit)
-      (vim.cmd.view))))
+    (if (. vim.bo buf :readonly)
+      (tset vim.bo buf :readonly false)
+      (tset vim.bo buf :readonly true))))
 
 (vim.keymap.set [:i :n :v] :<C-X><C-Q> vim.cmd.quitall {:desc "Quit"})
 (vim.keymap.set [:i :n :v] :<C-X><C-R> readonly-toggle {:desc "Toggle readonly"})
@@ -20,6 +20,8 @@
 (vim.keymap.set :n :<LocalLeader>xl vim.cmd.lopen {:desc "Location list"})
 (vim.keymap.set :n :<LocalLeader>xq vim.cmd.copen {:desc "Quickfix list"})
 (vim.keymap.set :n :<LocalLeader>xx vim.cmd.cc {:desc "Display error"})
+(vim.keymap.set :n :<LocalLeader>xg vim.cmd.edit {:desc "Revert current buffer"})
+(vim.keymap.set :n :<LocalLeader>xG vim.cmd.checktime {:desc "Revert all buffers"})
 
 ; Buffer.
 (vim.keymap.set :n :<Leader>bd "<Cmd>bp<Bar>bd #<CR>" {:desc "Delete current buffer"})

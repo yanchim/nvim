@@ -9,9 +9,11 @@ vim.keymap.set({"n", "v"}, "<LocalLeader>Q", _1_, {desc = "Quit"})
 local function readonly_toggle()
   local buf = vim.api.nvim_get_current_buf()
   if vim.bo[buf].readonly then
-    return vim.cmd.edit()
+    vim.bo[buf]["readonly"] = false
+    return nil
   else
-    return vim.cmd.view()
+    vim.bo[buf]["readonly"] = true
+    return nil
   end
 end
 vim.keymap.set({"i", "n", "v"}, "<C-X><C-Q>", vim.cmd.quitall, {desc = "Quit"})
@@ -21,6 +23,8 @@ vim.keymap.set("t", "jk", "<C-\\><C-N>", {desc = "Exit terminal INSERT mode"})
 vim.keymap.set("n", "<LocalLeader>xl", vim.cmd.lopen, {desc = "Location list"})
 vim.keymap.set("n", "<LocalLeader>xq", vim.cmd.copen, {desc = "Quickfix list"})
 vim.keymap.set("n", "<LocalLeader>xx", vim.cmd.cc, {desc = "Display error"})
+vim.keymap.set("n", "<LocalLeader>xg", vim.cmd.edit, {desc = "Revert current buffer"})
+vim.keymap.set("n", "<LocalLeader>xG", vim.cmd.checktime, {desc = "Revert all buffers"})
 vim.keymap.set("n", "<Leader>bd", "<Cmd>bp<Bar>bd #<CR>", {desc = "Delete current buffer"})
 vim.keymap.set("n", "<LocalLeader>bb", "<Cmd>e #<CR>", {desc = "Switch to prev buffer"})
 vim.keymap.set("n", "<M-j>", "<C-W>j", {desc = "Move cursor to the downside window"})

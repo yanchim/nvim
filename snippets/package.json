@@ -89,6 +89,13 @@
         "path": "./snippets/js/react.json"
       },
       {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./snippets/js/typescript.json"
+      },
+      {
         "language": "json",
         "path": "./snippets/js/json.json"
       },

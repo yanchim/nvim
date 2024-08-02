@@ -1,0 +1,11 @@
+{
+  "interface": {
+    "prefix": "interface",
+    "body": [
+      "interface ${1:Name} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "interface"
+  }
+}

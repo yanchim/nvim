@@ -141,23 +141,23 @@
   },
   "console.log": {
     "prefix": "cl",
-    "body": "console.log(${0})"
+    "body": "console.log($1)"
   },
   "console.log a variable": {
     "prefix": "cv",
-    "body": "console.log('${1}:', ${1})"
+    "body": "console.log('$1:', $1)"
   },
   "console.log interpolation": {
     "prefix": "ci",
-    "body": "console.log(`${0}`)"
+    "body": "console.log(`$1`)"
   },
   "console.error": {
     "prefix": "ce",
-    "body": "console.error(${0})"
+    "body": "console.error($1)"
   },
   "console.warn": {
     "prefix": "cw",
-    "body": "console.warn(${0})"
+    "body": "console.warn($1)"
   },
   "use strict": {
     "prefix": "uss",
@@ -165,11 +165,11 @@
   },
   "JSON.stringify()": {
     "prefix": "js",
-    "body": "JSON.stringify($0)"
+    "body": "JSON.stringify($1)"
   },
   "JSON.parse()": {
     "prefix": "jp",
-    "body": "JSON.parse($0)"
+    "body": "JSON.parse($1)"
   },
   "prototype method": {
     "prefix": "proto",

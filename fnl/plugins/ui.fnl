@@ -15,7 +15,7 @@
 
       ; If hasn't progress handler, but has connected lsp client.
       (and (= message.status "")
-           (not (vim.tbl_isempty (vim.lsp.buf_get_clients 0))))
+           (not (vim.tbl_isempty (vim.lsp.get_clients {:bufnr (vim.api.nvim_get_current_buf)}))))
       :
 
       ; Else.
@@ -82,9 +82,8 @@
                                        :encoding
                                        :fileformat
                                        :filetype]
-                           :lualine_y [{1 :datetime :style "%a %R %m-%d"}]
-                           :lualine_z [{1 :progress :padding {:left 1 :right 0}}
-                                       {1 :location :padding {:left 0 :right 1}}]}
+                           :lualine_y [:progress]
+                           :lualine_z [:location]}
                 :inactive_sections {:lualine_a []
                                     :lualine_b []
                                     :lualine_c [{1 :filename
