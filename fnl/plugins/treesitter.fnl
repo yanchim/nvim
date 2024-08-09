@@ -38,6 +38,7 @@
                                    :regex
                                    :rust
                                    :scala
+                                   :slint
                                    :toml
                                    :tsx
                                    :typescript

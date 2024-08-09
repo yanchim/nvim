@@ -19,8 +19,7 @@
              (vim.keymap.set [:n :v] :<Leader>cF :<Cmd>ConformInfo<CR> {:desc "Code format info"})
 
              (conform.setup
-               {:formatters {:cljfmt {:command :cljfmt :args [:fix :-]}}
-                :formatters_by_ft
+               {:formatters_by_ft
                 {:* [:trim_whitespace]
                  :c [:clang-format]
                  :clojure [:cljfmt]

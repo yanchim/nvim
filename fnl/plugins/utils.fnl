@@ -105,6 +105,7 @@
          :markdown true}}
 
  {1 :folke/todo-comments.nvim
+  :lazy false
   :dependencies [:nvim-lua/plenary.nvim]
   :opts {:signs false}
   :keys [{1 "[c" :mode :n 2 #((. (require :todo-comments) :jump_prev)) :desc "Prev todo comment"}
