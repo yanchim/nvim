@@ -12,7 +12,6 @@
                {:ensure_installed [:bash
                                    :c
                                    :clojure
-                                   :cmake
                                    :commonlisp
                                    :cpp
                                    :css
@@ -21,6 +20,7 @@
                                    :elixir
                                    :fennel
                                    :gitignore
+                                   :go
                                    :haskell
                                    :html
                                    :java
@@ -28,6 +28,7 @@
                                    :jsdoc
                                    :json
                                    :jsonc
+                                   :kotlin
                                    :lua
                                    :make
                                    :markdown
@@ -39,6 +40,7 @@
                                    :rust
                                    :scala
                                    :slint
+                                   :swift
                                    :toml
                                    :tsx
                                    :typescript
@@ -49,7 +51,7 @@
                                    :xml
                                    :yaml
                                    :zig]
-                :highlight {:enable true :additional_vim_regex_highlighting true}
+                :highlight {:enable true :additional_vim_regex_highlighting false}
                 :indent {:enable true}
                 :incremental_selection {:enable true
                                         :keymaps {:init_selection :<C-Space>

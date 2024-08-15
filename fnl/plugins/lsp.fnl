@@ -98,6 +98,14 @@
                                   :before_init before_init
                                   :capabilities capabilities})
 
+             ; Typst.
+             (lsp.tinymist.setup {:autostart false
+                                  :single_file_support true
+                                  :on_attach on_attach
+                                  :handlers handlers
+                                  :before_init before_init
+                                  :capabilities capabilities})
+
              ; Zig.
              (lsp.zls.setup {:autostart false
                              :on_attach on_attach

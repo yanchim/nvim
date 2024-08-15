@@ -36,6 +36,7 @@
                  :toml [:taplo]
                  :typescript [:prettier]
                  :typescriptreact [:prettier]
+                 :typst [:typstyle]
                  :vue [:prettier]
                  :zig [:zigfmt]}}))}
 

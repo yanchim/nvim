@@ -51,6 +51,7 @@ local function _2_()
   lsp.rust_analyzer.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.metals.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.tsserver.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
+  lsp.tinymist.setup({single_file_support = true, on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   return lsp.zls.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
 end
 return {{"neovim/nvim-lspconfig", event = {"BufReadPre", "BufNewFile"}, dependencies = {"hrsh7th/cmp-nvim-lsp"}, init = _1_, config = _2_}}
