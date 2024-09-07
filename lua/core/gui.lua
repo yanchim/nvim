@@ -2,7 +2,7 @@
 if vim.g.neovide then
   vim.g.neovide_input_macos_option_key_is_meta = "only_left"
   local function set_ime(args)
-    if (args.event):match("Enter$") then
+    if args.event:match("Enter$") then
       vim.g.neovide_input_ime = true
       return nil
     else

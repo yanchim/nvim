@@ -30,6 +30,7 @@
                  :javascriptreact [:prettier]
                  :json [:prettier]
                  :markdown [:prettier]
+                 :nix [:nixfmt]
                  :python [:ruff_format]
                  :rust [:rustfmt]
                  :scala [:scalafmt]

@@ -12,6 +12,7 @@ end
 define_signs("Diagnostic")
 local function _1_()
   vim.keymap.set("n", "<Leader>ll", vim.cmd.LspStart, {desc = "Start LSP"})
+  vim.keymap.set("n", "<Leader>lI", vim.cmd.LspInfo, {desc = "LSP Info"})
   vim.keymap.set("n", "<Leader>lR", vim.cmd.LspRestart, {desc = "Restart LSP"})
   return vim.keymap.set("n", "<Leader>lQ", vim.cmd.LspStop, {desc = "Stop LSP"})
 end
@@ -47,10 +48,11 @@ local function _2_()
   on_attach = _4_
   lsp.clangd.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.clojure_lsp.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
+  lsp.metals.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.nixd.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.rust_analyzer.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
-  lsp.metals.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
-  lsp.tsserver.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
+  lsp.slint_lsp.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
+  lsp.ts_ls.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.tinymist.setup({single_file_support = true, on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   return lsp.zls.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
 end

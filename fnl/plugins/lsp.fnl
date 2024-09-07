@@ -17,6 +17,7 @@
   :dependencies [:hrsh7th/cmp-nvim-lsp]
   :init (fn []
           (vim.keymap.set :n :<Leader>ll vim.cmd.LspStart {:desc "Start LSP"})
+          (vim.keymap.set :n :<Leader>lI vim.cmd.LspInfo {:desc "LSP Info"})
           (vim.keymap.set :n :<Leader>lR vim.cmd.LspRestart {:desc "Restart LSP"})
           (vim.keymap.set :n :<Leader>lQ vim.cmd.LspStop {:desc "Stop LSP"}))
   :config #(let [lsp (require :lspconfig)
@@ -70,6 +71,13 @@
                                      :before_init before_init
                                      :capabilities capabilities})
 
+             ; Scala.
+             (lsp.metals.setup {:autostart false
+                                :on_attach on_attach
+                                :handlers handlers
+                                :before_init before_init
+                                :capabilities capabilities})
+
              ; Nix.
              (lsp.nixd.setup {:autostart false
                               :on_attach on_attach
@@ -84,19 +92,19 @@
                                        :before_init before_init
                                        :capabilities capabilities})
 
-             ; Scala.
-             (lsp.metals.setup {:autostart false
-                                :on_attach on_attach
-                                :handlers handlers
-                                :before_init before_init
-                                :capabilities capabilities})
+             ; Slint.
+             (lsp.slint_lsp.setup {:autostart false
+                                   :on_attach on_attach
+                                   :handlers handlers
+                                   :before_init before_init
+                                   :capabilities capabilities})
 
              ; Typescript.
-             (lsp.tsserver.setup {:autostart false
-                                  :on_attach on_attach
-                                  :handlers handlers
-                                  :before_init before_init
-                                  :capabilities capabilities})
+             (lsp.ts_ls.setup {:autostart false
+                               :on_attach on_attach
+                               :handlers handlers
+                               :before_init before_init
+                               :capabilities capabilities})
 
              ; Typst.
              (lsp.tinymist.setup {:autostart false
