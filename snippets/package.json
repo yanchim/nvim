@@ -10,6 +10,10 @@
         "path": "./snippets/cpp.json"
       },
       {
+        "language": ["csharp", "cs"],
+        "path": "./snippets/csharp.json"
+      },
+      {
         "language": [
           "eelixir",
           "heex"
@@ -45,6 +49,10 @@
           "all"
         ],
         "path": "./snippets/global.json"
+      },
+      {
+        "language": "go",
+        "path": "./snippets/go.json"
       },
       {
         "language": [
@@ -109,6 +117,10 @@
           "vue"
         ],
         "path": "./snippets/loremipsum.json"
+      },
+      {
+        "language": "lua",
+        "path": "./snippets/lua.json"
       },
       {
         "language": "org",

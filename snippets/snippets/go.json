@@ -1,0 +1,237 @@
+{
+  "array": {
+    "prefix": "array",
+    "body": "[$1]${2:type}{$3\\}",
+    "description": "array"
+  },
+  "single import": {
+    "prefix": "import",
+    "body": "import \"${1:package}\"",
+    "description": "Snippet for import statement"
+  },
+  "multiple imports": {
+    "prefix": "imports",
+    "body": [
+      "import (",
+      "\t\"${1:package}\"",
+      ")"
+    ],
+    "description": "Snippet for a import block"
+  },
+  "single constant": {
+    "prefix": "const",
+    "body": "const ${1:name} = ${2:value}",
+    "description": "Snippet for a constant"
+  },
+  "multiple constants": {
+    "prefix": "consts",
+    "body": [
+      "const (",
+      "\t${1:name} = ${2:value}",
+      ")"
+    ],
+    "description": "Snippet for a constant block"
+  },
+  "package": {
+    "prefix": "package",
+    "body": "package ${1:${TM_DIRECTORY/^.+\\/(.*)$/$1/}}",
+    "description": "Snippet for package"
+  },
+  "package test": {
+    "prefix": "packaget",
+    "body": "package ${1:${TM_DIRECTORY/^.+\\/(.*)$/$1/}}_test",
+    "description": "Snippet for package test"
+  },
+  "type function declaration": {
+    "prefix": "typefn",
+    "body": "type ${1:name} func($3) $4",
+    "description": "Snippet for a type function declaration"
+  },
+  "type interface declaration": {
+    "prefix": "typeinf",
+    "body": [
+      "type ${1:name} interface {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Snippet for a type interface"
+  },
+  "type struct declaration": {
+    "prefix": "typest",
+    "body": [
+      "type ${1:name} struct {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Snippet for a struct declaration"
+  },
+  "function declaration": {
+    "prefix": "fn",
+    "body": [
+      "func $1($2) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Snippet for function declaration"
+  },
+  "function declaration with return": {
+    "prefix": "fnr",
+    "body": [
+      "func $1($2) $3 {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Snippet for function declaration with return"
+  },
+  "variable declaration": {
+    "prefix": "var",
+    "body": "var ${1:name} ${2:type}",
+    "description": "Snippet for a variable"
+  },
+  "variables declaration": {
+    "prefix": "vars",
+    "body": [
+      "var (",
+      "\t${1:name} ${2:type} = ${3:value}",
+      ")"
+    ],
+    "description": "Snippet for a variable"
+  },
+  "switch statement": {
+    "prefix": "switch",
+    "body": [
+      "switch ${1:expr} {",
+      "case ${2:cond}:",
+      "\t$3",
+      "default:",
+      "\t$0",
+      "}"
+    ],
+    "description": "Snippet for switch statement"
+  },
+  "select statement": {
+    "prefix": "select",
+    "body": [
+      "select {",
+      "case ${1:cond}:",
+      "\t$0",
+      "}"
+    ],
+    "description": "Snippet for select statement"
+  },
+  "case clause": {
+    "prefix": "case",
+    "body": "case ${1:cond}:$0",
+    "description": "Snippet for case clause"
+  },
+  "for statement": {
+    "prefix": "for",
+    "body": [
+      "for $1 {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Snippet for a pure for loop"
+  },
+  "for range statement": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:idx}, ${2:value} := range ${3:target} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Snippet for a for range loop"
+  },
+  "channel declaration": {
+    "prefix": "chan",
+    "body": "chan ${1:type}",
+    "description": "Snippet for a channel"
+  },
+  "map declaration": {
+    "prefix": "map",
+    "body": "map[${1:type}]${2:type}",
+    "description": "Snippet for a map"
+  },
+  "if statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:cond} {",
+      "\t$2",
+      "}"
+    ],
+    "description": "Snippet for if statement"
+  },
+  "if err != nil": {
+    "prefix": "iferr",
+    "body": [
+      "if err != ${1:nil} {",
+      "\t$2",
+      "}"
+    ],
+    "description": "Snippet for if err != nil"
+  },
+  "fmt.Print": {
+    "prefix": "print",
+    "body": "fmt.Print($1)",
+    "description": "Snippet for fmt.Print()"
+  },
+  "fmt.Printf": {
+    "prefix": "printf",
+    "body": "fmt.Printf(\"$1\")",
+    "description": "Snippet for fmt.Printf()"
+  },
+  "fmt.Println": {
+    "prefix": "println",
+    "body": "fmt.Println($1)",
+    "description": "Snippet for fmt.Println()"
+  },
+  "log.Printf": {
+    "prefix": "lprintf",
+    "body": "log.Printf(\"$1\")",
+    "description": "Snippet for log.Printf()"
+  },
+  "log.Println": {
+    "prefix": "lprintln",
+    "body": "log.Println($1)",
+    "description": "Snippet for log.Println()"
+  },
+  "test function": {
+    "prefix": "test",
+    "body": [
+      "func Test$1(t *testing.T) {",
+      "\t$1",
+      "}"
+    ],
+    "description": "Snippet for Test function"
+  },
+  "init function": {
+    "prefix": "init",
+    "body": [
+      "func init() {",
+      "\t$1",
+      "}"
+    ],
+    "description": "Snippet for init function"
+  },
+  "main function": {
+    "prefix": "main",
+    "body": [
+      "func main() {",
+      "\t$1",
+      "}"
+    ],
+    "description": "Snippet for main function"
+  },
+  "method declaration": {
+    "prefix": [
+      "method",
+      "fnm"
+    ],
+    "body": [
+      "func (${1:receiver} ${2:type}) ${3:method}($4) $5 {",
+      "\t$1",
+      "}"
+    ],
+    "description": "Snippet for method declaration"
+  }
+}

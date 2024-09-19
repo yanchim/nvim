@@ -64,12 +64,27 @@
                                 :before_init before_init
                                 :capabilities capabilities})
 
+             ; C#.
+             (lsp.csharp_ls.setup {:autostart false
+                                   :on_attach on_attach
+                                   :handlers handlers
+                                   :before_init before_init
+                                   :capabilities capabilities})
+
+
              ; Clojure.
              (lsp.clojure_lsp.setup {:autostart false
                                      :on_attach on_attach
                                      :handlers handlers
                                      :before_init before_init
                                      :capabilities capabilities})
+
+             ; Golang.
+             (lsp.gopls.setup {:autostart false
+                               :on_attach on_attach
+                               :handlers handlers
+                               :before_init before_init
+                               :capabilities capabilities})
 
              ; Scala.
              (lsp.metals.setup {:autostart false
