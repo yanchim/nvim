@@ -9,4 +9,4 @@ local function _1_()
   end
   return paredit.setup({keys = {["<M-H>"] = {paredit.api.slurp_backwards, "Slurp backwards"}, ["<M-J>"] = {paredit.api.barf_backwards, "Barf backwards"}, ["<M-K>"] = {paredit.api.barf_forwards, "Barf forwards"}, ["<M-L>"] = {paredit.api.slurp_forwards, "Slurp forwards"}, ["<LocalLeader>9"] = {_2_, "Wrap element insert head"}, ["<LocalLeader>0"] = {_3_, "Wrap element insert tail"}}})
 end
-return {{"julienvincent/nvim-paredit", lazy = true, ft = {"clojure", "fennel", "lisp", "scheme"}, config = _1_}, {"julienvincent/nvim-paredit-fennel", lazy = true, ft = {"fennel"}, opts = {}}}
+return {{"julienvincent/nvim-paredit", lazy = true, ft = {"clojure", "fennel", "lisp", "scheme"}, config = _1_}}

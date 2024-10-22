@@ -1,5 +1,7 @@
 [{1 :EdenEast/nightfox.nvim}
 
+ {1 :Mofiqul/vscode.nvim}
+
  {1 :catppuccin/nvim :name :catppuccin}
 
  {1 :folke/tokyonight.nvim

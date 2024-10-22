@@ -1,19 +1,19 @@
 {
   "array": {
     "prefix": "array",
-    "body": "[$1]${2:type}{$3\\}",
+    "body": "[$1]${2:type}{$0\\}",
     "description": "array"
   },
   "single import": {
     "prefix": "import",
-    "body": "import \"${1:package}\"",
+    "body": "import \"$0\"",
     "description": "Snippet for import statement"
   },
   "multiple imports": {
     "prefix": "imports",
     "body": [
       "import (",
-      "\t\"${1:package}\"",
+      "\t\"$0\"",
       ")"
     ],
     "description": "Snippet for a import block"
@@ -27,7 +27,7 @@
     "prefix": "consts",
     "body": [
       "const (",
-      "\t${1:name} = ${2:value}",
+      "\t$0",
       ")"
     ],
     "description": "Snippet for a constant block"
@@ -83,6 +83,15 @@
     ],
     "description": "Snippet for function declaration with return"
   },
+  "function declaration with goroutine": {
+    "prefix": "fngo",
+    "body": [
+      "go func($1) {",
+      "\t$0",
+      "}()"
+    ],
+    "description": "Snippet for function declaration with goroutine"
+  },
   "variable declaration": {
     "prefix": "var",
     "body": "var ${1:name} ${2:type}",
@@ -92,7 +101,7 @@
     "prefix": "vars",
     "body": [
       "var (",
-      "\t${1:name} ${2:type} = ${3:value}",
+      "\t$0",
       ")"
     ],
     "description": "Snippet for a variable"
@@ -136,7 +145,7 @@
   "for range statement": {
     "prefix": "forr",
     "body": [
-      "for ${1:idx}, ${2:value} := range ${3:target} {",
+      "for ${1:k}, ${2:v} := range ${3:target} {",
       "\t$0",
       "}"
     ],
@@ -156,7 +165,7 @@
     "prefix": "if",
     "body": [
       "if ${1:cond} {",
-      "\t$2",
+      "\t$0",
       "}"
     ],
     "description": "Snippet for if statement"
@@ -165,29 +174,64 @@
     "prefix": "iferr",
     "body": [
       "if err != ${1:nil} {",
-      "\t$2",
+      "\t$0",
       "}"
     ],
     "description": "Snippet for if err != nil"
   },
+  "fmt.Fprint": {
+    "prefix": "fprint",
+    "body": "fmt.Fprint($0)",
+    "description": "Snippet for fmt.Fprint()"
+  },
+  "fmt.Fprintf": {
+    "prefix": "fprintf",
+    "body": "fmt.Fprintf($0)",
+    "description": "Snippet for fmt.Fprintf()"
+  },
+  "fmt.Fprintln": {
+    "prefix": "fprintln",
+    "body": "fmt.Fprintln($0)",
+    "description": "Snippet for fmt.Fprintln()"
+  },
   "fmt.Print": {
     "prefix": "print",
-    "body": "fmt.Print($1)",
+    "body": "fmt.Print($0)",
     "description": "Snippet for fmt.Print()"
   },
   "fmt.Printf": {
     "prefix": "printf",
-    "body": "fmt.Printf(\"$1\")",
+    "body": "fmt.Printf(\"$0\")",
     "description": "Snippet for fmt.Printf()"
   },
   "fmt.Println": {
     "prefix": "println",
-    "body": "fmt.Println($1)",
+    "body": "fmt.Println($0)",
     "description": "Snippet for fmt.Println()"
+  },
+  "fmt.Sprint": {
+    "prefix": "sprint",
+    "body": "fmt.Sprint($0)",
+    "description": "Snippet for fmt.Sprint()"
+  },
+  "fmt.Sprintf": {
+    "prefix": "sprintf",
+    "body": "fmt.Sprintf($0)",
+    "description": "Snippet for fmt.Sprintf()"
+  },
+  "fmt.Sprintln": {
+    "prefix": "sprintln",
+    "body": "fmt.Sprintln($0)",
+    "description": "Snippet for fmt.Sprintln()"
+  },
+  "log.Print": {
+    "prefix": "lprint",
+    "body": "log.Print($0)",
+    "description": "Snippet for log.Print()"
   },
   "log.Printf": {
     "prefix": "lprintf",
-    "body": "log.Printf(\"$1\")",
+    "body": "log.Printf(\"$0\")",
     "description": "Snippet for log.Printf()"
   },
   "log.Println": {
@@ -196,28 +240,28 @@
     "description": "Snippet for log.Println()"
   },
   "test function": {
-    "prefix": "test",
+    "prefix": "fntest",
     "body": [
       "func Test$1(t *testing.T) {",
-      "\t$1",
+      "\t$0",
       "}"
     ],
     "description": "Snippet for Test function"
   },
   "init function": {
-    "prefix": "init",
+    "prefix": "fninit",
     "body": [
       "func init() {",
-      "\t$1",
+      "\t$0",
       "}"
     ],
     "description": "Snippet for init function"
   },
   "main function": {
-    "prefix": "main",
+    "prefix": "fnmain",
     "body": [
       "func main() {",
-      "\t$1",
+      "\t$0",
       "}"
     ],
     "description": "Snippet for main function"
@@ -229,7 +273,7 @@
     ],
     "body": [
       "func (${1:receiver} ${2:type}) ${3:method}($4) $5 {",
-      "\t$1",
+      "\t$0",
       "}"
     ],
     "description": "Snippet for method declaration"

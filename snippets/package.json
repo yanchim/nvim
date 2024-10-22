@@ -123,6 +123,10 @@
         "path": "./snippets/lua.json"
       },
       {
+        "language": "markdown",
+        "path": "./snippets/markdown.json"
+      },
+      {
         "language": "org",
         "path": "./snippets/org.json"
       },

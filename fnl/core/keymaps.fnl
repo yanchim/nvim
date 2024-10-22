@@ -18,7 +18,9 @@
 (vim.keymap.set :t :jk :<C-\><C-N> {:desc "Exit terminal INSERT mode"})
 
 (vim.keymap.set :n :<LocalLeader>xl vim.cmd.lopen {:desc "Location list"})
+(vim.keymap.set :n :<LocalLeader>xL vim.cmd.lclose {:desc "Close location list"})
 (vim.keymap.set :n :<LocalLeader>xq vim.cmd.copen {:desc "Quickfix list"})
+(vim.keymap.set :n :<LocalLeader>xQ vim.cmd.cclose {:desc "Close quickfix list"})
 (vim.keymap.set :n :<LocalLeader>xx vim.cmd.cc {:desc "Display error"})
 (vim.keymap.set :n :<LocalLeader>xg vim.cmd.edit {:desc "Revert current buffer"})
 (vim.keymap.set :n :<LocalLeader>xG vim.cmd.checktime {:desc "Revert all buffers"})

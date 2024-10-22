@@ -93,6 +93,9 @@
   :event :VeryLazy
   :opts {}}
 
+ {1 :echasnovski/mini.align
+  :opts {}}
+
  {1 :echasnovski/mini.pairs
   :event :VeryLazy
   :opts {:modes {:insert true :command true :terminal false}

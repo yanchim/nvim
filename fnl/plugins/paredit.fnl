@@ -23,9 +23,4 @@
                       (paredit.wrap.wrap_element_under_cursor "(" ")")
                       {:placement :inner_end
                        :mode :insert}))
-                  "Wrap element insert tail"]}}))}
-
- {1 :julienvincent/nvim-paredit-fennel
-  :lazy true
-  :ft [:fennel]
-  :opts {}}]
+                  "Wrap element insert tail"]}}))}]

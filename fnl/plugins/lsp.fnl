@@ -17,7 +17,7 @@
   :dependencies [:hrsh7th/cmp-nvim-lsp]
   :init (fn []
           (vim.keymap.set :n :<Leader>ll vim.cmd.LspStart {:desc "Start LSP"})
-          (vim.keymap.set :n :<Leader>lI vim.cmd.LspInfo {:desc "LSP Info"})
+          (vim.keymap.set :n :<Leader>lI #(vim.cmd.checkhealth :lspconfig) {:desc "LSP Info"})
           (vim.keymap.set :n :<Leader>lR vim.cmd.LspRestart {:desc "Restart LSP"})
           (vim.keymap.set :n :<Leader>lQ vim.cmd.LspStop {:desc "Stop LSP"}))
   :config #(let [lsp (require :lspconfig)

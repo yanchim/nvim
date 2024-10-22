@@ -1,8 +1,8 @@
 {
   "Component": {
-    "prefix": "component",
+    "prefix": "reactcomponent",
     "body": [
-      "export default function ${1:$TM_FILENAME_BASE}($2) {",
+      "function ${1:$TM_FILENAME_BASE}($2) {",
       "\treturn (",
       "\t\t<>",
       "\t\t\t$0",
