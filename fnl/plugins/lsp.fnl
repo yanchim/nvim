@@ -86,12 +86,20 @@
                                :before_init before_init
                                :capabilities capabilities})
 
-             ; Scala.
-             (lsp.metals.setup {:autostart false
-                                :on_attach on_attach
-                                :handlers handlers
-                                :before_init before_init
-                                :capabilities capabilities})
+             ; Haskell.
+             (lsp.hls.setup {:autostart false
+                             :filetypes [:haskell :lhaskell :cabal]
+                             :on_attach on_attach
+                             :handlers handlers
+                             :before_init before_init
+                             :capabilities capabilities})
+
+             ; Java.
+             (lsp.jdtls.setup {:autostart false
+                               :on_attach on_attach
+                               :handlers handlers
+                               :before_init before_init
+                               :capabilities capabilities})
 
              ; Nix.
              (lsp.nixd.setup {:autostart false
@@ -106,6 +114,13 @@
                                        :handlers handlers
                                        :before_init before_init
                                        :capabilities capabilities})
+
+             ; Scala.
+             (lsp.metals.setup {:autostart false
+                                :on_attach on_attach
+                                :handlers handlers
+                                :before_init before_init
+                                :capabilities capabilities})
 
              ; Slint.
              (lsp.slint_lsp.setup {:autostart false

@@ -1,15 +1,13 @@
 -- [nfnl] Compiled from fnl/plugins/prog.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_()
-  vim.g["conjure#mapping#doc_word"] = "K"
-  vim.g["conjure#client#clojure#nrepl#eval#auto_require"] = false
-  vim.g["conjure#client#clojure#nrepl#connection#auto_repl#enabled"] = false
+  vim.g["conjure#filetype#fennel"] = "conjure.client.fennel.nfnl"
   return nil
 end
 local function _2_()
   local conform = require("conform")
   vim.keymap.set({"n", "v"}, "<Leader>cf", conform.format, {desc = "Code format"})
   vim.keymap.set({"n", "v"}, "<Leader>cF", "<Cmd>ConformInfo<CR>", {desc = "Code format info"})
-  return conform.setup({formatters_by_ft = {["*"] = {"trim_whitespace"}, c = {"clang-format"}, c_sharp = {"csharpier"}, clojure = {"cljfmt"}, cpp = {"clang-format"}, css = {"prettier"}, html = {"prettier"}, go = {"gofmt"}, javascript = {"prettier"}, javascriptreact = {"prettier"}, json = {"prettier"}, lua = {"stylua"}, markdown = {"prettier"}, nix = {"nixfmt"}, python = {"ruff_format"}, rust = {"rustfmt"}, scala = {"scalafmt"}, toml = {"taplo"}, typescript = {"prettier"}, typescriptreact = {"prettier"}, typst = {"typstyle"}, vue = {"prettier"}, zig = {"zigfmt"}}})
+  return conform.setup({formatters = {["google-java-format"] = {prepend_args = {"--aosp"}}}, formatters_by_ft = {["*"] = {"trim_whitespace"}, c = {"clang-format"}, c_sharp = {"csharpier"}, clojure = {"cljfmt"}, cpp = {"clang-format"}, css = {"prettier"}, haskell = {"ormolu"}, html = {"prettier"}, go = {"gofmt"}, java = {"google-java-format"}, javascript = {"prettier"}, javascriptreact = {"prettier"}, json = {"prettier"}, lua = {"stylua"}, markdown = {"prettier"}, nix = {"nixfmt"}, python = {"ruff_format"}, rust = {"rustfmt"}, scala = {"scalafmt"}, toml = {"taplo"}, typescript = {"prettier"}, typescriptreact = {"prettier"}, typst = {"typstyle"}, vue = {"prettier"}, zig = {"zigfmt"}}})
 end
 local function _3_()
   local lint = require("lint")
@@ -23,4 +21,4 @@ local function _3_()
   lint.linters_by_ft = {c = {"clangtidy"}, cpp = {"clangtidy"}, fennel = {"fennel"}, zsh = {"zsh"}}
   return nil
 end
-return {{"Olical/conjure", ft = {"clojure", "fennel", "python"}, init = _1_}, {"bakpakin/fennel.vim", lazy = true, ft = {"fennel"}}, {"stevearc/conform.nvim", event = {"BufNewFile", "BufReadPre"}, opts = {}, config = _2_}, {"mfussenegger/nvim-lint", event = {"BufNewFile", "BufReadPre"}, config = _3_}, {"folke/ts-comments.nvim", event = "VeryLazy", opts = {}}}
+return {{"Olical/conjure", ft = {"clojure", "fennel", "hy", "lua", "python"}, init = _1_}, {"bakpakin/fennel.vim", lazy = true, ft = {"fennel"}}, {"hylang/vim-hy", lazy = true, ft = {"hy"}}, {"stevearc/conform.nvim", event = {"BufNewFile", "BufReadPre"}, opts = {}, config = _2_}, {"mfussenegger/nvim-lint", event = {"BufNewFile", "BufReadPre"}, config = _3_}, {"folke/ts-comments.nvim", event = "VeryLazy", opts = {}}}

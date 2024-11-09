@@ -10,7 +10,10 @@
         "path": "./snippets/cpp.json"
       },
       {
-        "language": ["csharp", "cs"],
+        "language": [
+          "csharp",
+          "cs"
+        ],
         "path": "./snippets/csharp.json"
       },
       {
@@ -55,6 +58,10 @@
         "path": "./snippets/go.json"
       },
       {
+        "language": "haskell",
+        "path": "./snippets/haskell.json"
+      },
+      {
         "language": [
           "eelixir",
           "heex",
@@ -64,6 +71,10 @@
           "vue"
         ],
         "path": "./snippets/html.json"
+      },
+      {
+        "language": "hy",
+        "path": "./snippets/hy.json"
       },
       {
         "language": "java",

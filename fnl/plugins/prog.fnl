@@ -1,14 +1,16 @@
 [{1 :Olical/conjure
-  :ft [:clojure :fennel :python]
+  :ft [:clojure :fennel :hy :lua :python]
   :init (fn []
-          (set vim.g.conjure#mapping#doc_word "K")
-          (set vim.g.conjure#client#clojure#nrepl#eval#auto_require false)
-          (set vim.g.conjure#client#clojure#nrepl#connection#auto_repl#enabled false))}
+          (set vim.g.conjure#filetype#fennel "conjure.client.fennel.nfnl"))}
 
  {1 :bakpakin/fennel.vim
   :lazy true
   ; For fennel's indent, which is not supported yet in nvim-treesitter.
   :ft [:fennel]}
+
+ {1 :hylang/vim-hy
+  :lazy true
+  :ft [:hy]}
 
  {1 :stevearc/conform.nvim
   :event [:BufNewFile :BufReadPre]
@@ -19,15 +21,19 @@
              (vim.keymap.set [:n :v] :<Leader>cF :<Cmd>ConformInfo<CR> {:desc "Code format info"})
 
              (conform.setup
-               {:formatters_by_ft
+               {:formatters
+                {:google-java-format {:prepend_args ["--aosp"]}}
+                :formatters_by_ft
                 {:* [:trim_whitespace]
                  :c [:clang-format]
                  :c_sharp [:csharpier]
                  :clojure [:cljfmt]
                  :cpp [:clang-format]
                  :css [:prettier]
+                 :haskell [:ormolu]
                  :html [:prettier]
                  :go [:gofmt]
+                 :java [:google-java-format]
                  :javascript [:prettier]
                  :javascriptreact [:prettier]
                  :json [:prettier]

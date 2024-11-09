@@ -1,0 +1,109 @@
+{
+  "cond": {
+    "prefix": "cond",
+    "body": [
+      "(cond",
+      "\t${1:pred}",
+      "\t\t$2",
+      "\tTrue",
+      "\t\t$3)"
+    ],
+    "description": "Access a range of elements in an ordered structure"
+  },
+  "cut": {
+    "prefix": "cut",
+    "body": "(cut ${1:var} ${2:range})",
+    "description": "Access a range of elements in an ordered structure"
+  },
+  "defclass": {
+    "prefix": "defclass",
+    "body": [
+      "(defclass ${1:name} [$2]",
+      "\t(defn __init__ [self$3]",
+      "\t\t$0))"
+    ],
+    "description": "defclass"
+  },
+  "defn": {
+    "prefix": "defn",
+    "body": [
+      "(defn ${1:name} [$2]",
+      "\t\"${3:doc}\"",
+      "\t$0)"
+    ],
+    "description": "defn"
+  },
+  "do": {
+    "prefix": "do",
+    "body": [
+      "(do",
+      "\t$0)"
+    ],
+    "description": "Combine several forms into one, returning the last"
+  },
+  "fn": {
+    "prefix": "fn",
+    "body": "(fn [$1] $0)",
+    "description": "defn"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "(for [$1]",
+      "\t$0)"
+    ],
+    "description": "For loop"
+  },
+  "lfor": {
+    "prefix": "lfor",
+    "body": "(lfor ${1:var} ${2:list} $0",
+    "description": "For loop which returns a list"
+  },
+  "get": {
+    "prefix": "get",
+    "body": "(get ${1:name} ${2:0})",
+    "description": "Code snippet for set statement"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "(if (${1:pred})",
+      "\t${2:then}",
+      "\t${3:else})"
+    ],
+    "description": "Code snippet for an if statement"
+  },
+  "import": {
+    "prefix": "import",
+    "body": "(import $1)",
+    "description": "import"
+  },
+  "print": {
+    "prefix": "print",
+    "body": "(print $1)",
+    "description": "Code snippet for print statement"
+  },
+  "require": {
+    "prefix": "require",
+    "body": "(require $1)",
+    "description": "require"
+  },
+  "set": {
+    "prefix": "set",
+    "body": "(set ${1:var})",
+    "description": "Code snippet for set statement"
+  },
+  "setv": {
+    "prefix": "setv",
+    "body": "(setv ${1:name} ${2:value})",
+    "description": "Code snippet for set variable statement"
+  },
+  "while": {
+    "prefix": "while",
+    "body": [
+      "(while ${1:pred}",
+      "\t$0)"
+    ],
+    "description": "While loop"
+  }
+}
