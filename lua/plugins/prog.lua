@@ -1,6 +1,7 @@
 -- [nfnl] Compiled from fnl/plugins/prog.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_()
   vim.g["conjure#filetype#fennel"] = "conjure.client.fennel.nfnl"
+  vim.g["conjure#mapping#doc_word"] = "K"
   return nil
 end
 local function _2_()

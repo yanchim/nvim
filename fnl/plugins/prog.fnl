@@ -1,7 +1,9 @@
 [{1 :Olical/conjure
   :ft [:clojure :fennel :hy :lua :python]
   :init (fn []
-          (set vim.g.conjure#filetype#fennel "conjure.client.fennel.nfnl"))}
+          (set vim.g.conjure#filetype#fennel "conjure.client.fennel.nfnl")
+          ; Rebind from K to <prefix>K
+          (set vim.g.conjure#mapping#doc_word "K"))}
 
  {1 :bakpakin/fennel.vim
   :lazy true

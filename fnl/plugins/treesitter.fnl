@@ -41,6 +41,7 @@
                                    :rust
                                    :scala
                                    :slint
+                                   :sql
                                    :swift
                                    :toml
                                    :tsx
