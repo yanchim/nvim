@@ -28,7 +28,7 @@
                 :formatters_by_ft
                 {:* [:trim_whitespace]
                  :c [:clang-format]
-                 :c_sharp [:csharpier]
+                 :cs [:csharpier]
                  :clojure [:cljfmt]
                  :cpp [:clang-format]
                  :css [:prettier]
