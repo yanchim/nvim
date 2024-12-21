@@ -10,6 +10,6 @@
       "\t\"description\": \"${4:desc}\"",
       "},"
     ],
-    "description": "Log output to console"
+    "description": "$1"
   }
 }

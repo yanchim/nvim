@@ -1,0 +1,312 @@
+{
+  "build": {
+    "prefix": "build",
+    "body": [
+      "@override",
+      "Widget build(BuildContext context) {",
+      "\treturn const Placeholder(",
+      "\t\tchild: Center(child: Text('$0')),",
+      "\t);",
+      "}"
+    ],
+    "description": "build context"
+  },
+  "did change dependencies": {
+    "prefix": "dcd",
+    "body": [
+      "@override",
+      "void didChangeDependencies() {",
+      "\tsuper.didChangeDependencies();",
+      "\t$0",
+      "}"
+    ],
+    "description": "didChangeDependencies"
+  },
+  "dispose": {
+    "prefix": "dispose",
+    "body": [
+      "@override",
+      "void dispose() {",
+      "\tsuper.dispose();",
+      "\t$0",
+      "}"
+    ],
+    "description": "dispose"
+  },
+  "debugPrint": {
+    "prefix": "debugprint",
+    "body": "debugPrint($1)",
+    "description": "debug print in flutter"
+  },
+  "go router annotation": {
+    "prefix": "gorouterannotation",
+    "body": "@TypedGoRoute<${1:name}Route>(path: '$2')",
+    "description": "go router annotation"
+  },
+  "go router build": {
+    "prefix": "gorouterbuild",
+    "body": [
+      "class ${1:name}Route extends GoRouteData {",
+      "\tconst $1Route();",
+      "",
+      "\t@override",
+      "\tWidget build(BuildContext context, GoRouterState state) => const ${2:screen}();",
+      "}"
+    ],
+    "description": "go router build"
+  },
+  "initState": {
+    "prefix": "is",
+    "body": [
+      "@override",
+      "void initState() {",
+      "\tsuper.initState();",
+      "\t$0",
+      "}"
+    ],
+    "description": "initState"
+  },
+  "setState": {
+    "prefix": "ss",
+    "body": [
+      "setState(() {",
+      "\t$0",
+      "});"
+    ],
+    "description": "desc"
+  },
+  "stateful widget": {
+    "prefix": "statefulwidget",
+    "body": [
+      "class ${1:name} extends StatefulWidget {",
+      "\tconst $1({super.key});",
+      "",
+      "\t@override",
+      "\tState<$1> createState() => _$1State();",
+      "}",
+      "",
+      "class _$1State extends State<$1> {",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn const Placeholder(",
+      "\t\t\tchild: Center(child: Text('$0')),",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "stateful widget"
+  },
+  "stateless widget": {
+    "prefix": "statelesswidget",
+    "body": [
+      "class ${1:name} extends StatelessWidget {",
+      "\tconst $1({super.key});",
+      "",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn const Placeholder(",
+      "\t\t\tchild: Center(child: Text('$0')),",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "consumer widget"
+  },
+  "consumer stateful widget": {
+    "prefix": "consumerstatefulwidget",
+    "body": [
+      "class ${1:name} extends ConsumerStatefulWidget {",
+      "\tconst $1({super.key});",
+      "",
+      "\t@override",
+      "\tConsumerState<$1> createState() => _$1State();",
+      "}",
+      "",
+      "class _$1State extends ConsumerState<$1> {",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn const Placeholder(",
+      "\t\t\tchild: Center(child: Text('$0')),",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "consumer stateful widget"
+  },
+  "consumer widget": {
+    "prefix": "consumerwidget",
+    "body": [
+      "class ${1:name} extends ConsumerWidget {",
+      "\tconst $1({super.key});",
+      "",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn const Placeholder(",
+      "\t\t\tchild: Center(child: Text('$0')),",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "consumer widget"
+  },
+  "hook consumer widget": {
+    "prefix": "hookconsumerwidget",
+    "body": [
+      "class ${1:name} extends HookConsumerWidget {",
+      "\tconst $1({super.key});",
+      "",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn const Placeholder(",
+      "\t\t\tchild: Center(child: Text('$0')),",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "hook consumer widget"
+  },
+  "hook widget": {
+    "prefix": "hookwidget",
+    "body": [
+      "class ${1:name} extends HookWidget {",
+      "\tconst $1({super.key});",
+      "",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn const Placeholder(",
+      "\t\t\tchild: Center(child: Text('$0')),",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "hook consumer widget"
+  },
+  "stateful hook widget": {
+    "prefix": "statefulhookwidget",
+    "body": [
+      "class ${1:name} extends StatefulHookWidget {",
+      "\tconst $1({super.key});",
+      "",
+      "\t@override",
+      "\tState<$1> createState() => _$1State();",
+      "}",
+      "",
+      "class _$1State extends State<$1> {",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn const Placeholder(",
+      "\t\t\tchild: Center(child: Text('$0')),",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "stateful hook widget"
+  },
+  "stateful hook consumer widget": {
+    "prefix": "statefulhookconsumerwidget",
+    "body": [
+      "class ${1:name} extends StatefulHookConsumerWidget {",
+      "\tconst $1({super.key});",
+      "",
+      "\t@override",
+      "\tConsumerState<$1> createState() => _$1State();",
+      "}",
+      "",
+      "class _$1State extends ConsumerState<$1> {",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn const Placeholder(",
+      "\t\t\tchild: Center(child: Text('$0')),",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "stateful hook consumer widget"
+  },
+  "async riverpod class": {
+    "prefix": "asyncriverpodclass",
+    "body": [
+      "@riverpod",
+      "class ${1:name} extends _\\$$1 {",
+      "\t@override",
+      "\tFuture<${2:dynamic}> build() async => ${3:throw UnimplementedError()};",
+      "}"
+    ],
+    "description": "async riverpod class"
+  },
+  "async riverpod inline": {
+    "prefix": "asyncriverpodinline",
+    "body": [
+      "@riverpod",
+      "Future<${1:dynamic}> ${1:name}(${1:/(.*)/${1:/capitalize}/}Ref ref) async => ${3:throw UnimplementedError()};"
+    ],
+    "description": "async riverpod inline"
+  },
+  "riverpod class": {
+    "prefix": "riverpodclass",
+    "body": [
+      "@riverpod",
+      "class ${1:name} extends _\\$$1 {",
+      "\t@override",
+      "\t${2:dynamic} build() => ${3:throw UnimplementedError()};",
+      "}"
+    ],
+    "description": "riverpod class"
+  },
+  "riverpod inline": {
+    "prefix": "riverpodinline",
+    "body": [
+      "@riverpod",
+      "${1:dynamic} ${1:name}(${1:/(.*)/${1:/capitalize}/}Ref ref) => ${3:throw UnimplementedError()};"
+    ],
+    "description": "async riverpod inline"
+  },
+  "useCallback": {
+    "prefix": "usecallback",
+    "body": "final ${1:cachedFn} = useCallback(${2:fn}, [$0]);",
+    "description": "useCallback to cache a function"
+  },
+  "useContext": {
+    "prefix": "usecontext",
+    "body": "final ${1:ctx} = useContext($2);",
+    "description": "useContext hook"
+  },
+  "useEffect": {
+    "prefix": "useeffect",
+    "body": [
+      "useEffect(() {",
+      "\t$1",
+      "}, [$2]);"
+    ],
+    "description": "useEffect hook"
+  },
+  "useMemoized": {
+    "prefix": "usememoized",
+    "body": "final ${1:memozied} = useMemoized(() => ${2:rst}, [$0]);",
+    "description": "useMemoized to cache a variable"
+  },
+  "useReducer": {
+    "prefix": "usereducer",
+    "body": "const [${1:state}, ${2:dispatch}] = useReducer(${3:reducer}, ${4:args});",
+    "description": "useReducer hook"
+  },
+  "useRef": {
+    "prefix": "useref",
+    "body": "final ${1:ref} = useRef($0);",
+    "description": "useRef hook"
+  },
+  "useState": {
+    "prefix": "usestate",
+    "body": "final ${1:name} = useState(${2:initValue});",
+    "description": "useState to cache a state"
+  },
+  "useValueChanged": {
+    "prefix": "usevaluechanged",
+    "body": [
+      "useValueChanged(${1:value}, (_, __) {",
+      "\t$0",
+      "});"
+    ],
+    "description": "Insert useValueChanged"
+  }
+}

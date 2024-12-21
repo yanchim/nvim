@@ -14,28 +14,26 @@
   },
   "useCallback": {
     "prefix": "usecallback",
-    "body": "const ${1:cachedFn} = useCallback(${2:fn}, [${0}]);",
+    "body": "const ${1:cachedFn} = useCallback(${2:fn}, [$0]);",
     "description": "useCallback to cache a function"
   },
   "useContext": {
     "prefix": "usecontext",
-    "body": [
-      "const ${1} = useContext(${2});"
-    ],
+    "body": "const ${1:ctx} = useContext($2);",
     "description": "useContext hook"
   },
   "useEffect": {
     "prefix": "useeffect",
     "body": [
       "useEffect(() => {",
-      "\t${1}",
-      "}, [${2}]);"
+      "\t$1",
+      "}, [$2]);"
     ],
     "description": "useEffect hook"
   },
   "useMemoized": {
     "prefix": "usememoized",
-    "body": "const ${1:memozied} = useMemo(() => ${2:rst}, [${0}]);",
+    "body": "const ${1:memozied} = useMemo(() => ${2:rst}, [$0]);",
     "description": "useMemoized to cache a variable"
   },
   "useReducer": {
@@ -45,9 +43,7 @@
   },
   "useRef": {
     "prefix": "useref",
-    "body": [
-      "const ${1:ref} = useRef(${0});"
-    ],
+    "body": "const ${1:ref} = useRef($0);",
     "description": "useRef hook"
   },
   "useState": {

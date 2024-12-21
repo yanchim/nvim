@@ -140,6 +140,7 @@
                 {1 :<Leader>gh :group :Hunk}
                 {1 :<Leader>gl :group :Line}
                 {1 :<Leader>l :group :Lsp}
+                {1 :<Leader>m :group :Mine}
                 {1 :<Leader>o :group :Org}
                 {1 :<Leader>p :group :Project}
                 {1 :<Leader>s :group :Search}

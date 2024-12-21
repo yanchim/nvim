@@ -1,0 +1,208 @@
+{
+  "main": {
+    "prefix": "main",
+    "description": "Insert a main function, used as an entry point.",
+    "body": [
+      "void main(List<String> args) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "afn": {
+    "prefix": "afn",
+    "description": "Insert an async function definition.",
+    "body": [
+      "Future<${1:void}> ${2:name}($3) async {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "fn": {
+    "prefix": "fn",
+    "description": "Insert a function definition.",
+    "body": [
+      "${1:void} ${2:name}($3) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "print": {
+    "prefix": "print",
+    "body": "print($1)",
+    "description": "print"
+  },
+  "import": {
+    "prefix": "import",
+    "body": "import '$1';",
+    "description": "import"
+  },
+  "freezed fromJson": {
+    "prefix": "freezedfromjson",
+    "body": "factory ${1:name}.fromJson(Map<String, dynamic> json) => _\\$$1FromJson(json);",
+    "description": "generate freezed fromJson method"
+  },
+  "freezed model": {
+    "prefix": "freezed",
+    "body": [
+      "@freezed",
+      "class ${1:name} with _\\$$1 {",
+      "\tconst factory $1({",
+      "\t\t$0",
+      "\t}) = _$1;",
+      "}"
+    ],
+    "description": "freezed model"
+  },
+  "json serializable": {
+    "prefix": "jsonserilizable",
+    "body": [
+      "@JsonSerilizable",
+      "class ${1:name} {",
+      "\t$1({",
+      "\t\t$0",
+      "\t});",
+      "",
+      "\tfactory $1.fromJson(Map<String, dynamic> json) => _\\$$1FromJson(json);",
+      "}"
+    ],
+    "description": "json serializable"
+  },
+  "part": {
+    "prefix": "part",
+    "body": "part '$1';",
+    "description": "part"
+  },
+  "part of": {
+    "prefix": "partof",
+    "body": "part of '$1';",
+    "description": "part of"
+  },
+  "part freezed": {
+    "prefix": "partfreezed",
+    "body": "part '${1:${TM_FILENAME_BASE}}.freezed.dart';",
+    "description": "part freezed"
+  },
+  "part generated": {
+    "prefix": "partgenerated",
+    "body": "part '${1:${TM_FILENAME_BASE}}.g.dart';",
+    "description": "part generated"
+  },
+  "enum": {
+    "prefix": "enum",
+    "description": "Insert a enum.",
+    "body": [
+      "enum ${1:Name} {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "try": {
+    "prefix": "try",
+    "description": "Insert a try/catch block.",
+    "body": [
+      "try {",
+      "\t$0",
+      "} catch (${1:e}) {",
+      "}"
+    ]
+  },
+  "if": {
+    "prefix": "if",
+    "description": "Insert an if statement.",
+    "body": [
+      "if ($1) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "if else": {
+    "prefix": "ife",
+    "description": "Insert an if statement with an else block.",
+    "body": [
+      "if ($1) {",
+      "\t$0",
+      "} else {",
+      "}"
+    ]
+  },
+  "switch case": {
+    "prefix": "switch",
+    "description": "Insert a switch statement.",
+    "body": [
+      "switch ($1) {",
+      "\tcase $2:",
+      "\t\t$0",
+      "\t\tbreak;",
+      "\tdefault:",
+      "}"
+    ]
+  },
+  "for": {
+    "prefix": "for",
+    "description": "Insert a for loop.",
+    "body": [
+      "for ($1) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "for in": {
+    "prefix": "fori",
+    "description": "Insert a for-in loop.",
+    "body": [
+      "for (var ${1:item} in ${2:items}) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "do while": {
+    "prefix": "do",
+    "description": "Insert a do-while loop.",
+    "body": [
+      "do {",
+      "\t$0",
+      "} while ($1);"
+    ]
+  },
+  "class": {
+    "prefix": "class",
+    "description": "Insert a class definition.",
+    "body": [
+      "class ${1:Name} {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "typedef": {
+    "prefix": "typedef",
+    "description": "Insert a typedef.",
+    "body": "typedef ${1:Type} ${2:Name}(${3:params});"
+  },
+  "test": {
+    "prefix": "test",
+    "description": "Insert a test block.",
+    "body": [
+      "test('$1', () {",
+      "\t$0",
+      "});"
+    ]
+  },
+  "group": {
+    "prefix": "group",
+    "description": "Insert a test group block.",
+    "body": [
+      "group('$1', () {",
+      "\t$0",
+      "});"
+    ]
+  },
+  "while": {
+    "prefix": "while",
+    "description": "Insert a while loop.",
+    "body": [
+      "while ($1) {",
+      "\t$0",
+      "}"
+    ]
+  }
+}

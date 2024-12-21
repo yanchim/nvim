@@ -17,6 +17,14 @@
         "path": "./snippets/csharp.json"
       },
       {
+        "language": "dart",
+        "path": "./snippets/dart/dart.json"
+      },
+      {
+        "language": "dart",
+        "path": "./snippets/dart/flutter.json"
+      },
+      {
         "language": [
           "eelixir",
           "heex"

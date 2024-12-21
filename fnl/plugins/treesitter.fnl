@@ -35,6 +35,7 @@
                                    :markdown
                                    :markdown_inline
                                    :nix
+                                   :powershell
                                    :python
                                    :query
                                    :regex
