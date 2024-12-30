@@ -20,6 +20,7 @@
                                    :diff
                                    :elixir
                                    :fennel
+                                   :fsharp
                                    :gitignore
                                    :go
                                    :haskell

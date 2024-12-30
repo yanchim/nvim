@@ -5,8 +5,8 @@
 (let [options
       {; Expand tab to space.
        :expandtab true
+       :tabstop 8
        ; 2 spaces for tab.
-       :tabstop 2
        :softtabstop 2
        ; 2 spaces for indent width.
        :shiftwidth 2
@@ -20,8 +20,9 @@
        :smartcase true
        ; Shared clipboard with linux.
        :clipboard :unnamedplus
-       ; Don't show line numbers.
-       :number false
+       ; Show line numbers and relative.
+       :number true
+       :relativenumber true
        ; Make signcolumn always one column with signs and linenumber.
        :signcolumn :number}]
   (each [option value (pairs options)]
