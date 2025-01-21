@@ -30,12 +30,14 @@
                                    :jsdoc
                                    :json
                                    :jsonc
+                                   :just
                                    :kotlin
                                    :lua
                                    :make
                                    :markdown
                                    :markdown_inline
                                    :nix
+                                   :ocaml
                                    :powershell
                                    :python
                                    :query

@@ -108,6 +108,13 @@
                               :before_init before_init
                               :capabilities capabilities})
 
+             ; Ocaml.
+             (lsp.ocamllsp.setup {:autostart false
+                                  :on_attach on_attach
+                                  :handlers handlers
+                                  :before_init before_init
+                                  :capabilities capabilities})
+
              ; Rust.
              (lsp.rust_analyzer.setup {:autostart false
                                        :on_attach on_attach
