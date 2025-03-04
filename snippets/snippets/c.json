@@ -137,12 +137,12 @@
     "description": "Template for a tiny C program"
   },
   "main() function": {
-    "prefix": "main",
+    "prefix": "fnmain",
     "body": [
       "int main(int argc, char *argv[]) {",
       "\t$0",
       "",
-      "return 0;",
+      "\treturn 0;",
       "}"
     ],
     "description": "Main() function snippet"

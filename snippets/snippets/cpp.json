@@ -225,7 +225,7 @@
     "description": "Code snippet for printing to std::cout, provided the header is set"
   },
   "Main function template": {
-    "prefix": "main",
+    "prefix": "fnmain",
     "body": [
       "int main(int argc, char *argv[]) {",
       "\t$0",

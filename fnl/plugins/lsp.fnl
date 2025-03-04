@@ -117,6 +117,14 @@
 
              ; Rust.
              (lsp.rust_analyzer.setup {:autostart false
+                                       :settings
+                                       {:rust-analyzer
+                                        {:procMacro
+                                         {:ignored
+                                          {:leptos_macro
+                                           [;; optional
+                                            ;; "component"
+                                            :server]}}}}
                                        :on_attach on_attach
                                        :handlers handlers
                                        :before_init before_init
