@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/snippet.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/snippet.fnl
 local function _1_()
   if vim.snippet.active({direction = 1}) then
     local function _2_()

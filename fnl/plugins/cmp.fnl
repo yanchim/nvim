@@ -25,15 +25,15 @@
 (fn snippet-next [fallback]
   (local cmp (require :cmp))
   (if (cmp.visible) (cmp.select_next_item)
-      (vim.snippet.active {:direction 1}) (vim.schedule #(vim.snippet.jump 1))
-      (has_words_before) (cmp.complete)
-      (fallback)))
+    (vim.snippet.active {:direction 1}) (vim.schedule #(vim.snippet.jump 1))
+    (has_words_before) (cmp.complete)
+    (fallback)))
 
 (fn snippet-prev [fallback]
   (local cmp (require :cmp))
   (if (cmp.visible) (cmp.select_prev_item)
-      (vim.snippet.active {:direction -1}) (vim.schedule #(vim.snippet.jump -1))
-      (fallback)))
+    (vim.snippet.active {:direction -1}) (vim.schedule #(vim.snippet.jump -1))
+    (fallback)))
 
 [{1 :hrsh7th/nvim-cmp
   :event :InsertEnter

@@ -1,19 +1,8 @@
--- [nfnl] Compiled from fnl/plugins/lsp.fnl by https://github.com/Olical/nfnl, do not edit.
-local function define_signs(prefix)
-  local error = (prefix .. "SignError")
-  local warn = (prefix .. "SignWarn")
-  local info = (prefix .. "SignInfo")
-  local hint = (prefix .. "SignHint")
-  vim.fn.sign_define(error, {text = "\239\129\151", texthl = error})
-  vim.fn.sign_define(warn, {text = "\239\129\177", texthl = warn})
-  vim.fn.sign_define(info, {text = "\239\129\154", texthl = info})
-  return vim.fn.sign_define(hint, {text = "\239\129\153", texthl = hint})
-end
-define_signs("Diagnostic")
+-- [nfnl] fnl/plugins/lsp.fnl
 local function _1_()
   vim.keymap.set("n", "<Leader>ll", vim.cmd.LspStart, {desc = "Start LSP"})
   local function _2_()
-    return vim.cmd.checkhealth("lspconfig")
+    return vim.cmd.checkhealth("vim.lsp")
   end
   vim.keymap.set("n", "<Leader>lI", _2_, {desc = "LSP Info"})
   vim.keymap.set("n", "<Leader>lR", vim.cmd.LspRestart, {desc = "Restart LSP"})
@@ -60,8 +49,9 @@ local function _3_()
   lsp.rust_analyzer.setup({settings = {["rust-analyzer"] = {procMacro = {ignored = {leptos_macro = {"server"}}}}}, on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.metals.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.slint_lsp.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
-  lsp.ts_ls.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
+  lsp.ts_ls.setup({init_options = {plugins = {{name = "@vue/typescript-plugin", location = "", languages = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue"}}}}, filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue"}, on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   lsp.tinymist.setup({single_file_support = true, on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
+  lsp.volar.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
   return lsp.zls.setup({on_attach = on_attach, handlers = handlers, before_init = before_init, capabilities = capabilities, autostart = false})
 end
 return {{"neovim/nvim-lspconfig", event = {"BufReadPre", "BufNewFile"}, dependencies = {"hrsh7th/cmp-nvim-lsp"}, init = _1_, config = _3_}}

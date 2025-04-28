@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/vc.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/vc.fnl
 local function _1_(buf)
   local gs = require("gitsigns")
   local function _2_()

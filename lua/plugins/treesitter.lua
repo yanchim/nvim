@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/treesitter.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/treesitter.fnl
 local function _1_()
   local treesitter = require("nvim-treesitter.configs")
   local context = require("treesitter-context")

@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/prog.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/plugins/prog.fnl
 local function _1_()
   vim.g["conjure#filetype#fennel"] = "conjure.client.fennel.nfnl"
   vim.g["conjure#mapping#doc_word"] = "K"
@@ -29,21 +29,6 @@ local function _2_()
   return ft.setup({lsp = {on_attach = _3_}})
 end
 local function _4_()
-  local conform = require("conform")
-  vim.keymap.set({"n", "v"}, "<Leader>cf", conform.format, {desc = "Code format"})
-  vim.keymap.set({"n", "v"}, "<Leader>cF", "<Cmd>ConformInfo<CR>", {desc = "Code format info"})
-  return conform.setup({formatters = {["google-java-format"] = {prepend_args = {"--aosp"}}}, formatters_by_ft = {["*"] = {"trim_whitespace"}, c = {"clang-format"}, cs = {"csharpier"}, clojure = {"cljfmt"}, cpp = {"clang-format"}, css = {"prettier"}, dart = {"dart_format"}, haskell = {"ormolu"}, html = {"prettier"}, go = {"gofmt"}, java = {"google-java-format"}, javascript = {"prettier"}, javascriptreact = {"prettier"}, json = {"prettier"}, lua = {"stylua"}, markdown = {"prettier"}, nix = {"nixfmt"}, python = {"ruff_format"}, rust = {"rustfmt"}, scala = {"scalafmt"}, toml = {"taplo"}, typescript = {"prettier"}, typescriptreact = {"prettier"}, typst = {"typstyle"}, vue = {"prettier"}, zig = {"zigfmt"}}})
+  return require("conform").format({async = true})
 end
-local function _5_()
-  local lint = require("lint")
-  do
-    local lint_augroup = vim.api.nvim_create_augroup("lint", {clear = true})
-    local function _6_()
-      return lint.try_lint()
-    end
-    vim.api.nvim_create_autocmd({"BufEnter", "BufWritePost", "InsertLeave"}, {group = lint_augroup, callback = _6_})
-  end
-  lint.linters_by_ft = {c = {"clangtidy"}, cpp = {"clangtidy"}, fennel = {"fennel"}, zsh = {"zsh"}}
-  return nil
-end
-return {{"Olical/conjure", ft = {"clojure", "fennel", "hy", "lua", "python"}, init = _1_}, {"bakpakin/fennel.vim", lazy = true, ft = "fennel"}, {"hylang/vim-hy", lazy = true, ft = "hy"}, {"nvim-flutter/flutter-tools.nvim", dependencies = {"nvim-lua/plenary.nvim", "stevearc/dressing.nvim"}, ft = "dart", config = _2_}, {"stevearc/conform.nvim", event = {"BufNewFile", "BufReadPre"}, opts = {}, config = _4_}, {"mfussenegger/nvim-lint", event = {"BufNewFile", "BufReadPre"}, config = _5_}, {"folke/ts-comments.nvim", event = "VeryLazy", opts = {}}}
+return {{"Olical/conjure", ft = {"clojure", "fennel", "hy", "lua", "python"}, init = _1_}, {"bakpakin/fennel.vim", lazy = true, ft = "fennel"}, {"hylang/vim-hy", lazy = true, ft = "hy"}, {"nvim-flutter/flutter-tools.nvim", dependencies = {"nvim-lua/plenary.nvim", "stevearc/dressing.nvim"}, ft = "dart", config = _2_}, {"stevearc/conform.nvim", event = {"BufNewFile", "BufReadPre"}, keys = {{"<Leader>cf", _4_, desc = "Code format", mode = {"n", "v"}}, {"<Leader>cF", vim.cmd.ConformInfo, desc = "Code format", mode = {"n", "v"}}}, opts = {formatters = {["google-java-format"] = {prepend_args = {"--aosp"}}}, formatters_by_ft = {["*"] = {"trim_whitespace"}, c = {"clang-format"}, cs = {"csharpier"}, clojure = {"cljfmt"}, cpp = {"clang-format"}, css = {"prettier"}, dart = {"dart_format"}, haskell = {"ormolu"}, html = {"prettier"}, go = {"gofmt"}, java = {"google-java-format"}, javascript = {"prettier"}, javascriptreact = {"prettier"}, json = {"prettier"}, jsonc = {"prettier"}, lua = {"stylua"}, markdown = {"prettier"}, nix = {"nixfmt"}, python = {"ruff_format"}, rust = {"rustfmt"}, scala = {"scalafmt"}, toml = {"taplo"}, typescript = {"prettier"}, typescriptreact = {"prettier"}, typst = {"typstyle"}, vue = {"prettier"}, zig = {"zigfmt"}}}}, {"folke/ts-comments.nvim", event = "VeryLazy", opts = {}}}

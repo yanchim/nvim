@@ -1,5 +1,5 @@
--- [nfnl] Compiled from fnl/core/keymaps.fnl by https://github.com/Olical/nfnl, do not edit.
-vim.keymap.set("n", "<LocalLeader>cd", "<Cmd>tcd %:h<CR>", {desc = "Change tab cwd to current file"})
+-- [nfnl] fnl/core/keymaps.fnl
+vim.keymap.set("n", "<LocalLeader>cd", "<Cmd>tcd %:h<CR>", {desc = "Change tab's cwd to current file"})
 vim.keymap.set("n", "<LocalLeader>dd", "<Cmd>verbose pwd<CR>", {desc = "pwd"})
 vim.keymap.set({"n", "v"}, "<LocalLeader>w", vim.cmd.write, {desc = "Write current file"})
 local function _1_()

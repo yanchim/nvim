@@ -58,8 +58,8 @@
                                :extensions {:file_browser {:collapse_dirs true
                                                            :mappings {:n {:g fb-actions.toggle_respect_gitignore}
                                                                       :i {:<C-G> fb-actions.toggle_respect_gitignore}}}}})
-           ; Load extensions after setup function to make extensions work.
-           (telescope.load_extension :file_browser))}
+             ; Load extensions after setup function to make extensions work.
+             (telescope.load_extension :file_browser))}
 
  {1 :natecraddock/workspaces.nvim
   :dependencies [:nvim-telescope/telescope.nvim]
@@ -83,10 +83,10 @@
   :keys [{1 :<Leader>sr :mode [:n :v]
           2 #(let [grug (require :grug-far)
                    ext (and (= vim.bo.buftype "") (vim.fn.expand "%:e"))]
-               (grug.grug_far {:prefills {:filesFilter (or (and (and ext (not= ext ""))
-                                                                (.. "*." ext))
-                                                           nil)}
-                               :transient true}))
+               (grug.open {:prefills {:filesFilter (or (and (and ext (not= ext ""))
+                                                            (.. "*." ext))
+                                                       nil)}
+                           :transient true}))
           :desc "Search and Replace"}]}
 
  {1 :kylechui/nvim-surround

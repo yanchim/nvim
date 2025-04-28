@@ -43,56 +43,42 @@
 
  {1 :stevearc/conform.nvim
   :event [:BufNewFile :BufReadPre]
-  :opts {}
-  :config #(let [conform (require :conform)]
-
-             (vim.keymap.set [:n :v] :<Leader>cf conform.format {:desc "Code format"})
-             (vim.keymap.set [:n :v] :<Leader>cF :<Cmd>ConformInfo<CR> {:desc "Code format info"})
-
-             (conform.setup
-               {:formatters
-                {:google-java-format {:prepend_args ["--aosp"]}}
-                :formatters_by_ft
-                {:* [:trim_whitespace]
-                 :c [:clang-format]
-                 :cs [:csharpier]
-                 :clojure [:cljfmt]
-                 :cpp [:clang-format]
-                 :css [:prettier]
-                 :dart [:dart_format]
-                 :haskell [:ormolu]
-                 :html [:prettier]
-                 :go [:gofmt]
-                 :java [:google-java-format]
-                 :javascript [:prettier]
-                 :javascriptreact [:prettier]
-                 :json [:prettier]
-                 :lua [:stylua]
-                 :markdown [:prettier]
-                 :nix [:nixfmt]
-                 :python [:ruff_format]
-                 :rust [:rustfmt]
-                 :scala [:scalafmt]
-                 :toml [:taplo]
-                 :typescript [:prettier]
-                 :typescriptreact [:prettier]
-                 :typst [:typstyle]
-                 :vue [:prettier]
-                 :zig [:zigfmt]}}))}
-
- {1 :mfussenegger/nvim-lint
-  :event [:BufNewFile :BufReadPre]
-  :config #(let [lint (require :lint)]
-             (let [lint-augroup (vim.api.nvim_create_augroup :lint {:clear true})]
-               (vim.api.nvim_create_autocmd
-                 [:BufEnter :BufWritePost :InsertLeave]
-                 {:group lint-augroup :callback #(lint.try_lint)}))
-
-             (set lint.linters_by_ft
-                  {:c [:clangtidy]
-                   :cpp [:clangtidy]
-                   :fennel [:fennel]
-                   :zsh [:zsh]}))}
+  :keys [{1 :<Leader>cf
+          2 #((. (require :conform) :format) {:async true})
+          :desc "Code format"
+          :mode [:n :v]}
+         {1 :<Leader>cF
+          2 vim.cmd.ConformInfo
+          :desc "Code format"
+          :mode [:n :v]}]
+  :opts {:formatters {:google-java-format {:prepend_args ["--aosp"]}}
+         :formatters_by_ft {:* [:trim_whitespace]
+                            :c [:clang-format]
+                            :cs [:csharpier]
+                            :clojure [:cljfmt]
+                            :cpp [:clang-format]
+                            :css [:prettier]
+                            :dart [:dart_format]
+                            :haskell [:ormolu]
+                            :html [:prettier]
+                            :go [:gofmt]
+                            :java [:google-java-format]
+                            :javascript [:prettier]
+                            :javascriptreact [:prettier]
+                            :json [:prettier]
+                            :jsonc [:prettier]
+                            :lua [:stylua]
+                            :markdown [:prettier]
+                            :nix [:nixfmt]
+                            :python [:ruff_format]
+                            :rust [:rustfmt]
+                            :scala [:scalafmt]
+                            :toml [:taplo]
+                            :typescript [:prettier]
+                            :typescriptreact [:prettier]
+                            :typst [:typstyle]
+                            :vue [:prettier]
+                            :zig [:zigfmt]}}}
 
  {1 :folke/ts-comments.nvim
   :event :VeryLazy

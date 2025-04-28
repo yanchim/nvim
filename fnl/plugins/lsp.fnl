@@ -1,23 +1,9 @@
-; Symbols to show for lsp diagnostics.
-(fn define-signs
-  [prefix]
-  (let [error (.. prefix "SignError")
-        warn  (.. prefix "SignWarn")
-        info  (.. prefix "SignInfo")
-        hint  (.. prefix "SignHint")]
-    (vim.fn.sign_define error {:text "" :texthl error})
-    (vim.fn.sign_define warn  {:text "" :texthl warn})
-    (vim.fn.sign_define info  {:text "" :texthl info})
-    (vim.fn.sign_define hint  {:text "" :texthl hint})))
-
-(define-signs "Diagnostic")
-
 [{1 :neovim/nvim-lspconfig
   :event ["BufReadPre" "BufNewFile"]
   :dependencies [:hrsh7th/cmp-nvim-lsp]
   :init (fn []
           (vim.keymap.set :n :<Leader>ll vim.cmd.LspStart {:desc "Start LSP"})
-          (vim.keymap.set :n :<Leader>lI #(vim.cmd.checkhealth :lspconfig) {:desc "LSP Info"})
+          (vim.keymap.set :n :<Leader>lI #(vim.cmd.checkhealth :vim.lsp) {:desc "LSP Info"})
           (vim.keymap.set :n :<Leader>lR vim.cmd.LspRestart {:desc "Restart LSP"})
           (vim.keymap.set :n :<Leader>lQ vim.cmd.LspStop {:desc "Stop LSP"}))
   :config #(let [lsp (require :lspconfig)
@@ -146,6 +132,22 @@
 
              ; Typescript.
              (lsp.ts_ls.setup {:autostart false
+                               :init_options {:plugins [{:name "@vue/typescript-plugin"
+                                                         :location ""
+                                                         :languages [:javascript
+                                                                     :javascriptreact
+                                                                     :javascript.jsx
+                                                                     :typescript
+                                                                     :typescriptreact
+                                                                     :typescript.tsx
+                                                                     :vue]}]}
+                               :filetypes [:javascript
+                                           :javascriptreact
+                                           :javascript.jsx
+                                           :typescript
+                                           :typescriptreact
+                                           :typescript.tsx
+                                           :vue]
                                :on_attach on_attach
                                :handlers handlers
                                :before_init before_init
@@ -158,6 +160,13 @@
                                   :handlers handlers
                                   :before_init before_init
                                   :capabilities capabilities})
+
+             ; Vue.
+             (lsp.volar.setup {:autostart false
+                               :on_attach on_attach
+                               :handlers handlers
+                               :before_init before_init
+                               :capabilities capabilities})
 
              ; Zig.
              (lsp.zls.setup {:autostart false

@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/core/gui.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/core/gui.fnl
 if vim.g.neovide then
   vim.g.neovide_input_macos_option_key_is_meta = "only_left"
   local function set_ime(args)

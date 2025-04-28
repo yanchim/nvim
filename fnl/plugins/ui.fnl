@@ -1,26 +1,3 @@
-(local {: autoload} (require :nfnl.module))
-(local lsp (autoload :core.lsp))
-
-(fn lsp-connection []
-  (let [message (lsp.get-progress-message)]
-    (if
-      ; If has progress handler and is loading.
-      (or (= message.status :begin)
-          (= message.status :report))
-      (.. message.msg " : " message.percent "%% ")
-
-      ; If has progress handler and finished loading.
-      (= message.status "end")
-      :
-
-      ; If hasn't progress handler, but has connected lsp client.
-      (and (= message.status "")
-           (not (vim.tbl_isempty (vim.lsp.get_clients {:bufnr (vim.api.nvim_get_current_buf)}))))
-      :
-
-      ; Else.
-      :)))
-
 [{1 :MunifTanjim/nui.nvim
   :lazy true}
 
@@ -80,7 +57,7 @@
                                         :file_status true
                                         :path 1
                                         :shorting_target 40}]
-                           :lualine_x [[lsp-connection]
+                           :lualine_x [:lsp_status
                                        :filesize
                                        :encoding
                                        :fileformat
