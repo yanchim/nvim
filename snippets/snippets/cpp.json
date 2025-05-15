@@ -2,14 +2,14 @@
   "#inc": {
     "prefix": "incl",
     "body": [
-      "#include \"$1\";"
+      "#include \"$1\""
     ],
     "description": "Code snippet for #include \" \""
   },
   "#inc<": {
     "prefix": "inc",
     "body": [
-      "#include <$1>;"
+      "#include <$1>"
     ],
     "description": "Code snippet for #include < >"
   },

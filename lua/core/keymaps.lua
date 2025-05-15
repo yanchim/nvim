@@ -91,26 +91,41 @@ vim.keymap.set("n", "]T", vim.cmd.tablast, {desc = "Last tab"})
 vim.keymap.set("n", "[<Space>", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", {desc = "Blank above"})
 vim.keymap.set("n", "]<Space>", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", {desc = "Blank below"})
 local function diagnostic_goto(next, severity)
-  local go = ((next and vim.diagnostic.goto_next) or vim.diagnostic.goto_prev)
-  severity = ((severity and vim.diagnostic.severity[severity]) or nil)
-  local function _7_()
-    return go({severity = severity})
+  local _7_
+  if next then
+    _7_ = 1
+  else
+    _7_ = -1
   end
-  return _7_
+  return vim.diagnostic.jump({count = _7_, float = true, severity = severity})
 end
 local function diagnostic_toggle()
-  if vim.diagnostic.is_enabled() then
-    return vim.diagnostic.disable()
-  else
-    return vim.diagnostic.enable()
-  end
+  return vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
 vim.keymap.set("n", "<LocalLeader>xD", diagnostic_toggle, {desc = "Toggle Diagnostics"})
 vim.keymap.set("n", "<LocalLeader>xd", vim.diagnostic.open_float, {desc = "Display Diagnostics"})
-vim.keymap.set("n", "]d", diagnostic_goto(true), {desc = "Next Diagnostic"})
-vim.keymap.set("n", "[d", diagnostic_goto(false), {desc = "Prev Diagnostic"})
-vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), {desc = "Next Error"})
-vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), {desc = "Prev Error"})
-vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), {desc = "Next Warning"})
-vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), {desc = "Prev Warning"})
+local function _9_()
+  return diagnostic_goto(true)
+end
+vim.keymap.set("n", "]d", _9_, {desc = "Next Diagnostic"})
+local function _10_()
+  return diagnostic_goto(false)
+end
+vim.keymap.set("n", "[d", _10_, {desc = "Prev Diagnostic"})
+local function _11_()
+  return diagnostic_goto(true, "ERROR")
+end
+vim.keymap.set("n", "]e", _11_, {desc = "Next Error"})
+local function _12_()
+  return diagnostic_goto(false, "ERROR")
+end
+vim.keymap.set("n", "[e", _12_, {desc = "Prev Error"})
+local function _13_()
+  return diagnostic_goto(true, "WARN")
+end
+vim.keymap.set("n", "]w", _13_, {desc = "Next Warning"})
+local function _14_()
+  return diagnostic_goto(false, "WARN")
+end
+vim.keymap.set("n", "[w", _14_, {desc = "Prev Warning"})
 return {}

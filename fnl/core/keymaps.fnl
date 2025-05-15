@@ -91,27 +91,21 @@
 (vim.keymap.set :n "[<Space>" "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>" {:desc "Blank above"})
 (vim.keymap.set :n "]<Space>" "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>" {:desc "Blank below"})
 
-;; Diagnostic.
 (fn diagnostic-goto [next severity]
-  (let [go (or (and next vim.diagnostic.goto_next) vim.diagnostic.goto_prev)]
-    (set-forcibly! severity (or (and severity
-                                     (. vim.diagnostic.severity severity))
-                                nil))
-    (fn [] (go {: severity}))))
+  "Go to diagnostic."
+  (vim.diagnostic.jump {:count (if next 1 -1) :float true :severity severity}))
 
 (fn diagnostic-toggle []
   "Toggle diagnostic show."
-  (if (vim.diagnostic.is_enabled)
-    (vim.diagnostic.disable)
-    (vim.diagnostic.enable)))
+  (vim.diagnostic.enable (not (vim.diagnostic.is_enabled))))
 
 (vim.keymap.set :n :<LocalLeader>xD diagnostic-toggle {:desc "Toggle Diagnostics"})
 (vim.keymap.set :n :<LocalLeader>xd vim.diagnostic.open_float {:desc "Display Diagnostics"})
-(vim.keymap.set :n "]d" (diagnostic_goto true)  {:desc "Next Diagnostic"})
-(vim.keymap.set :n "[d" (diagnostic_goto false) {:desc "Prev Diagnostic"})
-(vim.keymap.set :n "]e" (diagnostic_goto true  :ERROR) {:desc "Next Error"})
-(vim.keymap.set :n "[e" (diagnostic_goto false :ERROR) {:desc "Prev Error"})
-(vim.keymap.set :n "]w" (diagnostic_goto true  :WARN) {:desc "Next Warning"})
-(vim.keymap.set :n "[w" (diagnostic_goto false :WARN) {:desc "Prev Warning"})
+(vim.keymap.set :n "]d" #(diagnostic-goto true)  {:desc "Next Diagnostic"})
+(vim.keymap.set :n "[d" #(diagnostic-goto false) {:desc "Prev Diagnostic"})
+(vim.keymap.set :n "]e" #(diagnostic-goto true  :ERROR) {:desc "Next Error"})
+(vim.keymap.set :n "[e" #(diagnostic-goto false :ERROR) {:desc "Prev Error"})
+(vim.keymap.set :n "]w" #(diagnostic-goto true  :WARN) {:desc "Next Warning"})
+(vim.keymap.set :n "[w" #(diagnostic-goto false :WARN) {:desc "Prev Warning"})
 
 {}

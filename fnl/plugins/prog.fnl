@@ -24,11 +24,10 @@
              (ft.setup
                {:lsp
                 {:on_attach (fn [client bufnr]
-                              (vim.lsp.inlay_hint.enable true {: bufnr})
                               (vim.api.nvim_buf_set_keymap bufnr :n :gd "<Cmd>lua vim.lsp.buf.definition()<CR>" {:noremap true})
+                              (vim.api.nvim_buf_set_keymap bufnr :n :gD "<Cmd>lua vim.lsp.buf.declaration()<CR>" {:noremap true})
                               (vim.api.nvim_buf_set_keymap bufnr :n :K "<Cmd>lua vim.lsp.buf.hover()<CR>" {:noremap true})
-                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>ld "<Cmd>lua vim.lsp.buf.declaration()<CR>" {:noremap true})
-                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>lt "<Cmd>lua vim.lsp.buf.type_definition()<CR>" {:noremap true})
+                              ; Leaderkey.
                               (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>lh "<Cmd>lua vim.lsp.buf.signature_help()<CR>" {:noremap true})
                               (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>ln "<Cmd>lua vim.lsp.buf.rename()<CR>" {:noremap true})
                               (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>le "<Cmd>lua vim.diagnostic.open_float()<CR>" {:noremap true})
@@ -37,9 +36,13 @@
                               (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>la "<Cmd>lua vim.lsp.buf.code_action()<CR>" {:noremap true})
                               (vim.api.nvim_buf_set_keymap bufnr :v :<Leader>la "<Cmd>lua vim.lsp.buf.code_action()<CR>" {:noremap true})
                               ; Telescope.
-                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>lw "<Cmd>lua require('telescope.builtin').diagnostics()<CR>" {:noremap true})
-                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>lr "<Cmd>lua require('telescope.builtin').lsp_references()<CR>" {:noremap true})
-                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>li "<Cmd>lua require('telescope.builtin').lsp_implementations()<CR>" {:noremap true}))}}))}
+                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>ld "<Cmd>Telescope lsp_definitions<CR>" {:noremap true})
+                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>lt "<Cmd>Telescope lsp_type_definitions<CR>" {:noremap true})
+                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>lw "<Cmd>Telescope diagnostics<CR>" {:noremap true})
+                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>lr "<Cmd>Telescope lsp_references<CR>" {:noremap true})
+                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>ls "<Cmd>Telescope lsp_document_symbols<CR>" {:noremap true})
+                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>lS "<Cmd>Telescope lsp_workspace_symbols<CR>" {:noremap true})
+                              (vim.api.nvim_buf_set_keymap bufnr :n :<Leader>li "<Cmd>Telescope lsp_implementations<CR>" {:noremap true}))}}))}
 
  {1 :stevearc/conform.nvim
   :event [:BufNewFile :BufReadPre]

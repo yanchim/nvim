@@ -24,51 +24,47 @@
 
  {1 :folke/noice.nvim
   :event :VeryLazy
-  :opts {}
-  :config #(let [noice (require :noice)]
-             (noice.setup
-               {:cmdline {:format {:cmdline {:icon :>}
-                                   :filter {:icon :$}
-                                   :help {:icon :H}
-                                   :search_down {:icon :/}
-                                   :search_up {:icon :?}}}
-                :lsp {:override {:cmp.entry.get_documentation true
-                                 :vim.lsp.util.convert_input_to_markdown_lines true
-                                 :vim.lsp.util.stylize_markdown true}}
-                :presets {:bottom_search true
-                          :command_palette true
-                          :long_message_to_split true
-                          :lsp_doc_border false}
-                :routes [{:view :notify :filter {:event :msg_showmode
-                                                 :any [{:find :recording}]}}]}))}
+  :opts {:cmdline {:format {:cmdline {:icon :>}
+                            :filter {:icon :$}
+                            :search_down {:icon :/}
+                            :search_up {:icon :?}}}
+         :lsp {:override {:cmp.entry.get_documentation true
+                          :vim.lsp.util.convert_input_to_markdown_lines true
+                          :vim.lsp.util.stylize_markdown true}}
+         :presets {:bottom_search true
+                   :command_palette true
+                   :long_message_to_split true
+                   :lsp_doc_border false}
+         :routes [; Show @recording messages.
+                  {:view :notify :filter {:event :msg_showmode :any [{:find :recording}]}}
+                  ; Ignore certain lsp messages.
+                  {:filter {:event :notify :find "No information available"} :opts {:skip true}}]}}
 
  {1 :nvim-lualine/lualine.nvim
-  :config #(let [lualine (require :lualine)]
-             (lualine.setup
-               {:options {:theme :auto
-                          :icons_enabled false
-                          :section_separators ""
-                          :component_separators ""}
-                :sections {:lualine_a [:mode]
-                           :lualine_b [{1 :diagnostics
-                                        :sections [:error :warn :info :hint]
-                                        :sources [:nvim_lsp]}]
-                           :lualine_c [{1 :filename
-                                        :file_status true
-                                        :path 1
-                                        :shorting_target 40}]
-                           :lualine_x [:lsp_status
-                                       :filesize
-                                       :encoding
-                                       :fileformat
-                                       :filetype]
-                           :lualine_y [:progress]
-                           :lualine_z [:location]}
-                :inactive_sections {:lualine_a []
-                                    :lualine_b []
-                                    :lualine_c [{1 :filename
-                                                 :file_status true
-                                                 :path 1}]
-                                    :lualine_x [:location]
-                                    :lualine_y []
-                                    :lualine_z []}}))}]
+  :opts {:options {:theme :auto
+                   :icons_enabled false
+                   :section_separators ""
+                   :component_separators ""}
+         :sections {:lualine_a [:mode]
+                    :lualine_b [{1 :diagnostics
+                                 :sections [:error :warn :info :hint]
+                                 :sources [:nvim_lsp]}]
+                    :lualine_c [{1 :filename
+                                 :file_status true
+                                 :path 1
+                                 :shorting_target 40}]
+                    :lualine_x [:lsp_status
+                                :filesize
+                                :encoding
+                                :fileformat
+                                :filetype]
+                    :lualine_y [:progress]
+                    :lualine_z [:location]}
+         :inactive_sections {:lualine_a []
+                             :lualine_b []
+                             :lualine_c [{1 :filename
+                                          :file_status true
+                                          :path 1}]
+                             :lualine_x [:location]
+                             :lualine_y []
+                             :lualine_z []}}}]
