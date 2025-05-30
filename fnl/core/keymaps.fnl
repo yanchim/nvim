@@ -21,7 +21,7 @@
 (vim.keymap.set :n :<LocalLeader>xL vim.cmd.lclose {:desc "Close location list"})
 (vim.keymap.set :n :<LocalLeader>xq vim.cmd.copen {:desc "Quickfix list"})
 (vim.keymap.set :n :<LocalLeader>xQ vim.cmd.cclose {:desc "Close quickfix list"})
-(vim.keymap.set :n :<LocalLeader>xx vim.cmd.cc {:desc "Display error"})
+(vim.keymap.set :n :<LocalLeader>xd vim.diagnostic.open_float {:desc "Display Diagnostics"})
 (vim.keymap.set :n :<LocalLeader>xg vim.cmd.edit {:desc "Revert current buffer"})
 (vim.keymap.set :n :<LocalLeader>xG vim.cmd.checktime {:desc "Revert all buffers"})
 
@@ -69,43 +69,5 @@
 
 ; Command.
 (vim.keymap.set :c :<C-O> :<C-F> {:desc "Command"})
-
-; Brackets.
-(vim.keymap.set :n "[b" vim.cmd.bprevious {:desc "Prev buffer"})
-(vim.keymap.set :n "]b" vim.cmd.bnext {:desc "Next buffer"})
-(vim.keymap.set :n "[B" vim.cmd.bfirst {:desc "First buffer"})
-(vim.keymap.set :n "]B" vim.cmd.blast {:desc "Last buffer"})
-(vim.keymap.set :n "[q" vim.cmd.cprev {:desc "Prev quickfix"})
-(vim.keymap.set :n "]q" vim.cmd.cnext {:desc "Next quickfix"})
-(vim.keymap.set :n "[Q" vim.cmd.cfirst {:desc "First quickfix"})
-(vim.keymap.set :n "]Q" vim.cmd.clast {:desc "Last quickfix"})
-(vim.keymap.set :n "[l" vim.cmd.lprev {:desc "Prev location"})
-(vim.keymap.set :n "]l" vim.cmd.lnext {:desc "Next location"})
-(vim.keymap.set :n "[L" vim.cmd.lfirst {:desc "First location"})
-(vim.keymap.set :n "]L" vim.cmd.llast {:desc "Last location"})
-(vim.keymap.set :n "[t" vim.cmd.tabprevious {:desc "Prev tab"})
-(vim.keymap.set :n "]t" vim.cmd.tabnext {:desc "Next tab"})
-(vim.keymap.set :n "[T" vim.cmd.tabfirst {:desc "First tab"})
-(vim.keymap.set :n "]T" vim.cmd.tablast {:desc "Last tab"})
-
-(vim.keymap.set :n "[<Space>" "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>" {:desc "Blank above"})
-(vim.keymap.set :n "]<Space>" "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>" {:desc "Blank below"})
-
-(fn diagnostic-goto [next severity]
-  "Go to diagnostic."
-  (vim.diagnostic.jump {:count (if next 1 -1) :float true :severity severity}))
-
-(fn diagnostic-toggle []
-  "Toggle diagnostic show."
-  (vim.diagnostic.enable (not (vim.diagnostic.is_enabled))))
-
-(vim.keymap.set :n :<LocalLeader>xD diagnostic-toggle {:desc "Toggle Diagnostics"})
-(vim.keymap.set :n :<LocalLeader>xd vim.diagnostic.open_float {:desc "Display Diagnostics"})
-(vim.keymap.set :n "]d" #(diagnostic-goto true)  {:desc "Next Diagnostic"})
-(vim.keymap.set :n "[d" #(diagnostic-goto false) {:desc "Prev Diagnostic"})
-(vim.keymap.set :n "]e" #(diagnostic-goto true  :ERROR) {:desc "Next Error"})
-(vim.keymap.set :n "[e" #(diagnostic-goto false :ERROR) {:desc "Prev Error"})
-(vim.keymap.set :n "]w" #(diagnostic-goto true  :WARN) {:desc "Next Warning"})
-(vim.keymap.set :n "[w" #(diagnostic-goto false :WARN) {:desc "Prev Warning"})
 
 {}

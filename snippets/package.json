@@ -6,6 +6,10 @@
         "path": "./snippets/c.json"
       },
       {
+        "language": "c3",
+        "path": "./snippets/c3.json"
+      },
+      {
         "language": "cpp",
         "path": "./snippets/cpp.json"
       },
@@ -144,6 +148,10 @@
       {
         "language": "markdown",
         "path": "./snippets/markdown.json"
+      },
+      {
+        "language": "odin",
+        "path": "./snippets/odin.json"
       },
       {
         "language": "org",

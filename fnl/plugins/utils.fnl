@@ -5,6 +5,7 @@
                builtin (require :telescope.builtin)]
            ; Buffer.
            (vim.keymap.set :n :<Leader>bb builtin.buffers {:noremap true :desc "Switch buffer"})
+           (vim.keymap.set :n :<LocalLeader>bb builtin.buffers {:noremap true :desc "Switch buffer"})
            (vim.keymap.set :n :<C-X>b builtin.buffers {:noremap true :desc "Switch buffer"})
 
            ; File.
@@ -96,6 +97,23 @@
  {1 :echasnovski/mini.align
   :opts {}}
 
+ {1 :echasnovski/mini.bufremove
+ :lazy false
+ :keys [{1 :<Leader>bd
+         2 #(let [bd (. (require :mini.bufremove) :delete)]
+              (if vim.bo.modified
+                  (let [choice (vim.fn.confirm
+                                 (.. "Save changes to " (vim.fn.bufname) "?")
+                                 "&Yes\n&No\n&Cancel")]
+                    (if
+                      (= choice 1) (do (vim.cmd.write) (bd 0))
+                      (= choice 2) (bd 0 true)))
+                  (bd 0)))
+         :desc "Delete buffer"}
+        {1 :<Leader>bD
+         2 #((. (require :mini.bufremove) :delete) 0 true)
+         :desc "Delete buffer (force)"}]}
+
  {1 :echasnovski/mini.pairs
   :event :VeryLazy
   :opts {:modes {:insert true :command true :terminal false}
@@ -111,26 +129,42 @@
   :lazy false
   :dependencies [:nvim-lua/plenary.nvim]
   :opts {:signs false}
-  :keys [{1 "[c" :mode :n 2 #((. (require :todo-comments) :jump_prev)) :desc "Prev todo comment"}
-         {1 "]c" :mode :n 2 #((. (require :todo-comments) :jump_next)) :desc "Next todo comment"}
-         {1 "<Leader>st" :mode :n 2 :<Cmd>TodoTelescope<CR> :desc "Search todo comment"}]}
+  :keys [{1 "<Leader>st" :mode :n
+          2 :<Cmd>TodoTelescope<CR>
+          :desc "Search todo comment"}]}
 
  {1 :folke/flash.nvim
-  :event :VeryLazy
-  :opts {}
-  :keys [{1 :<LocalLeader>aa :mode [:n :o :x] 2 #((. (require :flash) :jump)) :desc :Flash}
-         {1 :<LocalLeader>al :mode [:n :o :x] 2 #((. (require :flash) :jump) {:label {:after [0 0]} :pattern :^ :search {:max_length 0 :mode :search}}) :desc "Flash Line"}
-         {1 :<LocalLeader>at :mode [:n :o :x] 2 #((. (require :flash) :treesitter)) :desc "Flash Treesitter"}
-         {1 :<LocalLeader>ar :mode :o 2 #((. (require :flash) :remote)) :desc "Remote Flash"}
-         {1 :<LocalLeader>as :mode [:o :x] 2 #((. (require :treesitter_search) :remote)) :desc "Treesitter Search"}
-         {1 :<C-S> :mode :c 2 #((. (require :flash) :toggle)) :desc "Toggle Flash Search"}]}
+ :event :VeryLazy
+ :opts {}
+ :keys [{1 :<LocalLeader>aa :mode [:n :o :x]
+         2 #((. (require :flash) :jump))
+         :desc :Flash}
+         {1 :<LocalLeader>al :mode [:n :o :x]
+          2 #((. (require :flash) :jump) {:label {:after [0 0]}
+                                          :pattern :^
+                                          :search {:max_length 0 :mode :search}})
+         :desc "Flash Line"}
+         {1 :<LocalLeader>at :mode [:n :o :x]
+          2 #((. (require :flash) :treesitter))
+          :desc "Flash Treesitter"}
+         {1 :<LocalLeader>ar :mode :o
+          2 #((. (require :flash) :remote))
+          :desc "Remote Flash"}
+         {1 :<LocalLeader>as :mode [:o :x]
+          2 #((. (require :treesitter_search) :remote))
+          :desc "Treesitter Search"}
+         {1 :<C-S> :mode :c
+          2 #((. (require :flash) :toggle))
+          :desc "Toggle Flash Search"}]}
 
  {1 :folke/which-key.nvim
   :event :VeryLazy
   :opts {}
   :config #(let [wk (require :which-key)]
              (wk.add
-               [{1 :<Leader>? 2 #((. (require :which-key) :show) {:global false}) :desc "Buffer local keymaps"}
+               [{1 :<Leader>?
+                 2 #((. (require :which-key) :show) {:global false})
+                 :desc "Buffer local keymaps"}
                 {1 :<Leader>b :group :Buffer}
                 {1 :<Leader>c :group :Code}
                 {1 :<Leader>e :group :Explore}

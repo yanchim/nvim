@@ -4,7 +4,7 @@
 
 # Neovim configuration
 
-Require neovim >= 0.10.0, based on [fennel] and [nfnl].
+Require latest stable neovim release, based on [fennel] and [nfnl].
 
 ## INSTALL
 
