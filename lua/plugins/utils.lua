@@ -3,6 +3,7 @@ local function _1_()
   local telescope = require("telescope")
   local builtin = require("telescope.builtin")
   vim.keymap.set("n", "<Leader>bb", builtin.buffers, {noremap = true, desc = "Switch buffer"})
+  vim.keymap.set("n", "<LocalLeader>bb", builtin.buffers, {noremap = true, desc = "Switch buffer"})
   vim.keymap.set("n", "<C-X>b", builtin.buffers, {noremap = true, desc = "Switch buffer"})
   local function _2_()
     return telescope.extensions.file_browser.file_browser({path = "%:p:h", select_buffer = true})
@@ -58,34 +59,47 @@ local function _7_()
   return grug.open({prefills = {filesFilter = (((ext and (ext ~= "")) and ("*." .. ext)) or nil)}, transient = true})
 end
 local function _8_()
-  return require("todo-comments").jump_prev()
-end
-local function _9_()
-  return require("todo-comments").jump_next()
-end
-local function _10_()
-  return require("flash").jump()
+  local bd = require("mini.bufremove").delete
+  if vim.bo.modified then
+    local choice = vim.fn.confirm(("Save changes to " .. vim.fn.bufname() .. "?"), "&Yes\n&No\n&Cancel")
+    if (choice == 1) then
+      vim.cmd.write()
+      return bd(0)
+    elseif (choice == 2) then
+      return bd(0, true)
+    else
+      return nil
+    end
+  else
+    return bd(0)
+  end
 end
 local function _11_()
-  return require("flash").jump({label = {after = {0, 0}}, pattern = "^", search = {max_length = 0, mode = "search"}})
+  return require("mini.bufremove").delete(0, true)
 end
 local function _12_()
-  return require("flash").treesitter()
+  return require("flash").jump()
 end
 local function _13_()
-  return require("flash").remote()
+  return require("flash").jump({label = {after = {0, 0}}, pattern = "^", search = {max_length = 0, mode = "search"}})
 end
 local function _14_()
-  return require("treesitter_search").remote()
+  return require("flash").treesitter()
 end
 local function _15_()
-  return require("flash").toggle()
+  return require("flash").remote()
 end
 local function _16_()
+  return require("treesitter_search").remote()
+end
+local function _17_()
+  return require("flash").toggle()
+end
+local function _18_()
   local wk = require("which-key")
-  local function _17_()
+  local function _19_()
     return require("which-key").show({global = false})
   end
-  return wk.add({{"<Leader>?", _17_, desc = "Buffer local keymaps"}, {"<Leader>b", group = "Buffer"}, {"<Leader>c", group = "Code"}, {"<Leader>e", group = "Explore"}, {"<Leader>f", group = "File"}, {"<Leader>g", group = "Git"}, {"<Leader>gb", group = "Buffer"}, {"<Leader>gh", group = "Hunk"}, {"<Leader>gl", group = "Line"}, {"<Leader>l", group = "Lsp"}, {"<Leader>m", group = "Mine"}, {"<Leader>o", group = "Org"}, {"<Leader>p", group = "Project"}, {"<Leader>s", group = "Search"}, {"<Leader>t", group = "Tab"}, {"<Leader>u", group = "Undo"}, {"<Leader>v", group = "View"}})
+  return wk.add({{"<Leader>?", _19_, desc = "Buffer local keymaps"}, {"<Leader>b", group = "Buffer"}, {"<Leader>c", group = "Code"}, {"<Leader>e", group = "Explore"}, {"<Leader>f", group = "File"}, {"<Leader>g", group = "Git"}, {"<Leader>gb", group = "Buffer"}, {"<Leader>gh", group = "Hunk"}, {"<Leader>gl", group = "Line"}, {"<Leader>l", group = "Lsp"}, {"<Leader>m", group = "Mine"}, {"<Leader>o", group = "Org"}, {"<Leader>p", group = "Project"}, {"<Leader>s", group = "Search"}, {"<Leader>t", group = "Tab"}, {"<Leader>u", group = "Undo"}, {"<Leader>v", group = "View"}})
 end
-return {{"nvim-telescope/telescope.nvim", dependencies = {"nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim"}, init = _1_, config = _5_}, {"natecraddock/workspaces.nvim", dependencies = {"nvim-telescope/telescope.nvim"}, config = _6_}, {"MagicDuck/grug-far.nvim", opts = {}, keys = {{"<Leader>sr", _7_, mode = {"n", "v"}, desc = "Search and Replace"}}}, {"kylechui/nvim-surround", event = "VeryLazy", opts = {}}, {"echasnovski/mini.align", opts = {}}, {"echasnovski/mini.pairs", event = "VeryLazy", opts = {modes = {insert = true, command = true, terminal = false}, skip_ts = {"string"}, skip_unbalanced = true, markdown = true}}, {"folke/todo-comments.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {signs = false}, keys = {{"[c", _8_, mode = "n", desc = "Prev todo comment"}, {"]c", _9_, mode = "n", desc = "Next todo comment"}, {"<Leader>st", "<Cmd>TodoTelescope<CR>", mode = "n", desc = "Search todo comment"}}, lazy = false}, {"folke/flash.nvim", event = "VeryLazy", opts = {}, keys = {{"<LocalLeader>aa", _10_, mode = {"n", "o", "x"}, desc = "Flash"}, {"<LocalLeader>al", _11_, mode = {"n", "o", "x"}, desc = "Flash Line"}, {"<LocalLeader>at", _12_, mode = {"n", "o", "x"}, desc = "Flash Treesitter"}, {"<LocalLeader>ar", _13_, mode = "o", desc = "Remote Flash"}, {"<LocalLeader>as", _14_, mode = {"o", "x"}, desc = "Treesitter Search"}, {"<C-S>", _15_, mode = "c", desc = "Toggle Flash Search"}}}, {"folke/which-key.nvim", event = "VeryLazy", opts = {}, config = _16_}}
+return {{"nvim-telescope/telescope.nvim", dependencies = {"nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim"}, init = _1_, config = _5_}, {"natecraddock/workspaces.nvim", dependencies = {"nvim-telescope/telescope.nvim"}, config = _6_}, {"MagicDuck/grug-far.nvim", opts = {}, keys = {{"<Leader>sr", _7_, mode = {"n", "v"}, desc = "Search and Replace"}}}, {"kylechui/nvim-surround", event = "VeryLazy", opts = {}}, {"echasnovski/mini.align", opts = {}}, {"echasnovski/mini.bufremove", keys = {{"<Leader>bd", _8_, desc = "Delete buffer"}, {"<Leader>bD", _11_, desc = "Delete buffer (force)"}}, lazy = false}, {"echasnovski/mini.pairs", event = "VeryLazy", opts = {modes = {insert = true, command = true, terminal = false}, skip_ts = {"string"}, skip_unbalanced = true, markdown = true}}, {"folke/todo-comments.nvim", dependencies = {"nvim-lua/plenary.nvim"}, opts = {signs = false}, keys = {{"<Leader>st", "<Cmd>TodoTelescope<CR>", mode = "n", desc = "Search todo comment"}}, lazy = false}, {"folke/flash.nvim", event = "VeryLazy", opts = {}, keys = {{"<LocalLeader>aa", _12_, mode = {"n", "o", "x"}, desc = "Flash"}, {"<LocalLeader>al", _13_, mode = {"n", "o", "x"}, desc = "Flash Line"}, {"<LocalLeader>at", _14_, mode = {"n", "o", "x"}, desc = "Flash Treesitter"}, {"<LocalLeader>ar", _15_, mode = "o", desc = "Remote Flash"}, {"<LocalLeader>as", _16_, mode = {"o", "x"}, desc = "Treesitter Search"}, {"<C-S>", _17_, mode = "c", desc = "Toggle Flash Search"}}}, {"folke/which-key.nvim", event = "VeryLazy", opts = {}, config = _18_}}

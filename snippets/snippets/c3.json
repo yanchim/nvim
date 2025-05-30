@@ -1,0 +1,68 @@
+{
+  "function": {
+    "prefix": "fn",
+    "body": ["fn ${1:type} ${2:name}($3)", "{", "\t$0", "}"]
+  },
+  "macro": {
+    "prefix": "macro",
+    "body": ["macro ${1:name}($2)", "{", "\t$0", "}"]
+  },
+  "c function": {
+    "prefix": "cfn",
+    "body": [
+      "extern fn ${1:type} _${2:c3_name}(${3:args}) @extern(\"${3:c_name}\")",
+      "{",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "switch statement": {
+    "prefix": "switch",
+    "body": [
+      "switch (${1:expr})",
+      "{",
+      "case $2:",
+      "\t$3",
+      "default:",
+      "\t$0",
+      "}"
+    ]
+  },
+  "do": {
+    "prefix": "do",
+    "body": ["do", "{", "\t$0", "};"]
+  },
+  "if statement": {
+    "prefix": "if",
+    "body": ["if (${1:expr})", "{", "\t${0}", "}"]
+  },
+  "for": {
+    "prefix": "for",
+    "body": ["for ($1)", "{", "\t${0}", "}"]
+  },
+  "foreach": {
+    "prefix": "foreach",
+    "body": [
+      "foreach (${1:index}, ${1:value} : ${2:values})",
+      "{",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "while": {
+    "prefix": "while",
+    "body": ["while ($1)", "{", "\t${0}", "}"]
+  },
+  "struct definition": {
+    "prefix": "struct",
+    "body": ["struct ${1:name}", "{", "\t$0", "}"]
+  },
+  "enum definition": {
+    "prefix": "enum",
+    "body": ["enum ${1:name}", "{", "\t$0", "}"]
+  },
+  "union definition": {
+    "prefix": "union",
+    "body": ["union ${1:name}", "{", "\t$0", "}"]
+  }
+}

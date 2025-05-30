@@ -1,8 +1,4 @@
 {
-  "require": {
-    "prefix": "rq",
-    "body": "const ${2} = require('${1:module}');"
-  },
   "sleep": {
     "prefix": "sleep",
     "body": "await new Promise((r) => setTimeout(r, $0));"

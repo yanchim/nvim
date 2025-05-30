@@ -1,79 +1,71 @@
 [{1 :nvim-treesitter/nvim-treesitter
-  :event [:BufReadPre :BufNewFile]
-  :dependencies [:nvim-treesitter/nvim-treesitter-context
-                 :nvim-treesitter/nvim-treesitter-textobjects]
-  :build ::TSUpdate
-  :config #(let [treesitter (require :nvim-treesitter.configs)
-                 context (require :treesitter-context)]
+    :lazy false
+    :branch :main
+    :build [#(let [treesitter (require :nvim-treesitter)
+                   parsers [:bash
+                            :c
+                            :c3
+                            :c_sharp
+                            :clojure
+                            :commonlisp
+                            :cpp
+                            :css
+                            :dart
+                            :diff
+                            :elixir
+                            :fennel
+                            :fsharp
+                            :gitignore
+                            :go
+                            :haskell
+                            :html
+                            :java
+                            :javascript :jsdoc :jsx
+                            :json :jsonc
+                            :just
+                            :kotlin
+                            :lua
+                            :make
+                            :markdown :markdown_inline
+                            :nix
+                            :ocaml
+                            :odin
+                            :powershell
+                            :python
+                            :query
+                            :regex
+                            :rust
+                            :scala
+                            :sql
+                            :swift
+                            :toml
+                            :tsx :typescript
+                            :typst
+                            :vim :vimdoc
+                            :vue
+                            :xml
+                            :yaml
+                            :zig]]
+               (treesitter.install parsers)
+               (treesitter.update))
+            ::TSUpdate]
+    :init #(vim.api.nvim_create_autocmd
+             :FileType
+             {:callback (fn [args]
+                          (local filetype args.match)
+                          (local lang (vim.treesitter.language.get_lang filetype))
+                          (when (vim.treesitter.language.add lang)
+                            (set vim.bo.indentexpr "v:lua.require'nvim-treesitter'.indentexpr()")
+                            (set vim.wo.foldexpr "v:lua.vim.treesitter.foldexpr()")
+                            (vim.treesitter.start)))})}
 
-             (vim.keymap.set :n :<LocalLeader>ac #(context.go_to_context vim.v.count1) {:silent true :desc "Go to nearest context"})
+ {1 :nvim-treesitter/nvim-treesitter-textobjects
+  :branch :main
+  :opts {}}
 
-             (treesitter.setup
-               {:ensure_installed [:bash
-                                   :c
-                                   :c_sharp
-                                   :clojure
-                                   :commonlisp
-                                   :cpp
-                                   :css
-                                   :dart
-                                   :diff
-                                   :elixir
-                                   :fennel
-                                   :fsharp
-                                   :gitignore
-                                   :go
-                                   :haskell
-                                   :html
-                                   :java
-                                   :javascript
-                                   :jsdoc
-                                   :json
-                                   :jsonc
-                                   :just
-                                   :kotlin
-                                   :lua
-                                   :make
-                                   :markdown
-                                   :markdown_inline
-                                   :nix
-                                   :ocaml
-                                   :powershell
-                                   :python
-                                   :query
-                                   :regex
-                                   :rust
-                                   :scala
-                                   :slint
-                                   :sql
-                                   :swift
-                                   :toml
-                                   :tsx
-                                   :typescript
-                                   :typst
-                                   :vim
-                                   :vimdoc
-                                   :vue
-                                   :xml
-                                   :yaml
-                                   :zig]
-                :highlight {:enable true :additional_vim_regex_highlighting false}
-                :indent {:enable true}
-                :incremental_selection {:enable true
-                                        :keymaps {:init_selection :<C-Space>
-                                                  :node_incremental :<C-Space>
-                                                  :node_decremental :<BS>
-                                                  :scope_incremental false}}
-                :context {:enable true}
-                :textobjects {:enable true
-                              :lsp_interop {:enable false}
-                              :move {:enable true :set_jumps true}
-                              :select {:enable true :lookahead true
-                                       :keymaps {:ac {:query "@class.outer" :desc "Select inner part of a class region"}
-                                                 :ic {:query "@class.inner" :desc "Select outer part of a class region"}
-                                                 :af {:query "@function.outer" :desc "Select inner part of a function"}
-                                                 :if {:query "@function.inner" :desc "Select inner part of a function"}
-                                                 :as {:query "@scope" :query_group "locals" :desc "Select language scope"}}
-                                       :selection_modes {"@parameter.outer" :v
-                                                         "@function.outer" :V
-                                                         "@class.outer" :<C-V>}}}}))}]
+ {1 :nvim-treesitter/nvim-treesitter-context
+  :lazy false
+  :keys [{1 "<Leader>cc" :mode :n
+          2 #((. (require :treesitter-context) :go_to_context) vim.v.count1)
+          :desc "Jump to context (upwards)"}]
+  :opts {}}]
