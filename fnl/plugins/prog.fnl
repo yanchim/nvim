@@ -5,11 +5,6 @@
           ; Rebind from K to <prefix>K
           (set vim.g.conjure#mapping#doc_word "K"))}
 
- {1 :bakpakin/fennel.vim
-  :lazy true
-  ; For fennel's indent, which is not supported yet in nvim-treesitter.
-  :ft :fennel}
-
  {1 :hylang/vim-hy
   :lazy true
   :ft :hy}
@@ -62,22 +57,25 @@
                             :cpp [:clang-format]
                             :css [:prettier]
                             :dart [:dart_format]
+                            :go [:gofmt]
                             :haskell [:ormolu]
                             :html [:prettier]
-                            :go [:gofmt]
                             :java [:google-java-format]
                             :javascript [:prettier]
+                            :javascript.jsx [:prettier]
                             :javascriptreact [:prettier]
                             :json [:prettier]
                             :jsonc [:prettier]
                             :lua [:stylua]
                             :markdown [:prettier]
                             :nix [:nixfmt]
+                            :odin [:odinfmt]
                             :python [:ruff_format]
                             :rust [:rustfmt]
                             :scala [:scalafmt]
                             :toml [:taplo]
                             :typescript [:prettier]
+                            :typescript.tsx [:prettier]
                             :typescriptreact [:prettier]
                             :typst [:typstyle]
                             :vue [:prettier]

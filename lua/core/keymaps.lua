@@ -24,11 +24,9 @@ vim.keymap.set("n", "<LocalLeader>xl", vim.cmd.lopen, {desc = "Location list"})
 vim.keymap.set("n", "<LocalLeader>xL", vim.cmd.lclose, {desc = "Close location list"})
 vim.keymap.set("n", "<LocalLeader>xq", vim.cmd.copen, {desc = "Quickfix list"})
 vim.keymap.set("n", "<LocalLeader>xQ", vim.cmd.cclose, {desc = "Close quickfix list"})
-vim.keymap.set("n", "<LocalLeader>xx", vim.cmd.cc, {desc = "Display error"})
+vim.keymap.set("n", "<LocalLeader>xd", vim.diagnostic.open_float, {desc = "Display Diagnostics"})
 vim.keymap.set("n", "<LocalLeader>xg", vim.cmd.edit, {desc = "Revert current buffer"})
 vim.keymap.set("n", "<LocalLeader>xG", vim.cmd.checktime, {desc = "Revert all buffers"})
-vim.keymap.set("n", "<Leader>bd", "<Cmd>bp<Bar>bd #<CR>", {desc = "Delete current buffer"})
-vim.keymap.set("n", "<LocalLeader>bb", "<Cmd>e #<CR>", {desc = "Switch to prev buffer"})
 vim.keymap.set("n", "<M-j>", "<C-W>j", {desc = "Move cursor to the downside window"})
 vim.keymap.set("n", "<M-k>", "<C-W>k", {desc = "Move cursor to the upside window"})
 vim.keymap.set("n", "<M-h>", "<C-W>h", {desc = "Move cursor to the leftside window"})
@@ -72,60 +70,4 @@ vim.keymap.set({"c", "i"}, "<C-B>", "<Left>", {desc = "Backward char"})
 vim.keymap.set("i", "<C-N>", "<Down>", {desc = "Next line"})
 vim.keymap.set("i", "<C-P>", "<Up>", {desc = "Prev line"})
 vim.keymap.set("c", "<C-O>", "<C-F>", {desc = "Command"})
-vim.keymap.set("n", "[b", vim.cmd.bprevious, {desc = "Prev buffer"})
-vim.keymap.set("n", "]b", vim.cmd.bnext, {desc = "Next buffer"})
-vim.keymap.set("n", "[B", vim.cmd.bfirst, {desc = "First buffer"})
-vim.keymap.set("n", "]B", vim.cmd.blast, {desc = "Last buffer"})
-vim.keymap.set("n", "[q", vim.cmd.cprev, {desc = "Prev quickfix"})
-vim.keymap.set("n", "]q", vim.cmd.cnext, {desc = "Next quickfix"})
-vim.keymap.set("n", "[Q", vim.cmd.cfirst, {desc = "First quickfix"})
-vim.keymap.set("n", "]Q", vim.cmd.clast, {desc = "Last quickfix"})
-vim.keymap.set("n", "[l", vim.cmd.lprev, {desc = "Prev location"})
-vim.keymap.set("n", "]l", vim.cmd.lnext, {desc = "Next location"})
-vim.keymap.set("n", "[L", vim.cmd.lfirst, {desc = "First location"})
-vim.keymap.set("n", "]L", vim.cmd.llast, {desc = "Last location"})
-vim.keymap.set("n", "[t", vim.cmd.tabprevious, {desc = "Prev tab"})
-vim.keymap.set("n", "]t", vim.cmd.tabnext, {desc = "Next tab"})
-vim.keymap.set("n", "[T", vim.cmd.tabfirst, {desc = "First tab"})
-vim.keymap.set("n", "]T", vim.cmd.tablast, {desc = "Last tab"})
-vim.keymap.set("n", "[<Space>", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", {desc = "Blank above"})
-vim.keymap.set("n", "]<Space>", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", {desc = "Blank below"})
-local function diagnostic_goto(next, severity)
-  local _7_
-  if next then
-    _7_ = 1
-  else
-    _7_ = -1
-  end
-  return vim.diagnostic.jump({count = _7_, float = true, severity = severity})
-end
-local function diagnostic_toggle()
-  return vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end
-vim.keymap.set("n", "<LocalLeader>xD", diagnostic_toggle, {desc = "Toggle Diagnostics"})
-vim.keymap.set("n", "<LocalLeader>xd", vim.diagnostic.open_float, {desc = "Display Diagnostics"})
-local function _9_()
-  return diagnostic_goto(true)
-end
-vim.keymap.set("n", "]d", _9_, {desc = "Next Diagnostic"})
-local function _10_()
-  return diagnostic_goto(false)
-end
-vim.keymap.set("n", "[d", _10_, {desc = "Prev Diagnostic"})
-local function _11_()
-  return diagnostic_goto(true, "ERROR")
-end
-vim.keymap.set("n", "]e", _11_, {desc = "Next Error"})
-local function _12_()
-  return diagnostic_goto(false, "ERROR")
-end
-vim.keymap.set("n", "[e", _12_, {desc = "Prev Error"})
-local function _13_()
-  return diagnostic_goto(true, "WARN")
-end
-vim.keymap.set("n", "]w", _13_, {desc = "Next Warning"})
-local function _14_()
-  return diagnostic_goto(false, "WARN")
-end
-vim.keymap.set("n", "[w", _14_, {desc = "Prev Warning"})
 return {}

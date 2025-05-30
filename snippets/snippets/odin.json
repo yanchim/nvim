@@ -1,0 +1,62 @@
+{
+  "for": {
+    "prefix": "for",
+    "body": ["for $1 {", "\t$0", "}"],
+    "description": "For loop"
+  },
+  "for_do": {
+    "prefix": "fordo",
+    "body": "for $1 do $0",
+    "description": "Inline for loop"
+  },
+  "if": {
+    "prefix": "if",
+    "body": ["if ${1:condition} {", "\t$0", "}"],
+    "description": "if statement"
+  },
+  "if_do": {
+    "prefix": "ifdo",
+    "body": "if $1 do $0",
+    "description": "if ... do statement"
+  },
+  "switch": {
+    "prefix": "switch",
+    "body": ["switch $1 {", "case ${2:value}:", "\t$3", "case:", "\t$4", "}"],
+    "description": "switch statement"
+  },
+  "when": {
+    "prefix": "when",
+    "body": ["when $1 {", "\t$2", "}"],
+    "description": "When statement"
+  },
+  "struct": {
+    "prefix": "struct",
+    "body": ["${1:name} :: struct {", "\t$0", "}"],
+    "description": "struct"
+  },
+  "procedure": {
+    "prefix": "proc",
+    "body": ["${1:name} :: proc($2) {", "\t$0", "}"],
+    "description": "Procedure"
+  },
+  "procedure_return": {
+    "prefix": "procr",
+    "body": ["${1:name} :: proc($2) -> $3 {", "\t$0", "}"],
+    "description": "Procedure with return value"
+  },
+  "println": {
+    "prefix": "println",
+    "body": "fmt.println($0)",
+    "description": "Insert 'println'"
+  },
+  "printf": {
+    "prefix": "printf",
+    "body": "fmt.printf(\"$1\", $0)",
+    "description": "Insert formatted print"
+  },
+  "main": {
+    "prefix": "main",
+    "body": ["main :: proc() {", "\t$0", "}"],
+    "description": "function main()"
+  }
+}
