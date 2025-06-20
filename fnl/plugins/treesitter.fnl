@@ -31,6 +31,7 @@
                             :ocaml
                             :odin
                             :powershell
+                            :purescript
                             :python
                             :query
                             :regex

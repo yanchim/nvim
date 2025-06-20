@@ -23,6 +23,6 @@ local function _1_()
   vim.lsp.config("*", {capabilities = cmplsp.default_capabilities()})
   vim.lsp.config("ts_ls", {init_options = {plugins = {{name = "@vue/typescript-plugin", location = "", languages = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue"}}}}, filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue"}})
   vim.lsp.config("volar", {})
-  return vim.lsp.enable({"c3_lsp", "clangd", "gopls", "ols", "rust_analyzer", "ts_ls", "vue_ls", "zls"})
+  return vim.lsp.enable({"clangd", "gopls", "hls", "ocamllsp", "rust_analyzer", "ts_ls", "vue_ls", "zls"})
 end
 return {{"neovim/nvim-lspconfig", event = {"BufReadPre", "BufNewFile"}, dependencies = {"hrsh7th/cmp-nvim-lsp"}, config = _1_}}

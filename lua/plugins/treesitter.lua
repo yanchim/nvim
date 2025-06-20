@@ -1,7 +1,7 @@
 -- [nfnl] fnl/plugins/treesitter.fnl
 local function _1_()
   local treesitter = require("nvim-treesitter")
-  local parsers = {"bash", "c", "c3", "c_sharp", "clojure", "commonlisp", "cpp", "css", "dart", "diff", "elixir", "fennel", "fsharp", "gitignore", "go", "haskell", "html", "java", "javascript", "jsdoc", "jsx", "json", "jsonc", "just", "kotlin", "lua", "make", "markdown", "markdown_inline", "nix", "ocaml", "odin", "powershell", "python", "query", "regex", "rust", "scala", "sql", "swift", "toml", "tsx", "typescript", "typst", "vim", "vimdoc", "vue", "xml", "yaml", "zig"}
+  local parsers = {"bash", "c", "c3", "c_sharp", "clojure", "commonlisp", "cpp", "css", "dart", "diff", "elixir", "fennel", "fsharp", "gitignore", "go", "haskell", "html", "java", "javascript", "jsdoc", "jsx", "json", "jsonc", "just", "kotlin", "lua", "make", "markdown", "markdown_inline", "nix", "ocaml", "odin", "powershell", "purescript", "python", "query", "regex", "rust", "scala", "sql", "swift", "toml", "tsx", "typescript", "typst", "vim", "vimdoc", "vue", "xml", "yaml", "zig"}
   treesitter.install(parsers)
   return treesitter.update()
 end

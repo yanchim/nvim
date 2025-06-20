@@ -46,10 +46,10 @@
              ; Vue.
              (vim.lsp.config :volar {})
 
-             (vim.lsp.enable [:c3_lsp
-                              :clangd
+             (vim.lsp.enable [:clangd
                               :gopls
-                              :ols
+                              :hls
+                              :ocamllsp
                               :rust_analyzer
                               :ts_ls :vue_ls
                               :zls]))}]
