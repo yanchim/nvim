@@ -1,11 +1,7 @@
 {
   "createt": {
     "prefix": "createt",
-    "body": [
-      "CREATE TABLE ${1:tableName} (",
-      "\t${2:attribute(s)}",
-      ");"
-    ],
+    "body": ["CREATE TABLE ${1:tableName} (", "\t${2:attribute(s)}", ");"],
     "description": "Create regular table"
   },
   "createti": {
@@ -19,16 +15,12 @@
   },
   "created": {
     "prefix": "created",
-    "body": [
-      "CREATE DATABASE ${1:name};"
-    ],
+    "body": ["CREATE DATABASE ${1:name};"],
     "description": "Create regular table"
   },
   "createdi": {
     "prefix": "createdi",
-    "body": [
-      "CREATE DATABASE IF NOT EXISTS ${1:name};"
-    ],
+    "body": ["CREATE DATABASE IF NOT EXISTS ${1:name};"],
     "description": "Create table with conditional"
   },
   "insert": {
@@ -42,59 +34,42 @@
   },
   "dropt": {
     "prefix": "dropt",
-    "body": [
-      "DROP TABLE ${1:tableName};"
-    ],
+    "body": ["DROP TABLE ${1:tableName};"],
     "description": "Drop table"
   },
   "dropd": {
     "prefix": "dropd",
-    "body": [
-      "DROP DATABASE ${1:dbName};"
-    ],
+    "body": ["DROP DATABASE ${1:dbName};"],
     "description": "Drop database"
   },
   "dropti": {
     "prefix": "dropti",
-    "body": [
-      "DROP TABLE IF EXISTS ${1:tableName};"
-    ],
+    "body": ["DROP TABLE IF EXISTS ${1:tableName};"],
     "description": "Drop table with conditional"
   },
   "dropdi": {
     "prefix": "dropdi",
-    "body": [
-      "DROP DATABASE IF EXISTS ${1:dbName};"
-    ],
+    "body": ["DROP DATABASE IF EXISTS ${1:dbName};"],
     "description": "Drop database with conditional"
   },
   "showt": {
     "prefix": "showt",
-    "body": [
-      "SHOW TABLES;"
-    ],
+    "body": ["SHOW TABLES;"],
     "description": "Show tables"
   },
   "showd": {
     "prefix": "showd",
-    "body": [
-      "SHOW DATABASES;"
-    ],
+    "body": ["SHOW DATABASES;"],
     "description": "Show databases"
   },
   "select": {
     "prefix": "select",
-    "body": [
-      "SELECT ${1:attribute(s)} FROM ${2:tableName};"
-    ],
+    "body": ["SELECT ${1:attribute(s)} FROM ${2:tableName};"],
     "description": "Regular select"
   },
   "selectd": {
     "prefix": "selectd",
-    "body": [
-      "SELECT DISTINCT ${1:attribute(s)}",
-      "\tFROM ${2:tableName};"
-    ],
+    "body": ["SELECT DISTINCT ${1:attribute(s)}", "\tFROM ${2:tableName};"],
     "description": "Select Distinct"
   },
   "selectw": {
@@ -126,26 +101,17 @@
   },
   "delete": {
     "prefix": "delete",
-    "body": [
-      "DELETE FROM ${1:tableName}",
-      "\tWHERE ${3:condition};"
-    ],
+    "body": ["DELETE FROM ${1:tableName}", "\tWHERE ${3:condition};"],
     "description": "Delete records"
   },
   "altert": {
     "prefix": "altert",
-    "body": [
-      "ALTER TABLE ${1:tableName}",
-      "\t ${2:intructions};"
-    ],
+    "body": ["ALTER TABLE ${1:tableName}", "\t ${2:intructions};"],
     "description": "Alter table"
   },
   "alterad": {
     "prefix": "alterad",
-    "body": [
-      "ALTER TABLE ${1:tableName}",
-      "\tADD COLUMN ${2:col_name};"
-    ],
+    "body": ["ALTER TABLE ${1:tableName}", "\tADD COLUMN ${2:col_name};"],
     "description": "Alter table - Add column"
   },
   "alteraf": {
@@ -236,10 +202,7 @@
   },
   "bakupd": {
     "prefix": "bakupd",
-    "body": [
-      "BACKUP DATABASE ${1:dbName}",
-      "\tTO DISK ${2:filepath};"
-    ],
+    "body": ["BACKUP DATABASE ${1:dbName}", "\tTO DISK ${2:filepath};"],
     "description": "Backup database"
   },
   "bakupdw": {
@@ -253,16 +216,12 @@
   },
   "primaryk": {
     "prefix": "primaryk",
-    "body": [
-      "PRIMARY KEY(${1:attribute})"
-    ],
+    "body": ["PRIMARY KEY(${1:attribute})"],
     "description": "Primary Key"
   },
   "primarykc": {
     "prefix": "primarykc",
-    "body": [
-      "CONSTRAINT ${1:attribute} PRIMARY KEY(${2:attribute(s)})"
-    ],
+    "body": ["CONSTRAINT ${1:attribute} PRIMARY KEY(${2:attribute(s)})"],
     "description": "Constraint Primary Key"
   },
   "foreingk": {
@@ -282,9 +241,7 @@
   },
   "check": {
     "prefix": "check",
-    "body": [
-      "CHECK ( ${1:condition} )"
-    ],
+    "body": ["CHECK ( ${1:condition} )"],
     "description": "Check"
   },
   "creteuser": {

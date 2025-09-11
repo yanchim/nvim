@@ -6,11 +6,7 @@
   },
   "class": {
     "prefix": "class",
-    "body": [
-      "class ${1:ClassName} {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["class ${1:ClassName} {", "\t$0", "}"],
     "description": "Class scala2"
   },
   "def": {
@@ -37,26 +33,17 @@
   },
   "if in scala2": {
     "prefix": "if2",
-    "body": [
-      "if (${1:cond}) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["if (${1:cond}) {", "\t$0", "}"],
     "description": "scala2 if"
   },
   "if in scala3": {
     "prefix": "if",
-    "body": [
-      "if ${1:cond} then",
-      "\t$0"
-    ],
+    "body": ["if ${1:cond} then", "\t$0"],
     "description": "scala3 if"
   },
   "main": {
     "prefix": "main",
-    "body": [
-      "@main def $TM_FILENAME_BASE() = ${2:println(\"Hello, World!\")}"
-    ],
+    "body": ["@main def $TM_FILENAME_BASE() = ${2:println(\"Hello, World!\")}"],
     "description": "scala3 main"
   },
   "main_object": {
@@ -110,11 +97,7 @@
   },
   "trait": {
     "prefix": "trait",
-    "body": [
-      "trait ${1:TraitName} {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["trait ${1:TraitName} {", "\t$0", "}"],
     "description": "scala2 trait"
   },
   "try in scala2": {
@@ -149,19 +132,12 @@
   },
   "while in scala2": {
     "prefix": "while2",
-    "body": [
-      "while (${1:cond}) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["while (${1:cond}) {", "\t$0", "}"],
     "description": "While loop scala2"
   },
   "while in scala3": {
     "prefix": "while",
-    "body": [
-      "while ${1:cond}",
-      "\tdo $0"
-    ],
+    "body": ["while ${1:cond}", "\tdo $0"],
     "description": "While loop scala3"
   }
 }

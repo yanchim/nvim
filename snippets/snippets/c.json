@@ -1,82 +1,56 @@
 {
   "#include <...>": {
     "prefix": "inc",
-    "body": [
-      "#include <$0>"
-    ],
+    "body": "#include <$0>",
     "description": "#include <...> snippet"
   },
   "#include \"...\"": {
     "prefix": "incl",
-    "body": [
-      "#include \"$0\""
-    ],
+    "body": "#include \"$0\"",
     "description": "#include \"...\" snippet"
   },
   "#include <stdio.h>": {
     "prefix": "io",
-    "body": [
-      "#include <stdio.h>"
-    ],
+    "body": "#include <stdio.h>",
     "description": "#include <stdio.h> snippet"
   },
   "#include <stdlib.h>": {
     "prefix": "lib",
-    "body": [
-      "#include <stdlib.h>"
-    ],
+    "body": "#include <stdlib.h>",
     "description": "#include <stdlib.h> snippet"
   },
   "#include <string.h>": {
     "prefix": "str",
-    "body": [
-      "#include <string.h>"
-    ],
+    "body": "#include <string.h>",
     "description": "#include <string.h> snippet"
   },
   "#define macro": {
-    "prefix": "def",
-    "body": [
-      "#define ${1:MACRO}"
-    ],
+    "prefix": "#def",
+    "body": "#define ${1:MACRO}",
     "description": "Textual macro snippet"
   },
   "#define macro()": {
-    "prefix": "deff",
-    "body": [
-      "#define ${1:MACRO}($2) ($3)"
-    ],
+    "prefix": "#deff",
+    "body": "#define ${1:MACRO}($2) ($3)",
     "description": "Function-like macro snippet"
   },
   "#if": {
-    "prefix": "ifd",
-    "body": [
-      "#if ${1:0}",
-      "$0",
-      "#endif /* if $1 */"
-    ],
+    "prefix": "#if",
+    "body": ["#if ${1:0}", "$0", "#endif /* if $1 */"],
     "description": "#if snippet"
   },
   "#ifdef": {
-    "prefix": "ifdef",
-    "body": [
-      "#ifdef ${1:MACRO}",
-      "$0",
-      "#endif /* ifdef $1 */"
-    ],
+    "prefix": "#ifdef",
+    "body": ["#ifdef ${1:MACRO}", "$0", "#endif /* ifdef $1 */"],
     "description": "#ifdef snippet"
   },
   "#ifndef": {
-    "prefix": "ifndef",
-    "body": [
-      "#ifndef ${1:MACRO}",
-      "$0",
-      "#endif /* ifndef $1 */"
-    ],
+    "prefix": "#ifndef",
+    "body": ["#ifndef ${1:MACRO}", "$0", "#endif /* ifndef $1 */"],
     "description": "#ifndef snippet"
   },
   "include once": {
-    "prefix": "once",
+    "prefix": "#once",
     "body": [
       "#ifndef ${1:FILE}_H",
       "#define $1_H",
@@ -87,16 +61,12 @@
   },
   "#error": {
     "prefix": "err",
-    "body": [
-      "#error \"$0\""
-    ],
+    "body": "#error \"$0\"",
     "description": "#error snippet"
   },
   "#warning": {
     "prefix": "warn",
-    "body": [
-      "#warning \"$0\""
-    ],
+    "body": "#warning \"$0\"",
     "description": "#warning snippet"
   },
   "asserth": {
@@ -106,7 +76,7 @@
   },
   "assert": {
     "prefix": "assert",
-    "body": "assert(${0});",
+    "body": "assert($0);",
     "description": "assert() snippet"
   },
   "static_assert": {
@@ -116,11 +86,7 @@
   },
   "documentation": {
     "prefix": "doc",
-    "body": [
-      "/**",
-      " * ${0}",
-      " */"
-    ],
+    "body": ["/**", " * ${0}", " */"],
     "description": "Documentation"
   },
   "Initial Template": {
@@ -149,51 +115,27 @@
   },
   "if": {
     "prefix": "if",
-    "body": [
-      "if (${1:cond}) {",
-      "\t${0}",
-      "}"
-    ],
+    "body": ["if (${1:cond}) {", "\t$0", "}"],
     "description": "if snippet"
   },
   "switch": {
     "prefix": "switch",
-    "body": [
-      "switch (${1:key}) {",
-      "\tcase ${2:value}:",
-      "\t\t${0}",
-      "\t\tbreak;",
-      "\tdefault:",
-      "\t\tbreak;",
-      "}"
-    ],
+    "body": ["switch (${1:key}) {", "\t$0", "}"],
     "description": "Code snippet for switch statement"
   },
   "while": {
     "prefix": "while",
-    "body": [
-      "while (${1:pred}) {",
-      "\t${0}",
-      "}"
-    ],
+    "body": ["while (${1:pred}) {", "\t$0", "}"],
     "description": "'while' loop snippet"
   },
   "do...while": {
-    "prefix": "do",
-    "body": [
-      "do {",
-      "\t${0}",
-      "} while (${1:pred});"
-    ],
+    "prefix": "dowhile",
+    "body": ["do {", "\t$0", "} while (${1:pred});"],
     "description": "do...while loop snippet"
   },
   "for": {
     "prefix": "for",
-    "body": [
-      "for (${1}) {",
-      "\t${0}",
-      "}"
-    ],
+    "body": ["for (${1}) {", "\t$0", "}"],
     "description": "Generic 'for' loop"
   },
   "function declaration": {
@@ -203,50 +145,32 @@
   },
   "Function definition": {
     "prefix": "fn",
-    "body": [
-      "${1:void} ${2:func}(${3}) {",
-      "\t${0}",
-      "}"
-    ],
+    "body": ["${1:void} ${2:func}(${3}) {", "\t${0}", "}"],
     "description": "Define a function"
   },
   "typedef": {
     "prefix": "typedef",
-    "body": [
-      "typedef ${1:void} ${2:alias};"
-    ],
+    "body": ["typedef ${1:void} ${2:alias};"],
     "description": "'typedef' snippet"
   },
   "typedef struct": {
     "prefix": "typedefst",
-    "body": [
-      "typedef struct ${1:Struct} {",
-      "\t${1}",
-      "} ${2:alias};"
-    ],
+    "body": ["typedef struct ${1:Struct} {", "\t$0", "} ${2:alias};"],
     "description": "Implicit struct typedef"
   },
   "typedef union": {
     "prefix": "typedefun",
-    "body": [
-      "typedef union ${1:Union} {",
-      "\t${1}",
-      "} ${2:alias};"
-    ],
+    "body": ["typedef union ${1:Union} {", "\t$0", "} ${2:alias};"],
     "description": "Implicit union typedef"
   },
   "enum": {
     "prefix": "enum",
-    "body": [
-      "enum ${1:Enum} {",
-      "\t${0}",
-      "};"
-    ],
+    "body": ["enum ${1:Enum} {", "\t$0", "};"],
     "description": "Define an enumeration"
   },
   "printf": {
     "prefix": "printf",
-    "body": "printf(${0});",
+    "body": "printf($0);",
     "description": "printf() snippet"
   },
   "print variable": {
@@ -256,20 +180,12 @@
   },
   "struct": {
     "prefix": "struct",
-    "body": [
-      "struct ${1:Struct} {",
-      "\t${0}",
-      "};"
-    ],
+    "body": ["struct ${1:Struct} {", "\t$0", "};"],
     "description": "'struct' snippet"
   },
   "union": {
     "prefix": "union",
-    "body": [
-      "union ${1:Union} {",
-      "\t${0}",
-      "};"
-    ],
+    "body": ["union ${1:Union} {", "\t$0", "};"],
     "description": "'union' snippet"
   }
 }

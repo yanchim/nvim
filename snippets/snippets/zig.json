@@ -4,92 +4,49 @@
     "body": "[${1:_}]${2:type}{$3\\}",
     "description": "array"
   },
-  "const": {
-    "prefix": "const",
-    "body": [
-      "const ${1:name}: ${2:type} = $0;"
-    ],
-    "description": "const decl"
-  },
   "enum": {
     "prefix": "enum",
-    "body": [
-      "const ${1:Name} = enum {",
-      "\t$0",
-      "};"
-    ],
+    "body": ["const ${1:Name} = enum {", "\t$0", "};"],
     "description": "enum decl"
   },
   "enum_type": {
     "prefix": "enumt",
-    "body": [
-      "const ${1:Name} = enum(${2:type}) {",
-      "\t$0",
-      "};"
-    ],
+    "body": ["const ${1:Name} = enum(${2:type}) {", "\t$0", "};"],
     "description": "enum decl"
   },
   "error": {
     "prefix": "error",
-    "body": [
-      "const ${1:New}Error = error {",
-      "\t$0",
-      "};"
-    ],
+    "body": ["const ${1:New}Error = error {", "\t$0", "};"],
     "description": "error decl"
   },
   "fn": {
     "prefix": "fn",
-    "body": [
-      "fn ${1:name}($2) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["fn ${1:name}($2) {", "\t$0", "}"],
     "description": "fn decl"
   },
   "fn_generic": {
     "prefix": "gfn",
-    "body": [
-      "fn ${1:name}(comptime T: type, $2) type {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["fn ${1:name}(comptime T: type, $2) type {", "\t$0", "}"],
     "description": "generic fn decl"
   },
   "fn_inl": {
     "prefix": "ifn",
-    "body": [
-      "inline fn ${1:name}($2) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["inline fn ${1:name}($2) {", "\t$0", "}"],
     "description": "inline fn"
   },
   "fn_return": {
     "prefix": "fnr",
-    "body": [
-      "fn ${1:name}($2) ${3:void} {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["fn ${1:name}($2) ${3:void} {", "\t$0", "}"],
     "description": "fn with return decl"
   },
   "for": {
     "prefix": "for",
-    "body": [
-      "for ($1) |$2| {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["for ($1) |$2| {", "\t$0", "}"],
     "description": "for value loop"
   },
   "if": {
     "prefix": "if",
-    "body": [
-      "if ($1) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["if ($1) {", "\t$0", "}"],
     "description": "if expr"
   },
   "if_statement_expression": {
@@ -99,32 +56,22 @@
   },
   "import": {
     "prefix": "import",
-    "body": [
-      "const ${1:name} = @import(\"${2:lib}\");"
-    ],
+    "body": ["const ${1:name} = @import(\"${2:lib}\");"],
     "description": "import lib"
   },
   "import-expect": {
     "prefix": "expect",
-    "body": [
-      "const expect = @import(\"std\").testing.expect;"
-    ],
+    "body": ["const expect = @import(\"std\").testing.expect;"],
     "description": "import expect"
   },
   "import-std": {
     "prefix": "std",
-    "body": [
-      "const std = @import(\"std\");"
-    ],
+    "body": ["const std = @import(\"std\");"],
     "description": "import std"
   },
   "main-fn": {
     "prefix": "main",
-    "body": [
-      "pub fn main() void {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["pub fn main() void {", "\t$0", "}"],
     "description": "main"
   },
   "print": {
@@ -134,21 +81,12 @@
   },
   "struct": {
     "prefix": "struct",
-    "body": [
-      "const ${1:Name} = struct {",
-      "\t$0",
-      "};"
-    ],
+    "body": ["const ${1:Name} = struct {", "\t$0", "};"],
     "description": "struct"
   },
   "switch": {
     "prefix": "switch",
-    "body": [
-      "switch ($1) {",
-      "\t$2,",
-      "\telse => $0,",
-      "}"
-    ],
+    "body": ["switch ($1) {", "\t$2,", "\telse => $0,", "}"],
     "description": "switch expr"
   },
   "switch_case": {
@@ -158,45 +96,27 @@
   },
   "test": {
     "prefix": "test",
-    "body": [
-      "test \"${1:name}\" {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["test \"${1:name}\" {", "\t$0", "}"],
     "description": "test"
   },
   "union": {
     "prefix": "union",
-    "body": [
-      "const ${1:Name} = union {",
-      "\t$0",
-      "};"
-    ],
+    "body": ["const ${1:Name} = union {", "\t$0", "};"],
     "description": "tagged union decl"
   },
   "var": {
     "prefix": "var",
-    "body": [
-      "var ${1:name}: ${2:type} = $0;"
-    ],
+    "body": ["var ${1:name}: ${2:type} = $0;"],
     "description": "var decl"
   },
   "while": {
     "prefix": "while",
-    "body": [
-      "while ($1) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["while ($1) {", "\t$0", "}"],
     "description": "while loop"
   },
   "while_iteration": {
     "prefix": "whilei",
-    "body": [
-      "while ($1) : ($2) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["while ($1) : ($2) {", "\t$0", "}"],
     "description": "while iteration loop"
   }
 }

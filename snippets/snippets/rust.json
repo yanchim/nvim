@@ -1,217 +1,127 @@
 {
   "allow": {
     "prefix": "allow",
-    "body": [
-      "#[allow(${1})]"
-    ],
+    "body": ["#[allow(${1})]"],
     "description": "#[allow(...)]"
   },
   "allow-bang": {
     "prefix": "allowbang",
-    "body": [
-      "#![allow(${1})]"
-    ],
+    "body": ["#![allow(${1})]"],
     "description": "#![allow(...)]"
   },
   "assert": {
     "prefix": "ass",
-    "body": [
-      "assert!(${1});"
-    ],
+    "body": ["assert!(${1});"],
     "description": "assert!(...);"
   },
   "assert_eq": {
     "prefix": "asseq",
-    "body": [
-      "assert_eq!(${1}, ${2});"
-    ],
+    "body": ["assert_eq!(${1}, ${2});"],
     "description": "assert_eq!(..., ...);"
   },
   "assert_ne": {
     "prefix": "assne",
-    "body": [
-      "assert_ne!(${1}, ${2});"
-    ],
+    "body": ["assert_ne!(${1}, ${2});"],
     "description": "assert_ne!(..., ...);"
-  },
-  "case": {
-    "prefix": "case",
-    "body": [
-      "$1 => $2"
-    ],
-    "description": "... => ..."
   },
   "cfg": {
     "prefix": "cfg",
-    "body": [
-      "#[cfg(${1})]"
-    ],
+    "body": ["#[cfg(${1})]"],
     "description": "#[cfg(...)]"
   },
   "cfg_attr": {
     "prefix": "cfgattr",
-    "body": [
-      "#[cfg_attr(${1}, ${2})]"
-    ],
+    "body": ["#[cfg_attr(${1}, ${2})]"],
     "description": "#[cfg_attr(..., ...)]"
-  },
-  "const": {
-    "prefix": "const",
-    "body": [
-      "const ${1:CONST}: ${2:Type} = ${4:init};"
-    ],
-    "description": "const ...: ... = ...;"
   },
   "deny": {
     "prefix": "deny",
-    "body": [
-      "#[deny(${1})]"
-    ],
+    "body": ["#[deny(${1})]"],
     "description": "#[deny(...)]"
   },
   "deny-bang": {
     "prefix": "denybang",
-    "body": [
-      "#![deny(${1})]"
-    ],
+    "body": ["#![deny(${1})]"],
     "description": "#![deny(...)]"
   },
   "derive": {
     "prefix": "derive",
-    "body": [
-      "#[derive(${1})]"
-    ],
+    "body": ["#[derive(${1})]"],
     "description": "#[derive(...)]"
   },
   "enum": {
     "prefix": "enum",
-    "body": [
-      "enum ${1:Name} {",
-      "\t${2:Variant1},",
-      "}"
-    ],
+    "body": ["enum ${1:Name} {", "\t${2:Variant1},", "}"],
     "description": "enum ... { ... }"
   },
   "eprint": {
     "prefix": "eprint",
-    "body": [
-      "eprint!($1)"
-    ],
+    "body": ["eprint!($1)"],
     "description": "eprint!(...);"
   },
   "eprintln": {
     "prefix": "eprintln",
-    "body": [
-      "eprintln!($1)"
-    ],
+    "body": ["eprintln!($1)"],
     "description": "eprintln!(...);"
   },
   "fn": {
     "prefix": "fn",
-    "body": [
-      "fn ${1:name}($2) {",
-      "\t${3:todo!();}",
-      "}"
-    ],
+    "body": ["fn ${1:name}($2) {", "\t${3:todo!();}", "}"],
     "description": "fn ...(...) { ... }"
   },
   "fn-return": {
     "prefix": "fnr",
-    "body": [
-      "fn ${1:name}($2) -> ${3:()} {",
-      "\t${5:todo!();}",
-      "}"
-    ],
+    "body": ["fn ${1:name}($2) -> ${3:()} {", "\t${5:todo!();}", "}"],
     "description": "fn ...(...) -> () { ... }"
   },
   "fn-self": {
     "prefix": "fns",
-    "body": [
-      "fn ${1:name}(&self) {",
-      "\t${2:todo!();}",
-      "}"
-    ],
+    "body": ["fn ${1:name}(&self) {", "\t${2:todo!();}", "}"],
     "description": "fn ...(&self) { ... }"
   },
   "fn-self-return": {
     "prefix": "fnsr",
-    "body": [
-      "fn ${1:name}(&self) -> ${2:()} {",
-      "\t${3:todo!();}",
-      "}"
-    ],
+    "body": ["fn ${1:name}(&self) -> ${2:()} {", "\t${3:todo!();}", "}"],
     "description": "fn ...(&self) { ... }"
   },
   "for": {
     "prefix": "for",
-    "body": [
-      "for ${1:elem} in ${2:iter} {",
-      "\t${3:todo!();}",
-      "}"
-    ],
+    "body": ["for ${1:elem} in ${2:iter} {", "\t${3:todo!();}", "}"],
     "description": "for ... in ... { ... }"
   },
   "if-let": {
     "prefix": "iflet",
-    "body": [
-      "if let ${1:Some(pat)} = ${2:expr} {",
-      "\t${0:todo!();}",
-      "}"
-    ],
+    "body": ["if let ${1:Some(pat)} = ${2:expr} {", "\t${0:todo!();}", "}"],
     "description": "if let ... = ... { ... }"
   },
   "if": {
     "prefix": "if",
-    "body": [
-      "if ${1:condition} {",
-      "\t${2:todo!();}",
-      "}"
-    ],
+    "body": ["if ${1:condition} {", "\t${2:todo!();}", "}"],
     "description": "if ... { ... }"
   },
   "impl-for": {
     "prefix": "implfor",
-    "body": [
-      "impl ${1:Trait} for ${2:Type} {",
-      "\t${3:// add code here}",
-      "}"
-    ],
+    "body": ["impl ${1:Trait} for ${2:Type} {", "\t${3:// add code here}", "}"],
     "description": "impl ... for ... { ... }"
   },
   "macro_rules": {
     "prefix": "macro",
-    "body": [
-      "macro_rules! ${1:name} {",
-      "\t(${2}) => (${3})",
-      "}"
-    ],
+    "body": ["macro_rules! ${1:name} {", "\t(${2}) => (${3})", "}"],
     "description": "macro_rules! ... { ... }"
   },
   "main": {
     "prefix": "main",
-    "body": [
-      "fn main() {",
-      "\t${1:todo!();}",
-      "}"
-    ],
+    "body": ["fn main() {", "\t${1:todo!();}", "}"],
     "description": "fn main() { ... }"
   },
   "match": {
     "prefix": "match",
-    "body": [
-      "match ${1:expr} {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["match ${1:expr} {", "\t$0", "}"],
     "description": "match ... { ... }"
   },
   "mod": {
     "prefix": "mod",
-    "body": [
-      "mod ${1:name} {",
-      "\t${2:// add code here}",
-      "}"
-    ],
+    "body": ["mod ${1:name} {", "\t${2:// add code here}", "}"],
     "description": "mod ... { ... }"
   },
   "modtest": {
@@ -229,137 +139,74 @@
     ],
     "description": "#[cfg(test)]\nmod test {...}"
   },
-  "modunit": {
-    "prefix": "modunit",
-    "body": [
-      "mod ${1:name};"
-    ],
-    "description": "mod ... { ... }"
-  },
   "panic": {
     "prefix": "panic",
-    "body": [
-      "panic!(\"${1}\");"
-    ],
+    "body": ["panic!(\"${1}\");"],
     "description": "panic!(...);"
   },
   "print": {
     "prefix": "print",
-    "body": [
-      "print!($1)"
-    ],
+    "body": ["print!($1)"],
     "description": "print!(...);"
   },
   "println": {
     "prefix": "println",
-    "body": [
-      "println!($1);"
-    ],
+    "body": ["println!($1);"],
     "description": "println!(...);"
   },
   "pub-fn": {
     "prefix": "pfn",
-    "body": [
-      "pub fn ${1:name}($2) {",
-      "\t${3:todo!();}",
-      "}"
-    ],
+    "body": ["pub fn ${1:name}($2) {", "\t${3:todo!();}", "}"],
     "description": "pub fn ...(...) { ... }"
   },
   "static": {
     "prefix": "static",
-    "body": [
-      "static ${1:STATIC}: ${2:Type} = ${4:init};"
-    ],
+    "body": ["static ${1:STATIC}: ${2:Type} = ${4:init};"],
     "description": "static ...: ... = ...;"
   },
   "struct": {
     "prefix": "struct",
-    "body": [
-      "struct ${1:Name} {",
-      "\t${2:field}: ${3:Type},",
-      "}"
-    ],
+    "body": ["struct ${1:Name} {", "\t${2:field}: ${3:Type},", "}"],
     "description": "struct ... { ... }"
   },
   "struct-tuple": {
     "prefix": "structtuple",
-    "body": [
-      "struct ${1:Name}(${2:Type});"
-    ],
+    "body": ["struct ${1:Name}(${2:Type});"],
     "description": "struct ...(...);"
   },
   "struct-unit": {
     "prefix": "structunit",
-    "body": [
-      "struct ${1:Name};"
-    ],
+    "body": ["struct ${1:Name};"],
     "description": "struct ...;"
   },
   "test": {
     "prefix": "test",
-    "body": [
-      "#[test]",
-      "fn ${1:name}() {",
-      "\t${2:todo!();}",
-      "}"
-    ],
+    "body": ["#[test]", "fn ${1:name}() {", "\t${2:todo!();}", "}"],
     "description": "#[test]"
   },
   "trait": {
     "prefix": "trait",
-    "body": [
-      "trait ${1:Name} {",
-      "\t${2:// add code here}",
-      "}",
-      ""
-    ],
+    "body": ["trait ${1:Name} {", "\t${2:// add code here}", "}", ""],
     "description": "trait ... { ... }"
-  },
-  "type": {
-    "prefix": "type",
-    "body": [
-      "type ${1:Alias} = ${2:Type};"
-    ],
-    "description": "type ... = ...;"
-  },
-  "vec": {
-    "prefix": "vec",
-    "body": [
-      "vec![${1}]"
-    ],
-    "description": "vec![...]"
   },
   "warn": {
     "prefix": "warn",
-    "body": [
-      "#[warn(${1})]"
-    ],
+    "body": ["#[warn(${1})]"],
     "description": "#[warn(...)]"
   },
   "warn-bang": {
     "prefix": "warnbang",
-    "body": [
-      "#![warn(${1})]"
-    ],
+    "body": ["#![warn(${1})]"],
     "description": "#![warn(...)]"
   },
   "while-let": {
     "prefix": "whilelet",
-    "body": [
-      "while let ${1:Some(pat)} = ${2:expr} {",
-      "\t${0:todo!();}",
-      "}"
-    ],
+    "body": ["while let ${1:Some(pat)} = ${2:expr} {", "\t${0:todo!();}", "}"],
     "description": "while let ... = ... { ... }"
   },
   "while": {
     "prefix": "while",
-    "body": [
-      "while ${1:condition} {",
-      "\t${2:todo!();}",
-      "}"
-    ],
+    "body": ["while ${1:condition} {", "\t${2:todo!();}", "}"],
     "description": "while ... { ... }"
   }
 }

@@ -16,21 +16,17 @@
   },
   "export": {
     "prefix": "exp",
-    "body": [
-      "-export([",
-      "         ${1}",
-      "        ])."
-    ],
+    "body": ["-export([", "\t\t$0", "])."],
     "description": "export"
   },
   "if": {
     "prefix": "if",
     "body": [
       "if ${1:Cond} ->",
-      "       ${2:todo};",
-      "   true ->",
-      "       ${3:todo}",
-      "end$4"
+      "\t\t${2:todo};",
+      "\ttrue ->",
+      "\t\t${3:todo}",
+      "end"
     ],
     "description": "if block"
   },
@@ -38,22 +34,17 @@
     "prefix": "case",
     "body": [
       "case ${1:Expr} of",
-      "    ${2:Cond} ->",
-      "        ${3:todo};",
-      "    _ ->",
-      "        ${4:todo}",
-      "end$5"
+      "\t${2:Cond} ->",
+      "\t\t${3:todo};",
+      "\t_ ->",
+      "\t\t${4:todo}",
+      "end"
     ],
     "description": "case block"
   },
   "receive": {
     "prefix": "rec",
-    "body": [
-      "receive",
-      "    ${1:pattern} ->",
-      "        ${2:todo}",
-      "end$3"
-    ],
+    "body": ["receive", "\t${1:pattern} ->", "\t\t${2:todo}", "end"],
     "description": "receive block"
   }
 }

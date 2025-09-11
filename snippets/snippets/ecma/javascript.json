@@ -1,0 +1,172 @@
+{
+  "sleep": {
+    "prefix": "sleep",
+    "body": "await new Promise((r) => setTimeout(r, $0))"
+  },
+  "forEach": {
+    "prefix": "foreach",
+    "body": ["${1:collection}.forEach((${2:elem}) => {", "\t$0", "})"]
+  },
+  "map": {
+    "prefix": "map",
+    "body": ["${1:collection}.map((${2:elem}) => {", "\t$0", "})"]
+  },
+  "reduce": {
+    "prefix": "reduce",
+    "body": [
+      "${1:collection}.reduce((${2:prev}, ${3:curr}) => {",
+      "\t$0",
+      "}${4:, initial})"
+    ]
+  },
+  "filter": {
+    "prefix": "filter",
+    "body": ["${1:collection}.filter((${2:elem}) => {", "\t$0", "})"]
+  },
+  "find": {
+    "prefix": "find",
+    "body": ["${1:collection}.find((${2:elem}) => {", "\t$0", "})"]
+  },
+  "every": {
+    "prefix": "every",
+    "body": ["${1:collection}.every((${2:elem}) => {", "\t$0", "})"]
+  },
+  "some": {
+    "prefix": "some",
+    "body": ["${1:collection}.some((${2:elem}) => {", "\t$0", "})"]
+  },
+  "immediately-invoked function expression": {
+    "prefix": "iife",
+    "body": ["(function (${1:arguments}) {", "\t${0}", "})(${2})"]
+  },
+  "console.log": {
+    "prefix": "cl",
+    "body": "console.log($1)"
+  },
+  "console.log a variable": {
+    "prefix": "cv",
+    "body": "console.log('$1:', $1)"
+  },
+  "console.log interpolation": {
+    "prefix": "ci",
+    "body": "console.log(`$1`)"
+  },
+  "console.error": {
+    "prefix": "ce",
+    "body": "console.error($1)"
+  },
+  "console.warn": {
+    "prefix": "cw",
+    "body": "console.warn($1)$0"
+  },
+  "JSON.stringify()": {
+    "prefix": "js",
+    "body": "JSON.stringify($1)"
+  },
+  "JSON.parse()": {
+    "prefix": "jp",
+    "body": "JSON.parse($1)"
+  },
+  "prototype method": {
+    "prefix": "proto",
+    "body": [
+      "${1:Class}.prototype.${2:method} = (${3:args}) => {",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "Object.assign": {
+    "prefix": "oa",
+    "body": "Object.assign(${1:dest}, ${2:source})"
+  },
+  "Object.create": {
+    "prefix": "oc",
+    "body": "Object.create(${1:obj})"
+  },
+  "Object.entries": {
+    "prefix": "oe",
+    "body": "Object.entries(${1:obj})"
+  },
+  "Object.keys": {
+    "prefix": "ok",
+    "body": "Object.keys(${1:obj})"
+  },
+  "Object.values": {
+    "prefix": "ov",
+    "body": "Object.values(${1:obj})"
+  },
+  "For": {
+    "prefix": "for",
+    "body": ["for ($1) {", "\t$0", "}"],
+    "description": "For Loop"
+  },
+  "For-In": {
+    "prefix": "forin",
+    "body": [
+      "for (const ${1:key} in ${2:object}) {",
+      "\tif (${2:object}.hasOwnProperty(${1:key})) {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "For-In Loop"
+  },
+  "For-Of": {
+    "prefix": "forof",
+    "body": ["for (const ${1:iterator} of ${2:collection}) {", "\t${0}", "}"],
+    "description": "For-Of Loop"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": ["function ${1:name}($2) {", "\t$0", "}"],
+    "description": "Function Statement"
+  },
+  "If": {
+    "prefix": "if",
+    "body": ["if (${1:cond}) {", "\t$0", "}"],
+    "description": "If Statement"
+  },
+  "New": {
+    "prefix": "new",
+    "body": ["const ${1:name} = new ${2:Class}(${3:arguments})"],
+    "description": "New Statement"
+  },
+  "Switch": {
+    "prefix": "switch",
+    "body": ["switch (${1:key}) {", "\t$0", "}"],
+    "description": "Switch Statement"
+  },
+  "While": {
+    "prefix": "while",
+    "body": ["while (${1:condition}) {", "\t$0", "}"],
+    "description": "While Statement"
+  },
+  "Do-While": {
+    "prefix": "dowhile",
+    "body": ["do {", "\t$0", "} while (${1:condition})"],
+    "description": "Do-While Statement"
+  },
+  "setInterval": {
+    "prefix": "siv",
+    "body": ["setInterval(() => {", "\t$0", "}, ${1:interval})"],
+    "description": "Set Interval Function"
+  },
+  "setTimeout": {
+    "prefix": "sto",
+    "body": ["setTimeout(() => {", "\t$0", "}, ${1:timeout})"],
+    "description": "Set Timeout Function"
+  },
+  "Try-Catch": {
+    "prefix": "trycatch",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch (err) {",
+      "\t$2",
+      "} finally {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Try-Catch Statement"
+  }
+}

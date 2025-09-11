@@ -1,11 +1,7 @@
 {
   "fn": {
     "prefix": "fn",
-    "body": [
-      "(fn ${1:name} [${2:params}]",
-      "\t\"$3\"",
-      "\t$0)"
-    ],
+    "body": ["(fn ${1:name} [${2:params}]", "\t\"$3\"", "\t$0)"],
     "description": "Create a function"
   },
   "for": {
@@ -20,19 +16,12 @@
   },
   "lambda": {
     "prefix": "lambda",
-    "body": [
-      "(lambda [$1]",
-      "\t\"$3\"",
-      "\t$0)"
-    ],
+    "body": ["(lambda [$1]", "\t\"$3\"", "\t$0)"],
     "description": "Create a anonymous function"
   },
   "let": {
     "prefix": "let",
-    "body": [
-      "(let [$1]",
-      "\t$0)"
-    ],
+    "body": ["(let [$1]", "\t$0)"],
     "description": "Create a variable"
   },
   "local": {
@@ -57,10 +46,7 @@
   },
   "while": {
     "prefix": "while",
-    "body": [
-      "(while (${1:cond})",
-      "\t$0)"
-    ],
+    "body": ["(while (${1:cond})", "\t$0)"],
     "description": "Create a while loop"
   }
 }

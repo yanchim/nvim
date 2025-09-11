@@ -1,12 +1,7 @@
 {
   "Class": {
     "prefix": "class",
-    "body": [
-      "class ${1:Name}",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["class ${1:Name}", "{", "\t$0", "}"],
     "description": "Class"
   },
   "Console.WriteLine": {
@@ -16,32 +11,17 @@
   },
   "do...while loop": {
     "prefix": "do",
-    "body": [
-      "do",
-      "{",
-      "\t$0",
-      "} while (${1:cond});"
-    ],
+    "body": ["do", "{", "\t$0", "} while (${1:cond});"],
     "description": "do...while loop"
   },
   "Else statement": {
     "prefix": "else",
-    "body": [
-      "else",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["else", "{", "\t$0", "}"],
     "description": "Else statement"
   },
   "Enum": {
     "prefix": "enum",
-    "body": [
-      "enum ${1:Name}",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["enum ${1:Name}", "{", "\t$0", "}"],
     "description": "Enum"
   },
   "Foreach statement": {
@@ -56,80 +36,42 @@
   },
   "for loop": {
     "prefix": "for",
-    "body": [
-      "for ($1)",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["for ($1)", "{", "\t$0", "}"],
     "description": "for loop"
   },
   "if statement": {
     "prefix": "if",
-    "body": [
-      "if (${1:cond})",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["if (${1:cond})", "{", "\t$0", "}"],
     "description": "if statement"
   },
   "Interface": {
     "prefix": "interface",
-    "body": [
-      "interface I${1:Name}",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["interface I${1:Name}", "{", "\t$0", "}"],
     "description": "Interface"
   },
   "Namespace": {
     "prefix": "namespace",
-    "body": [
-      "namespace ${1:Name}",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["namespace ${1:Name}", "{", "\t$0", "}"],
     "description": "Namespace"
   },
   "#if": {
     "prefix": "ifd",
-    "body": [
-      "#if ${1:true}",
-      "\t$0",
-      "#endif"
-    ],
+    "body": ["#if ${1:true}", "\t$0", "#endif"],
     "description": "#if"
   },
   "#region": {
     "prefix": "region",
-    "body": [
-      "#region ${1:Name}",
-      "\t$0",
-      "#endregion"
-    ],
+    "body": ["#region ${1:Name}", "\t$0", "#endregion"],
     "description": "#region"
   },
   "Struct": {
     "prefix": "struct",
-    "body": [
-      "struct ${1:Name}",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["struct ${1:Name}", "{", "\t$0", "}"],
     "description": "Struct"
   },
   "Switch statement": {
     "prefix": "switch",
-    "body": [
-      "switch (${1:cond})",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["switch (${1:cond})", "{", "\t$0", "}"],
     "description": "Switch statement"
   },
   "Try catch finally": {
@@ -153,32 +95,17 @@
   },
   "Using statement": {
     "prefix": "using",
-    "body": [
-      "using (${1:resource})",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["using (${1:resource})", "{", "\t$0", "}"],
     "description": "Using statement"
   },
   "While loop": {
     "prefix": "while",
-    "body": [
-      "while (${1:cond})",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["while (${1:cond})", "{", "\t$0", "}"],
     "description": "While loop"
   },
   "Function": {
     "prefix": "fn",
-    "body": [
-      "${1:public} ${2:void} ${3:Function}($4)",
-      "{",
-      "\t$0",
-      "}"
-    ],
+    "body": ["${1:public} ${2:void} ${3:Function}($4)", "{", "\t$0", "}"],
     "description": "Create a function"
   },
   "Function async": {

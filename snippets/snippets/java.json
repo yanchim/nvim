@@ -1,11 +1,7 @@
 {
   "documentation": {
     "prefix": "doc",
-    "body": [
-      "/**",
-      " * ${0}",
-      " */"
-    ],
+    "body": ["/**", " * ${0}", " */"],
     "description": "Documentation"
   },
   "Print": {

@@ -1,6 +1,11 @@
 {
+  "name": "my-snippets",
   "contributes": {
     "snippets": [
+      {
+        "language": "all",
+        "path": "./snippets/all.json"
+      },
       {
         "language": "c",
         "path": "./snippets/c.json"
@@ -30,6 +35,43 @@
       },
       {
         "language": [
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact",
+          "tsx"
+        ],
+        "path": "./snippets/ecma/doc.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact"
+        ],
+        "path": "./snippets/ecma/javascript.json"
+      },
+      {
+        "language": [
+          "javascriptreact",
+          "typescriptreact"
+        ],
+        "path": "./snippets/ecma/react.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./snippets/ecma/typescript.json"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/ecma/json.json"
+      },
+      {
+        "language": [
           "eelixir",
           "heex"
         ],
@@ -55,17 +97,6 @@
         "path": "./snippets/gitcommit.json"
       },
       {
-        "language": [
-          "plaintext",
-          "markdown",
-          "tex",
-          "html",
-          "global",
-          "all"
-        ],
-        "path": "./snippets/global.json"
-      },
-      {
         "language": "go",
         "path": "./snippets/go.json"
       },
@@ -74,72 +105,12 @@
         "path": "./snippets/haskell.json"
       },
       {
-        "language": [
-          "eelixir",
-          "heex",
-          "html",
-          "javascriptreact",
-          "typescriptreact",
-          "vue"
-        ],
-        "path": "./snippets/html.json"
-      },
-      {
         "language": "hy",
         "path": "./snippets/hy.json"
       },
       {
         "language": "java",
         "path": "./snippets/java.json"
-      },
-      {
-        "language": [
-          "javascript",
-          "typescript",
-          "javascriptreact",
-          "typescriptreact",
-          "vue"
-        ],
-        "path": "./snippets/js/doc.json"
-      },
-      {
-        "language": [
-          "javascript",
-          "typescript",
-          "javascriptreact",
-          "typescriptreact",
-          "vue"
-        ],
-        "path": "./snippets/js/javascript.json"
-      },
-      {
-        "language": [
-          "javascriptreact",
-          "typescriptreact"
-        ],
-        "path": "./snippets/js/react.json"
-      },
-      {
-        "language": [
-          "typescript",
-          "typescriptreact"
-        ],
-        "path": "./snippets/js/typescript.json"
-      },
-      {
-        "language": "json",
-        "path": "./snippets/js/json.json"
-      },
-      {
-        "language": [
-          "eelixir",
-          "heex",
-          "html",
-          "javascriptreact",
-          "typescriptreact",
-          "vue"
-        ],
-        "path": "./snippets/loremipsum.json"
       },
       {
         "language": "lua",
@@ -179,26 +150,9 @@
         "path": "./snippets/sql.json"
       },
       {
-        "language": "vue",
-        "path": "./snippets/vue/html.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/vue/script.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/vue/style.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/vue/vue.json"
-      },
-      {
         "language": "zig",
         "path": "./snippets/zig.json"
       }
     ]
-  },
-  "name": "my-snippets"
+  }
 }

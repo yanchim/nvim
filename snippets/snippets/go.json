@@ -4,32 +4,14 @@
     "body": "[$1]${2:type}{$0\\}",
     "description": "array"
   },
-  "single import": {
+  "import": {
     "prefix": "import",
-    "body": "import \"$0\"",
-    "description": "Snippet for import statement"
-  },
-  "multiple imports": {
-    "prefix": "imports",
-    "body": [
-      "import (",
-      "\t\"$0\"",
-      ")"
-    ],
+    "body": ["import (", "\t\"$0\"", ")"],
     "description": "Snippet for a import block"
   },
-  "single constant": {
+  "constant": {
     "prefix": "const",
-    "body": "const ${1:name} = ${2:value}",
-    "description": "Snippet for a constant"
-  },
-  "multiple constants": {
-    "prefix": "consts",
-    "body": [
-      "const (",
-      "\t$0",
-      ")"
-    ],
+    "body": ["const (", "\t$0", ")"],
     "description": "Snippet for a constant block"
   },
   "package": {
@@ -49,47 +31,27 @@
   },
   "type interface declaration": {
     "prefix": "typeinf",
-    "body": [
-      "type ${1:name} interface {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["type ${1:name} interface {", "\t$0", "}"],
     "description": "Snippet for a type interface"
   },
   "type struct declaration": {
     "prefix": "typest",
-    "body": [
-      "type ${1:name} struct {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["type ${1:name} struct {", "\t$0", "}"],
     "description": "Snippet for a struct declaration"
   },
   "function declaration": {
     "prefix": "fn",
-    "body": [
-      "func $1($2) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["func $1($2) {", "\t$0", "}"],
     "description": "Snippet for function declaration"
   },
   "function declaration with return": {
     "prefix": "fnr",
-    "body": [
-      "func $1($2) $3 {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["func $1($2) $3 {", "\t$0", "}"],
     "description": "Snippet for function declaration with return"
   },
   "function declaration with goroutine": {
     "prefix": "fngo",
-    "body": [
-      "go func($1) {",
-      "\t$0",
-      "}()"
-    ],
+    "body": ["go func($1) {", "\t$0", "}()"],
     "description": "Snippet for function declaration with goroutine"
   },
   "variable declaration": {
@@ -99,33 +61,17 @@
   },
   "variables declaration": {
     "prefix": "vars",
-    "body": [
-      "var (",
-      "\t$0",
-      ")"
-    ],
+    "body": ["var (", "\t$0", ")"],
     "description": "Snippet for a variable"
   },
   "switch statement": {
     "prefix": "switch",
-    "body": [
-      "switch ${1:expr} {",
-      "case ${2:cond}:",
-      "\t$3",
-      "default:",
-      "\t$0",
-      "}"
-    ],
+    "body": ["switch ${1:expr} {", "$0", "}"],
     "description": "Snippet for switch statement"
   },
   "select statement": {
     "prefix": "select",
-    "body": [
-      "select {",
-      "case ${1:cond}:",
-      "\t$0",
-      "}"
-    ],
+    "body": ["select {", "case ${1:cond}:", "\t$0", "}"],
     "description": "Snippet for select statement"
   },
   "case clause": {
@@ -135,20 +81,12 @@
   },
   "for statement": {
     "prefix": "for",
-    "body": [
-      "for $1 {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["for $1 {", "\t$0", "}"],
     "description": "Snippet for a pure for loop"
   },
   "for range statement": {
     "prefix": "forr",
-    "body": [
-      "for ${1:k}, ${2:v} := range ${3:target} {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["for ${1:k}, ${2:v} := range ${3:target} {", "\t$0", "}"],
     "description": "Snippet for a for range loop"
   },
   "channel declaration": {
@@ -163,20 +101,12 @@
   },
   "if statement": {
     "prefix": "if",
-    "body": [
-      "if ${1:cond} {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["if ${1:cond} {", "\t$0", "}"],
     "description": "Snippet for if statement"
   },
   "if err != nil": {
     "prefix": "iferr",
-    "body": [
-      "if err != ${1:nil} {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["if err != ${1:nil} {", "\t$0", "}"],
     "description": "Snippet for if err != nil"
   },
   "fmt.Fprint": {
@@ -241,36 +171,21 @@
   },
   "test function": {
     "prefix": "fntest",
-    "body": [
-      "func Test$1(t *testing.T) {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["func Test$1(t *testing.T) {", "\t$0", "}"],
     "description": "Snippet for Test function"
   },
   "init function": {
     "prefix": "fninit",
-    "body": [
-      "func init() {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["func init() {", "\t$0", "}"],
     "description": "Snippet for init function"
   },
   "main function": {
     "prefix": "fnmain",
-    "body": [
-      "func main() {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["func main() {", "\t$0", "}"],
     "description": "Snippet for main function"
   },
   "method declaration": {
-    "prefix": [
-      "method",
-      "fnm"
-    ],
+    "prefix": ["method", "fnm"],
     "body": [
       "func (${1:receiver} ${2:type}) ${3:method}($4) $5 {",
       "\t$0",

@@ -68,11 +68,7 @@
   },
   "setState": {
     "prefix": "ss",
-    "body": [
-      "setState(() {",
-      "\t$0",
-      "});"
-    ],
+    "body": ["setState(() {", "\t$0", "});"],
     "description": "desc"
   },
   "stateful widget": {
@@ -273,11 +269,7 @@
   },
   "useEffect": {
     "prefix": "useeffect",
-    "body": [
-      "useEffect(() {",
-      "\t$1",
-      "}, [$2]);"
-    ],
+    "body": ["useEffect(() {", "\t$1", "}, [$2]);"],
     "description": "useEffect hook"
   },
   "useMemoized": {
@@ -302,11 +294,7 @@
   },
   "useValueChanged": {
     "prefix": "usevaluechanged",
-    "body": [
-      "useValueChanged(${1:value}, (_, __) {",
-      "\t$0",
-      "});"
-    ],
+    "body": ["useValueChanged(${1:value}, (_, __) {", "\t$0", "});"],
     "description": "Insert useValueChanged"
   }
 }

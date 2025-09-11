@@ -1,58 +1,38 @@
 {
   "require": {
     "prefix": "require",
-    "body": "require(\"${1:module}\")",
+    "body": "require('${1:module}')",
     "description": "Require module"
-  },
-  "local": {
-    "prefix": "local",
-    "body": "local $0",
-    "description": "create a variable"
   },
   "local require": {
     "prefix": "localrequire",
-    "body": "local ${1:var} = require(\"${2:module}\")",
+    "body": "local ${1:var} = require('${2:module}')",
     "description": "Require module as a variable"
   },
   "if": {
     "prefix": "if",
-    "body": [
-      "if ${1:cond} then",
-      "\t$0",
-      "end"
-    ]
+    "body": ["if ${1:cond} then", "\t$0", "end"]
   },
   "elseif": {
     "prefix": "elseif",
-    "body": [
-      "elseif ${1:cond} then",
-      "\t$0"
-    ]
+    "body": ["elseif ${1:cond} then", "\t$0"]
   },
   "for": {
     "prefix": "for",
-    "body": [
-      "for ${1:i} = $2 do",
-      "\t$0",
-      "end"
-    ],
+    "body": ["for ${1:i} = $2 do", "\t$0", "end"],
     "description": "for loop range"
   },
   "foreach": {
     "prefix": "foreach",
-    "body": [
-      "for k, v in pairs(${1:table}) do",
-      "\t$0",
-      "end"
-    ]
+    "body": ["for k, v in pairs(${1:table}) do", "\t$0", "end"]
+  },
+  "lambda": {
+    "prefix": "lambda",
+    "body": ["function($1)", "\t${0:-- code}", "end"]
   },
   "function": {
     "prefix": "fn",
-    "body": [
-      "function ${1:name}($2)",
-      "\t${0:-- code}",
-      "end"
-    ]
+    "body": ["function ${1:name}($2)", "\t${0:-- code}", "end"]
   },
   "print": {
     "prefix": "print",
@@ -60,32 +40,20 @@
   },
   "self": {
     "prefix": "self",
-    "body": [
-      "function self:${1:method}($2)",
-      "\t$0",
-      "end"
-    ]
+    "body": ["function self:${1:method}($2)", "\t$0", "end"]
   },
   "while": {
     "prefix": "while",
-    "body": [
-      "while ${1:cond} do",
-      "\t$0",
-      "end"
-    ]
+    "body": ["while ${1:cond} do", "\t$0", "end"]
   },
   "pcall": {
     "prefix": "pcall",
-    "body": [
-      "pcall(${1:function})"
-    ],
+    "body": ["pcall(${1:function})"],
     "description": "Protect call a function"
   },
   "locpcall": {
     "prefix": "localpcall",
-    "body": [
-      "local ${1:status}, ${2:err_or_value} = pcall(${3:function})"
-    ],
+    "body": ["local ${1:status}, ${2:err_or_value} = pcall(${3:function})"],
     "description": "Protect call a function as a variable"
   }
 }

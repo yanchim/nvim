@@ -2,29 +2,17 @@
   "main": {
     "prefix": "main",
     "description": "Insert a main function, used as an entry point.",
-    "body": [
-      "void main(List<String> args) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["void main(List<String> args) {", "\t$0", "}"]
   },
   "afn": {
     "prefix": "afn",
     "description": "Insert an async function definition.",
-    "body": [
-      "Future<${1:void}> ${2:name}($3) async {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["Future<${1:void}> ${2:name}($3) async {", "\t$0", "}"]
   },
   "fn": {
     "prefix": "fn",
     "description": "Insert a function definition.",
-    "body": [
-      "${1:void} ${2:name}($3) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["${1:void} ${2:name}($3) {", "\t$0", "}"]
   },
   "print": {
     "prefix": "print",
@@ -90,40 +78,22 @@
   "enum": {
     "prefix": "enum",
     "description": "Insert a enum.",
-    "body": [
-      "enum ${1:Name} {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["enum ${1:Name} {", "\t$0", "}"]
   },
   "try": {
     "prefix": "try",
     "description": "Insert a try/catch block.",
-    "body": [
-      "try {",
-      "\t$0",
-      "} catch (${1:e}) {",
-      "}"
-    ]
+    "body": ["try {", "\t$0", "} catch (${1:e}) {", "}"]
   },
   "if": {
     "prefix": "if",
     "description": "Insert an if statement.",
-    "body": [
-      "if ($1) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["if ($1) {", "\t$0", "}"]
   },
   "if else": {
     "prefix": "ife",
     "description": "Insert an if statement with an else block.",
-    "body": [
-      "if ($1) {",
-      "\t$0",
-      "} else {",
-      "}"
-    ]
+    "body": ["if ($1) {", "\t$0", "} else {", "}"]
   },
   "switch case": {
     "prefix": "switch",
@@ -140,38 +110,22 @@
   "for": {
     "prefix": "for",
     "description": "Insert a for loop.",
-    "body": [
-      "for ($1) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["for ($1) {", "\t$0", "}"]
   },
   "for in": {
     "prefix": "fori",
     "description": "Insert a for-in loop.",
-    "body": [
-      "for (var ${1:item} in ${2:items}) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["for (var ${1:item} in ${2:items}) {", "\t$0", "}"]
   },
   "do while": {
     "prefix": "do",
     "description": "Insert a do-while loop.",
-    "body": [
-      "do {",
-      "\t$0",
-      "} while ($1);"
-    ]
+    "body": ["do {", "\t$0", "} while ($1);"]
   },
   "class": {
     "prefix": "class",
     "description": "Insert a class definition.",
-    "body": [
-      "class ${1:Name} {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["class ${1:Name} {", "\t$0", "}"]
   },
   "typedef": {
     "prefix": "typedef",
@@ -181,28 +135,16 @@
   "test": {
     "prefix": "test",
     "description": "Insert a test block.",
-    "body": [
-      "test('$1', () {",
-      "\t$0",
-      "});"
-    ]
+    "body": ["test('$1', () {", "\t$0", "});"]
   },
   "group": {
     "prefix": "group",
     "description": "Insert a test group block.",
-    "body": [
-      "group('$1', () {",
-      "\t$0",
-      "});"
-    ]
+    "body": ["group('$1', () {", "\t$0", "});"]
   },
   "while": {
     "prefix": "while",
     "description": "Insert a while loop.",
-    "body": [
-      "while ($1) {",
-      "\t$0",
-      "}"
-    ]
+    "body": ["while ($1) {", "\t$0", "}"]
   }
 }

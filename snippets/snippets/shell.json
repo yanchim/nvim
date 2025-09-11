@@ -6,27 +6,17 @@
   },
   "if": {
     "prefix": "if",
-    "body": [
-      "if [[ ${1:condition} ]]; then",
-      "\t${0}",
-      "fi"
-    ],
+    "body": ["if [[ ${1:condition} ]]; then", "\t${0}", "fi"],
     "description": "An IF statement."
   },
   "elseif": {
     "prefix": "elif",
-    "body": [
-      "elif [[ ${1:condition} ]]; then",
-      "\t${0}"
-    ],
+    "body": ["elif [[ ${1:condition} ]]; then", "\t${0}"],
     "description": "Add an elseif to an if statement."
   },
   "else": {
     "prefix": "else",
-    "body": [
-      "else",
-      "\t${0:command}"
-    ],
+    "body": ["else", "\t${0:command}"],
     "description": "else"
   },
   "for_in": {
@@ -50,29 +40,17 @@
   },
   "while": {
     "prefix": "while",
-    "body": [
-      "while [[ ${1:condition} ]]; do",
-      "\t${0}",
-      "done"
-    ],
+    "body": ["while [[ ${1:condition} ]]; do", "\t${0}", "done"],
     "description": "A while loop by condition."
   },
   "until": {
     "prefix": "until",
-    "body": [
-      "until [[ ${1:condition} ]]; do",
-      "\t${0}",
-      "done"
-    ],
+    "body": ["until [[ ${1:condition} ]]; do", "\t${0}", "done"],
     "description": "until loop by condition"
   },
   "function": {
     "prefix": "function",
-    "body": [
-      "${1:name} () {",
-      "\t${0}",
-      "}"
-    ],
+    "body": ["${1:name} () {", "\t${0}", "}"],
     "description": [
       "This defines a function named name.\n",
       "The reserved word function is optional.\n",
