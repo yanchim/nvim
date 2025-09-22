@@ -92,9 +92,9 @@ now(function()
       content = {
          active = function()
             local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-            local diff = statusline.section_diff({ trunc_width = 75 })
-            local lsp = statusline.section_lsp({ trunc_width = 75 })
-            local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
+            local diff = statusline.section_diff({ trunc_width = 75 }):gsub('^Diff ', '', 1)
+            local lsp = statusline.section_lsp({ trunc_width = 75 }):gsub('^LSP ', '', 1)
+            local diagnostics = statusline.section_diagnostics({ trunc_width = 75 }):gsub('^Diag ', '', 1)
             local filename = section_filename()
             local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
             local location = statusline.section_location({ trunc_width = 75 })
@@ -102,7 +102,7 @@ now(function()
 
             return statusline.combine_groups({
                { hl = mode_hl, strings = { mode } },
-               { hl = 'MiniStatuslineDevinfo', strings = { diff, lsp, diagnostics } },
+               { hl = 'MiniStatuslineDevinfo', strings = { diff, diagnostics, lsp } },
                '%<', -- Mark general truncate point
                { hl = 'MiniStatuslineFilename', strings = { filename } },
                '%=', -- End left alignment
@@ -206,7 +206,25 @@ later(function() require('mini.comment').setup() end)
 
 later(function() require('mini.pairs').setup() end)
 
-later(function() require('mini.surround').setup() end)
+later(function()
+   require('mini.surround').setup({
+      mappings = {
+         add = 'ys',
+         delete = 'ds',
+         find = 'gN',
+         find_left = 'gn',
+         highlight = 'gm',
+         replace = 'cs',
+      },
+   })
+
+   -- Remap adding surrounding to Visual mode selection
+   vim.keymap.del('x', 'ys')
+   vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+
+   -- Make special mapping for "add surrounding for line"
+   vim.keymap.set('n', 'yss', 'ys_', { remap = true })
+end)
 
 later(function()
    local miniclue = require('mini.clue')
@@ -628,15 +646,23 @@ later(function()
 
    vim.lsp.enable({
       'clangd',
+      'csharp_ls',
       'eslint',
+      'fsautocomplete',
       'gopls',
       'hls',
       'lua_ls',
+      'ocamllsp',
       'rust_analyzer',
       'vtsls',
       'vue_ls',
       'zls',
    })
+end)
+
+later(function()
+   add({ source = 'folke/ts-comments.nvim' })
+   require('ts-comments').setup()
 end)
 
 later(function()
@@ -647,25 +673,28 @@ later(function()
          ['*'] = { 'trim_whitespace' },
          c = { 'clang-format' },
          cpp = { 'clang-format' },
+         csharp = { 'csharpier' },
          css = { 'prettier', 'eslint_d' },
+         fsharp = { 'fantomas' },
          go = { 'gofmt' },
          haskell = { 'ormolu' },
          html = { 'prettier', 'eslint_d' },
          javascript = { 'prettier', 'eslint_d' },
-         ['javascript.jsx'] = { 'prettier', 'eslint_d' },
          javascriptreact = { 'prettier', 'eslint_d' },
+         ['javascript.jsx'] = { 'prettier', 'eslint_d' },
          json = { 'prettier', 'eslint_d' },
          jsonc = { 'prettier', 'eslint_d' },
          lua = { 'stylua' },
          markdown = { 'prettier', 'eslint_d' },
          nix = { 'nixfmt' },
+         ocaml = { 'ocamlformat' },
          odin = { 'odinfmt' },
          python = { 'ruff_format' },
          rust = { 'rustfmt' },
          toml = { 'taplo' },
          typescript = { 'prettier', 'eslint_d' },
-         ['typescript.tsx'] = { 'prettier', 'eslint_d' },
          typescriptreact = { 'prettier', 'eslint_d' },
+         ['typescript.tsx'] = { 'prettier', 'eslint_d' },
          typst = { 'typstyle' },
          vue = { 'prettier', 'eslint_d' },
          zig = { 'zigfmt' },
