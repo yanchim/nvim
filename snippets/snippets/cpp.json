@@ -34,6 +34,11 @@
     "body": ["#ifndef ${1:DEBUG}", "$0", "#endif /* ifndef $1 */"],
     "description": "Code snippet for #ifndef"
   },
+  "include bits/stdc++.h": {
+    "prefix": "bits",
+    "body": "#include <bits/stdc++.h>",
+    "description": "<bits/stdc++.h>, for gcc only"
+  },
   "include once": {
     "prefix": "#once",
     "body": [
@@ -87,64 +92,13 @@
     "body": ["enum ${1:Enum} {", "\t$0", "};"],
     "description": "Code snippet for enum"
   },
-  "class": {
-    "prefix": "class",
-    "body": [
-      "class ${1:MyClass} {",
-      "public:",
-      "\t$1();",
-      "\t$1($1 &&) = default;",
-      "\t$1(const $1 &) = default;",
-      "\t$1 &operator=($1 &&) = default;",
-      "\t$1 &operator=(const $1 &) = default;",
-      "\t~$1();",
-      "",
-      "private:",
-      "\t$2",
-      "};",
-      "",
-      "$1::$1() {",
-      "}",
-      "",
-      "$1::~$1() {",
-      "}"
-    ],
-    "description": "Code snippet for class"
-  },
-  "class inline": {
-    "prefix": "classi",
-    "body": [
-      "class ${1:MyClass} {",
-      "public:",
-      "\t$1() = default;",
-      "\t$1($1 &&) = default;",
-      "\t$1(const $1 &) = default;",
-      "\t$1 &operator=($1 &&) = default;",
-      "\t$1 &operator=(const $1 &) = default;",
-      "\t~$1() = default;",
-      "",
-      "private:",
-      "\t$2",
-      "};"
-    ],
-    "description": "Code snippet for class with inline constructor/destructor"
-  },
-  "class empty": {
-    "prefix": "classe",
-    "body": [
-      "class ${1:MyClass} {",
-      "public:",
-      "\t$2",
-      "private:",
-      "\t$3",
-      "};",
-      ""
-    ],
-    "description": "Code snippet for empty class"
-  },
   "namespace": {
     "prefix": "namespace",
     "body": ["namespace ${1:MyNamespace} {", "\t$0", "}"]
+  },
+  "using namespace": {
+    "prefix": "usens",
+    "body": "using namespace ${1:namespace};"
   },
   "struct": {
     "prefix": "struct",

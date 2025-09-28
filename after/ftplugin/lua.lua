@@ -4,5 +4,9 @@ vim.b.minisurround_config = {
          input = { '%[%[().-()%]%]' },
          output = { left = '[[', right = ']]' },
       },
+      l = {
+         input = { '%[%[().-()%]%]' },
+         output = { left = 'function() ', right = ' end' },
+      },
    },
 }

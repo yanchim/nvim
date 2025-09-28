@@ -39,17 +39,33 @@
     "prefix": "iife",
     "body": ["(function (${1:arguments}) {", "\t${0}", "})(${2})"]
   },
+  "console.assert": {
+    "prefix": "ca",
+    "body": "console.assert($1)"
+  },
+  "console.clear": {
+    "prefix": "cc",
+    "body": "console.clear()"
+  },
+  "console.debug": {
+    "prefix": "cd",
+    "body": "console.debug($1)"
+  },
+  "console.info": {
+    "prefix": "ci",
+    "body": "console.info($1)"
+  },
   "console.log": {
     "prefix": "cl",
     "body": "console.log($1)"
   },
+  "console.table": {
+    "prefix": "ct",
+    "body": "console.table($1)"
+  },
   "console.log a variable": {
     "prefix": "cv",
     "body": "console.log('$1:', $1)"
-  },
-  "console.log interpolation": {
-    "prefix": "ci",
-    "body": "console.log(`$1`)"
   },
   "console.error": {
     "prefix": "ce",
@@ -57,7 +73,7 @@
   },
   "console.warn": {
     "prefix": "cw",
-    "body": "console.warn($1)$0"
+    "body": "console.warn($1)"
   },
   "JSON.stringify()": {
     "prefix": "js",

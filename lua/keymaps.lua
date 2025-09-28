@@ -50,10 +50,10 @@ vim.keymap.set("n", "<Leader>tp", vim.cmd.tabp, { desc = "Go to previous tab" })
 vim.keymap.set("n", "<Leader>tf", "<Cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 vim.keymap.set("n", "<Leader>tt", "<Cmd>tab terminal<CR>", { desc = "Toggle terminal in tab" })
 
-vim.keymap.set("n", "<Leader>th", "<Cmd>tabmove -<CR>", { desc = "move tab left" })
-vim.keymap.set("n", "<Leader>tl", "<Cmd>tabmove +<CR>", { desc = "move tab left" })
-vim.keymap.set("n", "<Leader>ta", "<Cmd>tabmove 0<CR>", { desc = "move tab left" })
-vim.keymap.set("n", "<Leader>te", "<Cmd>tabmove $<CR>", { desc = "move tab left" })
+vim.keymap.set("n", "<Leader>th", "<Cmd>tabmove -<CR>", { desc = "Move tab left" })
+vim.keymap.set("n", "<Leader>tl", "<Cmd>tabmove +<CR>", { desc = "Move tab left" })
+vim.keymap.set("n", "<Leader>ta", "<Cmd>tabmove 0<CR>", { desc = "Move tab left" })
+vim.keymap.set("n", "<Leader>te", "<Cmd>tabmove $<CR>", { desc = "Move tab left" })
 
 -- Readline like behavior.
 vim.keymap.set({ "c", "i" }, "<C-A>", "<Home>", { desc = "Bol" })
