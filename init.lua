@@ -72,8 +72,6 @@ now(function()
    icons.mock_nvim_web_devicons()
 end)
 
--- now(function() require('mini.tabline').setup() end)
-
 now(function()
    local statusline = require('mini.statusline')
 
@@ -114,20 +112,20 @@ now(function()
    })
 end)
 
--- now(function()
---    local notify = require('mini.notify')
---    notify.setup()
---    vim.notify = notify.make_notify()
---    vim.api.nvim_create_user_command(
---       'NotifyHistory',
---       function() notify.show_history() end,
---       { desc = 'Show notify history' }
---    )
--- end)
+now(function()
+   require('mini.notify').setup()
+   vim.keymap.set(
+      'n',
+      '<Leader>vl',
+      require('mini.notify').show_history,
+      { noremap = true, desc = 'Show notify history' }
+   )
+end)
 
 later(function()
    local hipatterns = require('mini.hipatterns')
    local hi_words = require('mini.extra').gen_highlighter.words
+
    hipatterns.setup({
       highlighters = {
          -- Highlight standalone 'FIXME', 'HACK', 'XXX','TODO', 'NOTE'
@@ -139,12 +137,25 @@ later(function()
          hex_color = hipatterns.gen_highlighter.hex_color(),
       },
    })
+
+   vim.keymap.set(
+      'n',
+      '<Leader>sH',
+      require('mini.extra').pickers.hipatterns,
+      { noremap = true, desc = 'Search hipatterns' }
+   )
 end)
 
 later(function()
    local files = require('mini.files')
    files.setup()
-   vim.keymap.set('n', '<Leader>fe', files.open, { desc = 'File Explorer' })
+   vim.keymap.set('n', '<Leader>fe', files.open, { desc = 'File explorer' })
+   vim.keymap.set(
+      'n',
+      '<Leader>ff',
+      function() files.open(vim.api.nvim_buf_get_name(0)) end,
+      { noremap = true, desc = 'File explorer (current)' }
+   )
 
    local show_dotfiles = true
 
@@ -293,6 +304,7 @@ later(function()
          { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
          { mode = 'n', keys = '<Leader>p', desc = '+Project' },
          { mode = 'n', keys = '<Leader>s', desc = '+Search' },
+         { mode = 'x', keys = '<Leader>s', desc = '+Search' },
          { mode = 'n', keys = '<Leader>t', desc = '+Tab' },
          { mode = 'n', keys = '<Leader>u', desc = '+Undo' },
          { mode = 'n', keys = '<Leader>v', desc = '+View' },
@@ -307,7 +319,7 @@ later(function()
    git.setup()
    vim.keymap.set('n', '<Leader>ga', git.show_at_cursor, { desc = 'Git at cursor' })
    vim.keymap.set('n', '<Leader>gd', git.show_diff_source, { desc = 'Git diff source' })
-   vim.keymap.set('n', '<Leader>gh', git.show_range_history, { desc = 'Git range history' })
+   vim.keymap.set('n', '<Leader>gr', git.show_range_history, { desc = 'Git range history' })
 end)
 
 later(function() require('mini.jump').setup() end)
@@ -338,32 +350,102 @@ later(function()
    })
 end)
 
--- later(function()
---    require("mini.pick").setup()
---    vim.ui.select = MiniPick.ui_select
---    local builtin = MiniPick.builtin
---    vim.keymap.set("n", "<Leader>bb", builtin.buffers, { noremap = true, desc = "Switch buffer" })
---    vim.keymap.set("n", "<LocalLeader>bb", builtin.buffers, { noremap = true, desc = "Switch buffer" })
---    vim.keymap.set("n", "<C-X>b", builtin.buffers, { noremap = true, desc = "Switch buffer" })
---    vim.keymap.set("n", "<C-X><C-F>", builtin.files, { noremap = true, desc = "Find file" })
---    vim.keymap.set("n", "<Leader>sf", builtin.files, { noremap = true, desc = "Find file" })
---    vim.keymap.set("n", "<Leader>sg", builtin.grep_live, { noremap = true, desc = "Grep" })
---    vim.keymap.set("n", "<Leader>vh", builtin.help, { noremap = true, desc = "Help" })
--- end)
+later(function()
+   require('mini.pick').setup({
+      mappings = {
+         caret_left = '<C-b>',
+         caret_right = '<C-f>',
 
--- later(function()
---    require("mini.extra").setup()
---    local pickers = MiniExtra.pickers
---    vim.keymap.set("n", "<Leader>se", pickers.explorer, { noremap = true, desc = "Explorer" })
---    vim.keymap.set("n", "<Leader>ss", pickers.buf_lines, { noremap = true, desc = "Search buffer" })
---    vim.keymap.set("n", "<Leader>st", pickers.hipatterns, { noremap = true, desc = "Search todo" })
---    vim.keymap.set("n", "<Leader>gc", pickers.git_commits, { noremap = true, desc = "Git commits" })
---    vim.keymap.set("n", "<Leader>vc", pickers.colorschemes, { noremap = true, desc = "Colorscheme" })
---    vim.keymap.set("n", "<Leader>vd", pickers.diagnostic, { noremap = true, desc = "Diagnostic" })
---    vim.keymap.set("n", "<Leader>vr", pickers.registers, { noremap = true, desc = "Registers" })
---    vim.keymap.set("n", "<Leader>vk", pickers.keymaps, { noremap = true, desc = "Keymaps" })
---    vim.keymap.set("n", "<Leader>v:", pickers.commands, { noremap = true, desc = "Commands" })
--- end)
+         delete_left = '<C-k>',
+
+         scroll_down = '<C-d>',
+         scroll_up = '<C-u>',
+      },
+   })
+
+   local builtin = require('mini.pick').builtin
+
+   -- buffer
+   vim.keymap.set('n', '<Leader>bb', builtin.buffers, { noremap = true, desc = 'Switch buffer' })
+   vim.keymap.set('n', '<LocalLeader>bb', builtin.buffers, { noremap = true, desc = 'Switch buffer' })
+   vim.keymap.set('n', '<C-X>b', builtin.buffers, { noremap = true, desc = 'Switch buffer' })
+
+   -- file
+   vim.keymap.set(
+      'n',
+      '<C-X><C-F>',
+      function() builtin.files(nil, { source = { cwd = vim.fn.expand('%:p:h') } }) end,
+      { noremap = true, desc = 'Find file' }
+   )
+   vim.keymap.set('n', '<Leader>sf', builtin.files, { noremap = true, desc = 'Find file' })
+
+   -- search
+   vim.keymap.set('n', '<Leader>sg', builtin.grep_live, { noremap = true, desc = 'Grep (live)' })
+   vim.keymap.set('n', '<Leader>sG', builtin.grep, { noremap = true, desc = 'Grep' })
+   vim.keymap.set(
+      'n',
+      '<Leader>sc',
+      function() builtin.grep({ pattern = vim.fn.expand('<cword>') }) end,
+      { noremap = true, desc = 'Find text under cursor' }
+   )
+
+   -- undo
+   vim.keymap.set('n', '<Leader>up', builtin.resume, { noremap = true, desc = 'Resume picker' })
+
+   -- view
+   vim.keymap.set('n', '<Leader>vh', builtin.help, { noremap = true, desc = 'Help' })
+end)
+
+later(function()
+   require('mini.extra').setup()
+
+   local pickers = require('mini.extra').pickers
+
+   -- buffer
+   vim.keymap.set('n', '<Leader>bl', pickers.buf_lines, { noremap = true, desc = 'Buffer lines' })
+
+   -- search
+   vim.keymap.set(
+      'n',
+      '<Leader>ss',
+      function() pickers.buf_lines({ scope = 'current' }) end,
+      { noremap = true, desc = 'Search buffer' }
+   )
+   vim.keymap.set('n', '<Leader>sb', pickers.buf_lines, { noremap = true, desc = 'Search in buffers' })
+   vim.keymap.set('n', '<Leader>sh', pickers.history, { noremap = true, desc = 'Search history' })
+
+   -- git
+   vim.keymap.set('n', '<Leader>gb', pickers.git_branches, { noremap = true, desc = 'Git branches' })
+   vim.keymap.set('n', '<Leader>gc', pickers.git_commits, { noremap = true, desc = 'Git commits' })
+   vim.keymap.set('n', '<Leader>gf', pickers.git_files, { noremap = true, desc = 'Git files' })
+   vim.keymap.set('n', '<Leader>gh', pickers.git_hunks, { noremap = true, desc = 'Git hunks' })
+
+   -- file
+   vim.keymap.set('n', '<Leader>fr', pickers.oldfiles, { noremap = true, desc = 'Find recent file' })
+   vim.keymap.set('n', '<Leader>fp', pickers.explorer, { noremap = true, desc = 'File picker' })
+
+   -- view
+   vim.keymap.set('n', '<Leader>vc', pickers.colorschemes, { noremap = true, desc = 'Colorscheme' })
+   vim.keymap.set(
+      'n',
+      '<Leader>vd',
+      function() pickers.diagnostic({ scope = 'current' }) end,
+      { noremap = true, desc = 'Diagnostic' }
+   )
+   vim.keymap.set('n', '<Leader>vD', pickers.diagnostic, { noremap = true, desc = 'Diagnostic (all)' })
+   vim.keymap.set('n', '<Leader>vr', pickers.registers, { noremap = true, desc = 'Registers' })
+   vim.keymap.set('n', '<Leader>vt', pickers.treesitter, { noremap = true, desc = 'Tree-sitter' })
+   vim.keymap.set('n', '<Leader>vk', pickers.keymaps, { noremap = true, desc = 'Keymaps' })
+   vim.keymap.set('n', '<Leader>vo', pickers.options, { noremap = true, desc = 'Options' })
+   vim.keymap.set('n', '<Leader>vm', pickers.marks, { noremap = true, desc = 'Marks' })
+   vim.keymap.set(
+      'n',
+      '<Leader>vq',
+      function() pickers.list({ scope = 'quickfix' }) end,
+      { noremap = true, desc = 'Quickfix' }
+   )
+   vim.keymap.set('n', '<Leader>v:', pickers.commands, { noremap = true, desc = 'Commands' })
+end)
 
 now(function()
    local parsers = { 'stable', 'unstable' }
@@ -411,7 +493,7 @@ later(function()
    add({ source = 'saghen/blink.cmp', checkout = 'v1.7.0' })
    require('blink.cmp').setup({
       keymap = {
-         ['<CR>'] = { 'select_and_accept', 'fallback' },
+         ['<CR>'] = { 'accept', 'fallback' },
       },
       cmdline = {
          keymap = {
@@ -429,113 +511,17 @@ later(function()
 end)
 
 later(function()
-   add({ source = 'ibhagwan/fzf-lua' })
-
-   local fzf = require('fzf-lua')
-   fzf.register_ui_select()
-
-   vim.keymap.set('n', '<Leader>bb', fzf.buffers, { noremap = true, desc = 'Switch buffer' })
-   vim.keymap.set('n', '<LocalLeader>bb', fzf.buffers, { noremap = true, desc = 'Switch buffer' })
-   vim.keymap.set('n', '<C-X>b', fzf.buffers, { noremap = true, desc = 'Switch buffer' })
-   vim.keymap.set(
-      'n',
-      '<LocalLeader>ff',
-      function() fzf.files({ cwd = '%:p:h' }) end,
-      { noremap = true, desc = 'Open file browser with current buffer' }
-   )
-   vim.keymap.set(
-      'n',
-      '<Leader>fc',
-      function() fzf.files({ cwd = '%:p:h' }) end,
-      { noremap = true, desc = 'Open file browser with current buffer' }
-   )
-   vim.keymap.set('n', '<Leader>ff', fzf.files, { noremap = true, desc = 'Open file browser' })
-   vim.keymap.set('n', '<Leader>fr', fzf.oldfiles, { noremap = true, desc = 'Recent files' })
-   vim.keymap.set(
-      'n',
-      '<C-X><C-F>',
-      function() fzf.files({ cwd = '%:p:h' }) end,
-      { noremap = true, desc = 'Find file' }
-   )
-
-   vim.keymap.set('n', '<Leader>gc', fzf.git_commits, { noremap = true, desc = 'Git commits' })
-   vim.keymap.set('n', '<Leader>gf', fzf.git_files, { noremap = true, desc = 'Git files' })
-   vim.keymap.set('n', '<Leader>gs', fzf.git_status, { noremap = true, desc = 'Git status' })
-
-   vim.keymap.set('n', '<Leader>sc', fzf.grep_cword, { noremap = true, desc = 'Find string under cursor' })
-   vim.keymap.set('v', '<Leader>sc', fzf.grep_visual, { noremap = true, desc = 'Search selected text' })
-   vim.keymap.set('n', '<Leader>sf', fzf.files, { noremap = true, desc = 'Find file' })
-   vim.keymap.set('n', '<Leader>sg', fzf.live_grep, { noremap = true, desc = 'Grep' })
-   vim.keymap.set('n', '<Leader>ss', fzf.grep_curbuf, { noremap = true, desc = 'Search buffer' })
-   vim.keymap.set('v', '<Leader>ss', fzf.grep_visual, { noremap = true, desc = 'Search selected text' })
-   vim.keymap.set('n', '<Leader>sd', fzf.zoxide, { noremap = true, desc = 'Recent directories' })
-   vim.keymap.set('n', '<Leader>sp', fzf.global, { noremap = true, desc = 'Global pickers' })
-   vim.keymap.set('n', '<LocalLeader>ss', fzf.grep_curbuf, { noremap = true, desc = 'Search buffer' })
-   vim.keymap.set('n', '<LocalLeader>gg', fzf.live_grep, { noremap = true, desc = 'Grep' })
-   vim.keymap.set('n', '<Leader>v:', fzf.commands, { noremap = true, desc = 'Commands' })
-   vim.keymap.set('n', '<Leader>vc', fzf.colorschemes, { noremap = true, desc = 'Colorscheme' })
-   vim.keymap.set('n', '<Leader>vh', fzf.helptags, { noremap = true, desc = 'Help tags' })
-   vim.keymap.set('n', '<Leader>vk', fzf.keymaps, { noremap = true, desc = 'Keymaps' })
-   vim.keymap.set('n', '<Leader>vm', fzf.marks, { noremap = true, desc = 'Marks' })
-   vim.keymap.set('n', '<Leader>vr', fzf.registers, { noremap = true, desc = 'Registers' })
-
-   fzf.setup({
-      keymap = {
-         builtin = {
-            ['<C-g>'] = 'toggle-preview',
-            ['<C-f>'] = 'preview-page-down',
-            ['<C-b>'] = 'preview-page-up',
-            ['<C-d>'] = 'preview-half-page-down',
-            ['<C-u>'] = 'preview-half-page-up',
-            ['<C-j>'] = 'preview-down',
-            ['<C-k>'] = 'preview-up',
-         },
-      },
-      -- Cycle among results
-      fzf_opts = { ['--cycle'] = true },
-   })
-end)
-
-later(function()
    add({ source = 'natecraddock/workspaces.nvim' })
 
    local ws = require('workspaces')
-   local fzf = require('fzf-lua')
 
-   local function openws()
-      local workspaces = ws.get()
-
-      local function preview(item)
-         local name = item[1]
-         local matched = vim.iter(workspaces):filter(function(workspace) return workspace.name == name end):next()
-         return matched.path
-      end
-
-      return fzf.fzf_exec(function(cb)
-         for _, workspace in ipairs(workspaces) do
-            cb(workspace.name)
-         end
-      end, {
-         prompt = 'Workspace> ',
-         actions = {
-            enter = { fn = function(selected) ws.open(selected[1]) end },
-            ['ctrl-t'] = {
-               fn = function(selected)
-                  vim.cmd.tabnew()
-                  ws.open(selected[1])
-               end,
-            },
-         },
-         preview = preview,
-      })
-   end
-   vim.keymap.set('n', '<Leader>pp', openws, { noremap = true, desc = 'Open workspace' })
+   vim.keymap.set('n', '<Leader>pp', ws.open, { noremap = true, desc = 'Open workspace' })
    vim.keymap.set('n', '<Leader>pa', ws.add, { noremap = true, desc = 'Add workspace' })
    vim.keymap.set('n', '<Leader>pr', ws.remove, { noremap = true, desc = 'Remove workspace' })
-   vim.keymap.set('n', '<Leader>pl', ws.list_dirs, { noremap = true, desc = 'List dirs which contain workspaces' })
-   vim.keymap.set('n', '<Leader>ps', ws.sync_dirs, { noremap = true, desc = 'Sync workspaces in dir' })
+   vim.keymap.set('n', '<Leader>pl', ws.list_dirs, { noremap = true, desc = 'List workspace dirs' })
+   vim.keymap.set('n', '<Leader>ps', ws.sync_dirs, { noremap = true, desc = 'Sync workspace in dirs' })
 
-   ws.setup({ cd_type = 'tab', hooks = { open = { 'FzfLua files' } } })
+   ws.setup({ cd_type = 'tab', hooks = { open = { 'Pick files' } } })
 end)
 
 later(function()
@@ -553,26 +539,69 @@ end)
 later(function()
    add({ source = 'neovim/nvim-lspconfig' })
 
-   local fzf = require('fzf-lua')
+   local pickers = require('mini.extra').pickers
    create_autocmd('LspAttach', {
       callback = function()
-         vim.keymap.set('n', '<Leader>lh', vim.lsp.buf.signature_help, { noremap = true })
-         vim.keymap.set('n', '<Leader>ln', vim.lsp.buf.rename, { noremap = true })
-         vim.keymap.set('n', '<Leader>le', vim.diagnostic.open_float, { noremap = true })
-         vim.keymap.set('n', '<Leader>lq', vim.diagnostic.setloclist, { noremap = true })
-         vim.keymap.set('n', '<Leader>lf', vim.lsp.buf.format, { noremap = true })
-         vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action, { noremap = true })
-         vim.keymap.set('v', '<Leader>la', vim.lsp.buf.code_action, { noremap = true })
+         vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action, { noremap = true, desc = 'Action' })
+         vim.keymap.set('n', '<Leader>ld', vim.lsp.buf.definition, { noremap = true, desc = 'Definition' })
+         vim.keymap.set('n', '<Leader>lD', vim.lsp.buf.declaration, { noremap = true, desc = 'Declaration' })
+         vim.keymap.set('n', '<Leader>lf', vim.lsp.buf.format, { noremap = true, desc = 'Format' })
+         vim.keymap.set('n', '<Leader>lh', vim.lsp.buf.signature_help, { noremap = true, desc = 'Help' })
+         vim.keymap.set('n', '<Leader>lk', vim.lsp.buf.hover, { noremap = true, desc = 'Hover' })
+         vim.keymap.set('n', '<Leader>li', vim.lsp.buf.implementation, { noremap = true, desc = 'Implementation' })
+         vim.keymap.set('n', '<Leader>ln', vim.lsp.buf.rename, { noremap = true, desc = 'Rename' })
+         vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.references, { noremap = true, desc = 'References' })
+         vim.keymap.set('n', '<Leader>ls', vim.lsp.buf.document_symbol, { noremap = true, desc = 'Symbol (document)' })
+         vim.keymap.set(
+            'n',
+            '<Leader>lS',
+            vim.lsp.buf.workspace_symbol,
+            { noremap = true, desc = 'Symbol (workspace)' }
+         )
+         vim.keymap.set('n', '<Leader>lt', vim.lsp.buf.type_definition, { noremap = true, desc = 'Type definition' })
 
-         vim.keymap.set('n', '<Leader>ld', fzf.lsp_definitions, { noremap = true })
-         vim.keymap.set('n', '<Leader>lD', fzf.lsp_declarations, { noremap = true })
-         vim.keymap.set('n', '<Leader>lt', fzf.lsp_typedefs, { noremap = true })
-         vim.keymap.set('n', '<Leader>lx', fzf.diagnostics_document, { noremap = true })
-         vim.keymap.set('n', '<Leader>lX', fzf.diagnostics_workspace, { noremap = true })
-         vim.keymap.set('n', '<Leader>lr', fzf.lsp_references, { noremap = true })
-         vim.keymap.set('n', '<Leader>ls', fzf.lsp_document_symbols, { noremap = true })
-         vim.keymap.set('n', '<Leader>lS', fzf.lsp_workspace_symbols, { noremap = true })
-         vim.keymap.set('n', '<Leader>li', fzf.lsp_implementations, { noremap = true })
+         vim.keymap.set(
+            'n',
+            '<Leader>ld',
+            function() pickers.lsp({ scope = 'definition' }) end,
+            { noremap = true, desc = 'Definition' }
+         )
+         vim.keymap.set(
+            'n',
+            '<Leader>lD',
+            function() pickers.lsp({ scope = 'declaration' }) end,
+            { noremap = true, desc = 'Declaration' }
+         )
+         vim.keymap.set(
+            'n',
+            '<Leader>lt',
+            function() pickers.lsp({ scope = 'type_definition' }) end,
+            { noremap = true, desc = 'Type definition' }
+         )
+         vim.keymap.set(
+            'n',
+            '<Leader>ls',
+            function() pickers.lsp({ scope = 'document_symbol' }) end,
+            { noremap = true, desc = 'Symbol (document)' }
+         )
+         vim.keymap.set(
+            'n',
+            '<Leader>lS',
+            function() pickers.lsp({ scope = 'workspace_symbol' }) end,
+            { noremap = true, desc = 'Symbol (workspace)' }
+         )
+         vim.keymap.set(
+            'n',
+            '<Leader>li',
+            function() pickers.lsp({ scope = 'implementation' }) end,
+            { noremap = true, desc = 'Implementation' }
+         )
+         vim.keymap.set(
+            'n',
+            '<Leader>lr',
+            function() pickers.lsp({ scope = 'references' }) end,
+            { noremap = true, desc = 'References' }
+         )
       end,
       desc = 'On LSP Attach',
    })
@@ -707,60 +736,6 @@ later(function()
       { noremap = true, desc = 'Code format' }
    )
    vim.keymap.set('n', '<Leader>cF', vim.cmd.ConformInfo, { noremap = true, desc = 'Code format info' })
-end)
-
-later(function() add({ source = 'MunifTanjim/nui.nvim' }) end)
-
-later(function()
-   add({ source = 'rcarriga/nvim-notify' })
-   vim.keymap.set('n', '<Leader>vl', require('notify.integrations').pick, { noremap = true, desc = 'View logs' })
-   vim.keymap.set(
-      'n',
-      '<Leader>un',
-      function() require('notify').dismiss({ silent = true, pending = true }) end,
-      { noremap = true, desc = 'View logs' }
-   )
-end)
-
-later(function()
-   add({ source = 'folke/noice.nvim' })
-   require('noice').setup({
-      cmdline = {
-         format = {
-            cmdline = { icon = '>' },
-            filter = { icon = '$' },
-            help = { icon = 'H' },
-            search_down = { icon = '/' },
-            search_up = { icon = '?' },
-         },
-      },
-      lsp = {
-         -- override markdown rendering to use **Treesitter**
-         override = {
-            ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-            ['vim.lsp.util.stylize_markdown'] = true,
-         },
-      },
-      presets = {
-         bottom_search = true,
-         command_palette = true,
-         long_message_to_split = true,
-         lsp_doc_border = false,
-      },
-      routes = {
-         {
-            view = 'notify',
-            filter = {
-               event = 'msg_showmode',
-               any = { { find = 'recording' } },
-            },
-         },
-         {
-            filter = { event = 'notify', find = 'No information available' },
-            opts = { skip = true },
-         },
-      },
-   })
 end)
 
 later(function()
