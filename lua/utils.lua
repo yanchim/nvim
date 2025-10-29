@@ -1,6 +1,9 @@
 -- Appearance
 vim.o.cursorline = false
 vim.o.relativenumber = true
+-- NOTE: Having `tab` present is needed because `^I` will be shown if
+-- omitted (documented in `:h listchars`), here we hide the tab char.
+vim.o.listchars = 'tab:  ,extends:>,precedes:<,nbsp:.'
 
 -- Editing
 vim.o.expandtab = true
