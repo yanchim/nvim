@@ -2,12 +2,12 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
--- augroup for this config file
-local augroup = vim.api.nvim_create_augroup('init.lua', {})
-
--- wrapper function to use internal augroup
+-- Wrapper function to use internal augroup
 local function create_autocmd(event, opts)
-  vim.api.nvim_create_autocmd(event, vim.tbl_extend('force', { group = augroup }, opts))
+  vim.api.nvim_create_autocmd(
+    event,
+    vim.tbl_extend('force', { group = vim.api.nvim_create_augroup('init.lua', {}) }, opts)
+  )
 end
 
 local path_package = vim.fn.stdpath('data') .. '/site/'
@@ -43,10 +43,148 @@ now(
 )
 
 now(function()
-  require('utils')
-  require('keymaps')
-  if vim.fn.has('gui_running') then require('gui') end
+  -- Appearance
+  vim.o.cursorline = false
+  vim.o.relativenumber = true
+  -- NOTE: Having `tab` present is needed because `^I` will be shown if
+  -- omitted (documented in `:h listchars`), here we hide the tab char.
+  vim.o.listchars = 'tab:  ,extends:>,precedes:<,nbsp:.'
 
+  -- Editing
+  vim.o.expandtab = true
+  vim.o.tabstop = 8
+  vim.o.softtabstop = 2
+  vim.o.shiftwidth = 2
+  vim.o.clipboard = 'unnamedplus'
+
+  os.setlocale('C')
+
+  if vim.uv.os_uname().sysname == 'Windows_NT' then
+    vim.o.shell = vim.fn.executable('pwsh') == 1 and 'pwsh'
+      or vim.fn.executable('powershell') == 1 and 'powershell'
+      or vim.o.shell
+
+    vim.o.shellcmdflag = table.concat({
+      '-NoLogo',
+      '-NonInteractive',
+      '-ExecutionPolicy RemoteSigned',
+      '-Command',
+      [=[ [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();]=],
+      [=[$PSDefaultParameterValues['Out-File:Encoding']='utf8';]=],
+      [=[$PSStyle.OutputRendering='plaintext';]=],
+      [=[Remove-Alias -Force -ErrorAction SilentlyContinue tee;]=],
+    }, ' ')
+
+    vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+    vim.o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+
+    vim.o.shellquote = ''
+    vim.o.shellxquote = ''
+  end
+end)
+
+-- Keymap
+now(function()
+  vim.keymap.set(
+    'n',
+    '<LocalLeader>cd',
+    function() vim.cmd.tcd('%:h') end,
+    { desc = "Change tab's cwd to current file" }
+  )
+  vim.keymap.set('n', '<LocalLeader>dd', function() vim.cmd('verbose pwd') end, { desc = 'pwd' })
+
+  vim.keymap.set({ 'n', 'v' }, '<LocalLeader>w', vim.cmd.write, { desc = 'Write current file' })
+  vim.keymap.set({ 'n', 'v' }, '<LocalLeader>Q', function() vim.cmd.quitall({ bang = true }) end, { desc = 'Quit' })
+
+  vim.keymap.set({ 'i', 'n', 'v' }, '<C-X><C-Q>', vim.cmd.quitall, { desc = 'Quit' })
+  vim.keymap.set({ 'i', 'n', 'v' }, '<C-X><C-R>', function()
+    local buf = vim.api.nvim_get_current_buf()
+    vim.bo[buf].readonly = not vim.bo[buf].readonly
+  end, { desc = 'Toggle readonly' })
+  vim.keymap.set({ 'i', 'n', 'v' }, '<C-X><C-S>', vim.cmd.update, { desc = 'Save buffer' })
+
+  vim.keymap.set('t', 'jk', '<C-\\><C-N>', { desc = 'Exit terminal INSERT mode' })
+
+  vim.keymap.set('n', '<LocalLeader>xl', vim.cmd.lopen, { desc = 'Location list' })
+  vim.keymap.set('n', '<LocalLeader>xL', vim.cmd.lclose, { desc = 'Close location list' })
+  vim.keymap.set('n', '<LocalLeader>xq', vim.cmd.copen, { desc = 'Quickfix list' })
+  vim.keymap.set('n', '<LocalLeader>xQ', vim.cmd.cclose, { desc = 'Close quickfix list' })
+  vim.keymap.set('n', '<LocalLeader>xd', vim.diagnostic.open_float, { desc = 'Display Diagnostics' })
+  vim.keymap.set('n', '<LocalLeader>xg', vim.cmd.edit, { desc = 'Revert current buffer' })
+  vim.keymap.set('n', '<LocalLeader>xG', vim.cmd.checktime, { desc = 'Revert all buffers' })
+
+  -- Window
+  vim.keymap.set('n', '<M-j>', '<C-W>j', { desc = 'Move cursor to the downside window' })
+  vim.keymap.set('n', '<M-k>', '<C-W>k', { desc = 'Move cursor to the upside window' })
+  vim.keymap.set('n', '<M-h>', '<C-W>h', { desc = 'Move cursor to the leftside window' })
+  vim.keymap.set('n', '<M-l>', '<C-W>l', { desc = 'Move cursor to the rightside window' })
+
+  vim.keymap.set('n', '<LocalLeader>sq', '<C-W>q', { desc = 'Close current window' })
+  vim.keymap.set('n', '<LocalLeader>sa', '<C-W>s', { desc = 'Split window horizontal' })
+  vim.keymap.set('n', '<LocalLeader>sd', '<C-W>v', { desc = 'Split window vertically' })
+  vim.keymap.set('n', '<LocalLeader>oo', '<C-W>o', { desc = 'Keep current window only' })
+  vim.keymap.set('n', '<C-X>0', '<C-W>q', { desc = 'Delete window' })
+  vim.keymap.set('n', '<C-X>1', '<C-W>o', { desc = 'Delete other windows' })
+  vim.keymap.set('n', '<C-X>2', '<C-W>s', { desc = 'Split window below' })
+  vim.keymap.set('n', '<C-X>3', '<C-W>v', { desc = 'Split window right' })
+  vim.keymap.set('n', '<C-X>o', '<C-W><C-W>', { desc = 'Other window' })
+
+  -- Tab
+  vim.keymap.set('n', '<Leader>to', vim.cmd.tabnew, { desc = 'Open new tab' })
+  vim.keymap.set('n', '<Leader>tx', vim.cmd.tabclose, { desc = 'Close current tab' })
+  vim.keymap.set('n', '<Leader>tn', vim.cmd.tabn, { desc = 'Go to next tab' })
+  vim.keymap.set('n', '<Leader>tp', vim.cmd.tabp, { desc = 'Go to previous tab' })
+  vim.keymap.set('n', '<Leader>tf', '<Cmd>tabnew %<CR>', { desc = 'Open current buffer in new tab' })
+  vim.keymap.set('n', '<Leader>tt', '<Cmd>tab terminal<CR>', { desc = 'Toggle terminal in tab' })
+
+  vim.keymap.set('n', '<Leader>th', '<Cmd>tabmove -<CR>', { desc = 'Move tab left' })
+  vim.keymap.set('n', '<Leader>tl', '<Cmd>tabmove +<CR>', { desc = 'Move tab left' })
+  vim.keymap.set('n', '<Leader>ta', '<Cmd>tabmove 0<CR>', { desc = 'Move tab left' })
+  vim.keymap.set('n', '<Leader>te', '<Cmd>tabmove $<CR>', { desc = 'Move tab left' })
+
+  -- Readline like behavior
+  vim.keymap.set({ 'c', 'i' }, '<C-A>', '<Home>', { desc = 'Bol' })
+  vim.keymap.set({ 'c', 'i' }, '<C-E>', '<End>', { desc = 'Eol' })
+  vim.keymap.set({ 'c', 'i' }, '<C-D>', '<Delete>', { desc = 'Delete char' })
+  vim.keymap.set({ 'c', 'i' }, '<C-F>', '<Right>', { desc = 'Forward char' })
+  vim.keymap.set({ 'c', 'i' }, '<C-B>', '<Left>', { desc = 'Backward char' })
+  vim.keymap.set('i', '<C-N>', '<Down>', { desc = 'Next line' })
+  vim.keymap.set('i', '<C-P>', '<Up>', { desc = 'Prev line' })
+
+  -- Command
+  vim.keymap.set('c', '<C-O>', '<C-F>', { desc = 'Command' })
+end)
+
+-- GUI
+now(function()
+  if vim.fn.has('gui_running') then
+    if vim.g.neovide then
+      local function set_ime(args)
+        if args.event:match('Enter$') then
+          vim.g.neovide_input_ime = true
+          return nil
+        else
+          vim.g.neovide_input_ime = false
+          return nil
+        end
+      end
+
+      local ime_input = vim.api.nvim_create_augroup('ime_input', { clear = true })
+
+      vim.api.nvim_create_autocmd(
+        { 'InsertEnter', 'InsertLeave' },
+        { group = ime_input, pattern = '*', callback = set_ime }
+      )
+      vim.api.nvim_create_autocmd(
+        { 'CmdlineEnter', 'CmdlineLeave' },
+        { group = ime_input, pattern = '[/\\?]', callback = set_ime }
+      )
+      vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
+    end
+  end
+end)
+
+now(function()
   -- https://vim-jp.org/vim-users-jp/2011/02/20/Hack-202.html
   create_autocmd('BufWritePre', {
     pattern = '*',
