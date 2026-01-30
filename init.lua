@@ -195,7 +195,7 @@ now(function()
         vim.fn.isdirectory(dir) == 0
         and (force or vim.fn.confirm('"' .. dir .. '" does not exist. Create?', '&Yes\n&No') == 1)
       then
-        vim.fn.mkdir(vim.fn.iconv(dir, vim.opt.encoding:get(), vim.opt.termencoding:get()), 'p')
+        vim.fn.mkdir(vim.fn.iconv(dir, vim.o.encoding, vim.o.termencoding), 'p')
       end
     end,
     desc = 'Auto mkdir to save file',
@@ -684,8 +684,6 @@ now(function()
 
   add({
     source = 'nvim-treesitter/nvim-treesitter',
-    checkout = 'main',
-    monitor = 'main',
     hooks = {
       post_install = function(args)
         vim.cmd.packadd(args.name)
