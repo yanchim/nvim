@@ -1,7 +1,12 @@
 return {
   on_attach = function(client)
     -- Reduce very long list of triggers for better 'mini.completion' experience
-    client.server_capabilities.completionProvider.triggerCharacters = { '.', ':', '#', '(' }
+    client.server_capabilities.completionProvider.triggerCharacters = {
+      '.',
+      ':',
+      '#',
+      '(',
+    }
 
     -- Use this function to define buffer-local mappings and behavior that depend
     -- on attached client or only makes sense if there is language server attached.

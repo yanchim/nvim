@@ -19,6 +19,8 @@ if not vim.uv.fs_stat(mini_path) then
     'git',
     'clone',
     '--filter=blob:none',
+    -- Uncomment next line to use 'stable' branch
+    -- '--branch', 'stable',
     'https://github.com/nvim-mini/mini.nvim',
     mini_path,
   }
@@ -195,7 +197,7 @@ now(function()
         vim.fn.isdirectory(dir) == 0
         and (force or vim.fn.confirm('"' .. dir .. '" does not exist. Create?', '&Yes\n&No') == 1)
       then
-        vim.fn.mkdir(vim.fn.iconv(dir, vim.opt.encoding:get(), vim.opt.termencoding:get()), 'p')
+        vim.fn.mkdir(vim.fn.iconv(dir, vim.o.encoding, vim.o.termencoding), 'p')
       end
     end,
     desc = 'Auto mkdir to save file',
@@ -620,7 +622,7 @@ end)
 -- end)
 
 later(function()
-  add({ source = 'saghen/blink.cmp', checkout = 'v1.8.0' })
+  add({ source = 'saghen/blink.cmp', checkout = 'v1.9.1' })
   require('blink.cmp').setup({
     keymap = {
       -- -- 'default' for mappings similar to built-in completions (C-y to accept)
@@ -684,8 +686,6 @@ now(function()
 
   add({
     source = 'nvim-treesitter/nvim-treesitter',
-    checkout = 'main',
-    monitor = 'main',
     hooks = {
       post_install = function(args)
         vim.cmd.packadd(args.name)
@@ -816,13 +816,15 @@ later(function()
   vim.lsp.enable({
     'clangd',
     'csharp_ls',
-    'eslint',
     'fsautocomplete',
     'gopls',
     'hls',
     'lua_ls',
     'ocamllsp',
+    'oxfmt',
+    'oxlint',
     'rust_analyzer',
+    'tinymist',
     'vtsls',
     'vue_ls',
     'zls',
@@ -843,29 +845,30 @@ later(function()
       c = { 'clang-format' },
       cpp = { 'clang-format' },
       csharp = { 'csharpier' },
-      css = { 'prettier', 'eslint_d' },
+      css = { 'oxfmt' },
       fsharp = { 'fantomas' },
       go = { 'gofmt' },
       haskell = { 'ormolu' },
-      html = { 'prettier', 'eslint_d' },
-      javascript = { 'prettier', 'eslint_d' },
-      javascriptreact = { 'prettier', 'eslint_d' },
-      ['javascript.jsx'] = { 'prettier', 'eslint_d' },
-      json = { 'prettier', 'eslint_d' },
-      jsonc = { 'prettier', 'eslint_d' },
+      html = { 'oxfmt' },
+      javascript = { 'oxfmt', 'oxlint' },
+      javascriptreact = { 'oxfmt', 'oxlint' },
+      ['javascript.jsx'] = { 'oxfmt', 'oxlint' },
+      json = { 'oxfmt' },
+      jsonc = { 'oxfmt' },
       lua = { 'stylua' },
-      markdown = { 'prettier', 'eslint_d' },
+      markdown = { 'oxfmt' },
       nix = { 'nixfmt' },
       ocaml = { 'ocamlformat' },
       odin = { 'odinfmt' },
       python = { 'ruff_format' },
       rust = { 'rustfmt' },
-      toml = { 'taplo' },
-      typescript = { 'prettier', 'eslint_d' },
-      typescriptreact = { 'prettier', 'eslint_d' },
-      ['typescript.tsx'] = { 'prettier', 'eslint_d' },
+      toml = { 'oxfmt' },
+      typescript = { 'oxfmt', 'oxlint' },
+      typescriptreact = { 'oxfmt', 'oxlint' },
+      ['typescript.tsx'] = { 'oxfmt', 'oxlint' },
       typst = { 'typstyle' },
-      vue = { 'prettier', 'eslint_d' },
+      yaml = { 'oxfmt' },
+      vue = { 'oxfmt', 'oxlint' },
       zig = { 'zigfmt' },
     },
   })

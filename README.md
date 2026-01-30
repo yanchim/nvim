@@ -1,4 +1,4 @@
-# Table of Contents <!-- :TOC: -->
+# Table of Contents                                     <!-- :TOC: -->
 - [Neovim configuration](#neovim-configuration)
   - [INSTALL](#install)
 
