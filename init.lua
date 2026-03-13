@@ -754,17 +754,24 @@ later(function()
   local pickers = require('mini.extra').pickers
   create_autocmd('LspAttach', {
     callback = function()
+      -- Command
+      vim.keymap.set('n', '<Leader>ll', vim.cmd.LspStart, { noremap = true, desc = 'Start' })
+      vim.keymap.set('n', '<Leader>lq', vim.cmd.LspStop, { noremap = true, desc = 'Stop' })
+      vim.keymap.set('n', '<Leader>lI', vim.cmd.LspInfo, { noremap = true, desc = 'Info' })
+      vim.keymap.set('n', '<Leader>lL', vim.cmd.LspLog, { noremap = true, desc = 'Log' })
+      vim.keymap.set('n', '<Leader>lR', vim.cmd.LspRestart, { noremap = true, desc = 'Restart' })
+
       vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action, { noremap = true, desc = 'Action' })
-      vim.keymap.set('n', '<Leader>ld', vim.lsp.buf.definition, { noremap = true, desc = 'Definition' })
       vim.keymap.set('n', '<Leader>lD', vim.lsp.buf.declaration, { noremap = true, desc = 'Declaration' })
+      vim.keymap.set('n', '<Leader>ld', vim.lsp.buf.definition, { noremap = true, desc = 'Definition' })
       vim.keymap.set('n', '<Leader>lf', vim.lsp.buf.format, { noremap = true, desc = 'Format' })
       vim.keymap.set('n', '<Leader>lh', vim.lsp.buf.signature_help, { noremap = true, desc = 'Help' })
-      vim.keymap.set('n', '<Leader>lk', vim.lsp.buf.hover, { noremap = true, desc = 'Hover' })
       vim.keymap.set('n', '<Leader>li', vim.lsp.buf.implementation, { noremap = true, desc = 'Implementation' })
+      vim.keymap.set('n', '<Leader>lk', vim.lsp.buf.hover, { noremap = true, desc = 'Hover' })
       vim.keymap.set('n', '<Leader>ln', vim.lsp.buf.rename, { noremap = true, desc = 'Rename' })
       vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.references, { noremap = true, desc = 'References' })
-      vim.keymap.set('n', '<Leader>ls', vim.lsp.buf.document_symbol, { noremap = true, desc = 'Symbol (document)' })
       vim.keymap.set('n', '<Leader>lS', vim.lsp.buf.workspace_symbol, { noremap = true, desc = 'Symbol (workspace)' })
+      vim.keymap.set('n', '<Leader>ls', vim.lsp.buf.document_symbol, { noremap = true, desc = 'Symbol (document)' })
       vim.keymap.set('n', '<Leader>lt', vim.lsp.buf.type_definition, { noremap = true, desc = 'Type definition' })
 
       vim.keymap.set(
