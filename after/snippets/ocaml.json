@@ -1,0 +1,22 @@
+{
+  "match": {
+    "prefix": "match",
+    "body": ["match ${1:value} with", "\t| $0"],
+    "description": "match pattern"
+  },
+  "sig": {
+    "prefix": "sig",
+    "body": ["sig", "\t$0", "end"],
+    "description": "signature"
+  },
+  "struct": {
+    "prefix": "struct",
+    "body": ["struct", "\t$0", "end"],
+    "description": "structure"
+  },
+  "fun": {
+    "prefix": "fun",
+    "body": ["fun ($1) -> $0"],
+    "description": "lambda function"
+  }
+}

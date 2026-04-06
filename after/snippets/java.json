@@ -1,8 +1,43 @@
 {
-  "documentation": {
-    "prefix": "doc",
-    "body": ["/**", " * ${0}", " */"],
-    "description": "Documentation"
+  "main": {
+    "prefix": "main",
+    "body": ["public static void main(String[] args) {", "\t$0", "}"],
+    "description": "Public static main method"
+  },
+  "Public constructor": {
+    "prefix": "constructor",
+    "body": ["public ${1:$TM_FILENAME_BASE}($2) {", "\t${0:super();}", "}"],
+    "description": "Public constructor"
+  },
+  "for loop": {
+    "prefix": "for",
+    "body": ["for ($1) {", "\t$0", "}"],
+    "description": "for loop"
+  },
+  "if": {
+    "prefix": "if",
+    "body": ["if (${1:condition}) {", "\t$0", "}"],
+    "description": "if statement"
+  },
+  "trycatch": {
+    "prefix": "trycatch",
+    "body": ["try {", "\t$1", "} catch (Exception e) {", "\t$2", "} finally {", "\t$3", "}"],
+    "description": "try/catch block"
+  },
+  "Switch Statement": {
+    "prefix": "switch",
+    "body": ["switch ($1) {", "\t$0", "}"],
+    "description": "Switch Statement"
+  },
+  "While Statement": {
+    "prefix": "while",
+    "body": ["while (${1:cond}) {", "\t$0", "}"],
+    "description": "While Statement"
+  },
+  "Do-While Statement": {
+    "prefix": "dowhile",
+    "body": ["do {", "\t$0", "} while (${1:cond});"],
+    "description": "Do-While Statement"
   },
   "Print": {
     "prefix": "print",
@@ -18,5 +53,10 @@
     "prefix": "println",
     "body": "System.out.println(${0});",
     "description": "Print to console with a newline"
+  },
+  "documentation": {
+    "prefix": "doc",
+    "body": ["/**", " * $0", " */"],
+    "description": "Documentation"
   }
 }
