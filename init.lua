@@ -43,21 +43,22 @@ local function new_autocmd(event, opts)
   )
 end
 
--- Define custom `vim.pack.add()` hook helper. See `:h vim.pack-events`.
-local function on_packchanged(plugin_name, kinds, callback, desc)
-  new_autocmd('PackChanged', {
-    pattern = '*',
-    callback = function(ev)
-      local name, kind = ev.data.spec.name, ev.data.kind
-      if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then return end
-      if not ev.data.active then vim.cmd.packadd(plugin_name) end
-      callback()
-    end,
-    desc = desc,
-  })
-end
+-- -- Define custom `vim.pack.add()` hook helper. See `:h vim.pack-events`.
+-- local function on_packchanged(plugin_name, kinds, callback, desc)
+--   new_autocmd('PackChanged', {
+--     pattern = '*',
+--     callback = function(ev)
+--       local name, kind = ev.data.spec.name, ev.data.kind
+--       if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then return end
+--       if not ev.data.active then vim.cmd.packadd(plugin_name) end
+--       callback()
+--     end,
+--     desc = desc,
+--   })
+-- end
 
 -- local function on_event(ev, f) misc.safely('event:' .. ev, f) end
+
 -- local function on_filetype(ft, f) misc.safely('filetype:' .. ft, f) end
 
 --- Built-in behavior
@@ -295,6 +296,9 @@ vim.keymap.set('c', '<C-E>', '<End>', { noremap = true, desc = 'Eol' })
 vim.keymap.set('c', '<C-D>', '<Delete>', { noremap = true, desc = 'Delete char' })
 vim.keymap.set('c', '<C-F>', '<Right>', { noremap = true, desc = 'Forward char' })
 vim.keymap.set('c', '<C-B>', '<Left>', { noremap = true, desc = 'Backward char' })
+vim.keymap.set('i', '<C-A>', '<Home>', { noremap = true, desc = 'Delete char' })
+vim.keymap.set('i', '<C-D>', '<Delete>', { noremap = true, desc = 'Delete char' })
+vim.keymap.set('i', '<C-E>', '<End>', { noremap = true, desc = 'Delete char' })
 vim.keymap.set('i', '<C-N>', '<Down>', { noremap = true, desc = 'Next line' })
 vim.keymap.set('i', '<C-P>', '<Up>', { noremap = true, desc = 'Prev line' })
 
@@ -840,9 +844,9 @@ later(function()
     },
   })
 
-  -- -- Select and insert snippets via completion engine
-  -- -- Call after mini.snippets setup
-  -- snp.start_lsp_server()
+  -- Select and insert snippets via completion engine
+  -- Call after mini.snippets setup
+  snp.start_lsp_server()
 end)
 
 later(function() require('mini.splitjoin').setup() end)
@@ -878,35 +882,12 @@ end)
 
 now_if_args(function()
   add({
-    'https://github.com/nvim-treesitter/nvim-treesitter',
+    'https://github.com/romus204/tree-sitter-manager.nvim',
     'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
     'https://github.com/nvim-treesitter/nvim-treesitter-context',
   })
 
-  local parsers = { 'stable', 'unstable' }
-
-  require('nvim-treesitter').install(parsers):wait()
-
-  local function ts_update()
-    require('nvim-treesitter').install(parsers):wait()
-    require('nvim-treesitter').update():wait()
-  end
-
-  on_packchanged('nvim-treesitter', { 'update' }, ts_update, ':TSUpdate')
-
-  new_autocmd('FileType', {
-    pattern = '*',
-    callback = function(args)
-      local lang = vim.treesitter.language.get_lang(args.match)
-      if lang and vim.treesitter.language.add(lang) then
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-        vim.wo[0][0].foldmethod = 'expr'
-        vim.treesitter.start()
-      end
-    end,
-    desc = 'Treesitter for buffer',
-  })
+  require('tree-sitter-manager').setup({ auto_install = true })
 
   require('nvim-treesitter-textobjects').setup()
 
@@ -996,6 +977,7 @@ now_if_args(function()
     'csharp_ls',
     'emmylua_ls',
     'fsautocomplete',
+    'golangci_lint_ls',
     'gopls',
     'hls',
     'jdtls',
@@ -1034,8 +1016,9 @@ later(function()
       cpp = { 'clang-format' },
       csharp = { 'csharpier' },
       css = { 'oxfmt' },
+      docker = { 'dockerfmt' },
       fsharp = { 'fantomas' },
-      go = { 'gofmt' },
+      go = { 'gofmt', 'golangci-lint' },
       haskell = { 'ormolu' },
       html = { 'oxfmt' },
       java = { 'google-java-format' },
@@ -1104,8 +1087,7 @@ later(function()
   add({
     'https://github.com/NeogitOrg/neogit',
     -- Dependencies for neogit
-    'https://github.com/nvim-lua/plenary.nvim',
-    'https://github.com/sindrets/diffview.nvim',
+    'https://github.com/esmuellert/codediff.nvim',
   })
 
   local neogit = require('neogit')
